@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tessaract</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="login">LOG IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="save_password">Save Password</string>
+    <string name="user_name">user name</string>
+    <string name="password">password</string>
+    <string name="allow_other_device">allow other device to use this profile</string>
+    <string name="use_current">use current username and password</string>
+    <string name="different_login">use different login and password</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="permissions">permissions</string>
+    <string name="read_survey">read survey</string>
+    <string name="perform_survey">perform survey</string>
+    <string name="commit_local">commit local</string>
+    <string name="commit_server">commit in server</string>
+    <string name="advanced">advanced</string>
+    <string name="create_user">create account</string>
+    <string name="advanced_account"><u>advanced account</u></string> 
+    <string name="company_textview">Enter company key</string> 
+    <string name="company_name_edittext">company name</string> 
+    <string name="company_key">company key</string> 
+    <string name="register_account"><u>register a new account</u></string>
+    <string name="survey_text">survey</string>
+    <string name="devices_text">Devices</string>
+    <string name="settings_text">Settings</string>
+    <string name="report_text">Reports</string>
+    <string name="user_text">Users</string>
+    <string name="help_text">Help</string>
+    <string name="profile_text">Profile</string>
+    <string name="about_text">About</string>
+    <string name="user_list_title">User List</string>
+    
+    
+
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/activate_user"
+        android:title="Activate" />
+     <item
+        android:id="@+id/child_user"
+        android:title="child" />
+    <item
+        android:id="@+id/edit_user"
+        android:title="Edit" />
+    <item
+        android:id="@+id/delete_user"
+        android:title="Delete" />
+    
+
+</menu>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="header">#383838</color>
+    <color name="menu_logo">#676565</color>
+    <color name="body">#e3e3e3</color>
+    <color name="green">#08c5a2</color>
+    <color name="orange">#e97a24</color>
+    <color name="text_color">#454545</color>
+    <color name="grey_light">#9c9c9c</color>
+    <color name="red">#ff5959</color>
+    <color name="disabled_date_color">#545454</color>
+    <color name="purple">#bc59d8</color>
+    <color name="blue">#668ef3</color>
+    <color name="yellow">#fdc26e</color>
+    <color name="fsafron">#FF9933</color>
+    <color name="fwhite">#FFFFFF</color>
+    <color name="fgreen">#138808</color>
+    <color name="usage_color1">#fb7d01</color>
+    <color name="usage_color2">#454545</color>
+    <color name="usage_color3">#d1a67c</color>
+
+</resources>
