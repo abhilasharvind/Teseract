@@ -8,14 +8,22 @@
         android:layout_height="match_parent"
         android:background="@color/fsafron" >
     </RelativeLayout>
-    
-    <ImageButton 
-        android:layout_marginLeft="15dp"
+
+    <ImageButton
         android:id="@+id/home_im_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/home_icon"
-        android:layout_centerVertical="true"/>
-    
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/home_icon" />
+
+    <ImageButton
+        android:id="@+id/user_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="top|right"
+        android:background="@drawable/more_button_icon" />
 
 </RelativeLayout>

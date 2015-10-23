@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import com.abx.jsservey.R;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.BaseActivity;
-import com.jsservey.view.MainActivity;
+import com.jsservey.view.home.MainActivity;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;

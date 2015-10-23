@@ -1,4 +1,4 @@
-package com.jsservey.view;
+package com.jsservey.view.survey;
 
 import android.app.Activity;
 
