@@ -64,8 +64,7 @@ public class ApiRequester extends AsyncTask<String, Void, JSONObject> implements
 		JSONObject inputJson = null;
 
 		try {
-
-			//httppost.addHeader("Authorization", "Basic " + auth);
+			
 
 			HttpResponse response = httpclient.execute(httppost);
 
