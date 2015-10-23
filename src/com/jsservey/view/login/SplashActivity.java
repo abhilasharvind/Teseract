@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import com.abx.jsservey.R;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.BaseActivity;
-import com.jsservey.view.home.MainActivity;
+import com.jsservey.view.home.HomeActivity;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
@@ -33,7 +33,7 @@ public class SplashActivity extends BaseActivity implements ApiRequestListner{
 			
 			@Override
 			public String onSuccess(JSONObject result) {
-				Utility.startActivity(SplashActivity.this, MainActivity.class);				
+				Utility.startActivity(SplashActivity.this, HomeActivity.class);				
 				finish();
 				return null;
 			}

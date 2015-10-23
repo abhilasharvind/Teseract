@@ -4,9 +4,9 @@
         android:id="@+id/activate_profile"
         android:title="Activate" />
     <item
-        android:id="@+id/edit_profile"
-        android:title="Edit" />
+        android:id="@+id/Sync_popup"
+        android:title="Sync" />
     <item
-        android:id="@+id/delete_profile"
-        android:title="Delete" />
+        android:id="@+id/Logout_popup"
+        android:title="Logout" />
 </menu>

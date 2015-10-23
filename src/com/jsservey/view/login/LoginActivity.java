@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import com.abx.jsservey.R;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.BaseActivity;
-import com.jsservey.view.home.MainActivity;
+import com.jsservey.view.home.HomeActivity;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
@@ -35,7 +35,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 			
 			@Override
 			public void onClick(View arg0) {
-				Utility.startActivity(LoginActivity.this, CreateAccount.class);				
+				Utility.startActivity(LoginActivity.this, AccountCreationActivity.class);				
 				finish();
 				
 			}
@@ -59,7 +59,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 	@Override
 	public String onSuccess(JSONObject result) {
 		Toast.makeText(this, "Login Success!", 1500).show();
-		Utility.startActivity(LoginActivity.this, MainActivity.class);				
+		Utility.startActivity(LoginActivity.this, HomeActivity.class);				
 		finish();
 		
 		return null;
@@ -69,7 +69,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 	public String onFailed() {
 		Toast.makeText(this, "Login failed!", 1500).show();
 		Toast.makeText(this, "Login Success!", 1500).show();
-		Utility.startActivity(LoginActivity.this, MainActivity.class);
+		Utility.startActivity(LoginActivity.this, HomeActivity.class);
 		return null;
 	}
 

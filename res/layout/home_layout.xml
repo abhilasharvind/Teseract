@@ -4,116 +4,123 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
     android:orientation="vertical" >
-<include 
-    layout="@layout/header_layout"/>
-   
 
+    <include layout="@layout/header_layout" />
+<ScrollView 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:weightSum="3" >
+        android:layout_height="match_parent" 
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/report_layout"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:background="@android:color/holo_green_dark"
-            android:gravity="left|bottom"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:text="@string/report_text"
-            android:textSize="15sp" />
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:weightSum="3" >
 
-        <View
-            android:layout_width="10dp"
-            android:layout_height="match_parent" />
+            <Button
+                android:id="@+id/report_bt"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_green_dark"
+                android:gravity="left|bottom"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:text="@string/report_text"
+                android:textSize="15sp" />
 
-        <Button
-            android:id="@+id/settings_layout"
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/settings_bt"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="2"
+                android:background="@android:color/holo_purple"
+                android:gravity="left|bottom"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:text="@string/settings_text"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="2"
-            android:background="@android:color/holo_purple"
-            android:gravity="left|bottom"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:text="@string/settings_text"
-            android:textSize="15sp" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <Button
+                android:id="@+id/user_bt"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_red_light"
+                android:gravity="left|bottom"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:text="@string/user_text"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/help_bt"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="2"
+                android:background="@android:color/holo_orange_light"
+                android:gravity="left|bottom"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:text="@string/help_text"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <Button
+                android:id="@+id/profile_bt"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_red_dark"
+                android:gravity="left|bottom"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:text="@string/profile_text"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/about_bt"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="2"
+                android:background="@android:color/holo_green_light"
+                android:gravity="left|bottom"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:text="@string/about_text"
+                android:textSize="15sp" />
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        android:weightSum="3" >
-
-        <Button
-            android:id="@+id/user_layout"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:background="@android:color/holo_red_light"
-            android:gravity="left|bottom"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:text="@string/user_text"
-            android:textSize="15sp" />
-
-        <View
-            android:layout_width="10dp"
-            android:layout_height="match_parent" />
-
-        <Button
-            android:id="@+id/help_layout"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="2"
-            android:background="@android:color/holo_orange_light"
-            android:gravity="left|bottom"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:text="@string/help_text"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        android:weightSum="3" >
-
-        <Button
-            android:id="@+id/profile_layout"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:background="@android:color/holo_red_dark"
-            android:gravity="left|bottom"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:text="@string/profile_text"
-            android:textSize="15sp" />
-
-        <View
-            android:layout_width="10dp"
-            android:layout_height="match_parent" />
-
-        <Button
-            android:id="@+id/about_layout"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="2"
-            android:background="@android:color/holo_green_light"
-            android:gravity="left|bottom"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:text="@string/about_text"
-            android:textSize="15sp" />
-    </LinearLayout>
-
+</ScrollView>
 </LinearLayout>

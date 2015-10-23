@@ -10,13 +10,14 @@
         android:id="@+id/login_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:background="@drawable/gradient_background"
         android:gravity="center_vertical"
         android:orientation="vertical" >
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="72dp"
+            android:layout_height="76dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:src="@drawable/survey_icon" />
@@ -26,15 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/user_name"
-            android:password="true"
-            android:textColorHint="@android:color/white" />
-
-        <EditText
-            android:id="@+id/last_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Last Name"
-            android:password="true"
+            android:singleLine="true"
             android:textColorHint="@android:color/white" />
 
         <EditText
@@ -42,12 +35,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="First Name"
-            android:password="true"
+            android:singleLine="true"
             android:textColorHint="@android:color/white" >
-
-            <requestFocus />
         </EditText>
+
+        <requestFocus />
+
+        <EditText
+            android:id="@+id/last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Name"
+            android:singleLine="true"
+            android:textColorHint="@android:color/white" />
 
         <EditText
             android:id="@+id/password"
@@ -65,10 +65,11 @@
             android:layout_marginBottom="20dp"
             android:hint="Confirm Password"
             android:password="true"
-            android:singleLine="true" 
-            android:textColorHint="@android:color/white"/>
+            android:singleLine="true"
+            android:textColorHint="@android:color/white" />
 
         <Button
+            android:id="@+id/create_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -76,7 +77,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/round_corner"
-            android:text="@string/create_user" />
+            android:text="@string/create_user"
+             />
 
         <TextView
             android:id="@+id/advanced"

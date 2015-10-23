@@ -22,4 +22,11 @@ public class RequestCreator implements URLConstants{
 		url=url+"SurveyAPI/LoginServlet?userload=true&dbName=csfeedback&deviceId=123456";
 		return url;
 	}
+	
+	public String createUser(String dbname,String uname,String deviceId){
+		String url=BASE_URL;	
+		
+		url=url+"SurveyAPI/LoginServlet?profilecreation=true&dbName="+dbname +"&deviceId="+deviceId+"&profileName="+uname+"&permissionId=1&activateSchedule=1&scheduleTimefrom=02:35:25&scheduleTimeto=03:35:25&scheduleDays=1011010&scheduleUpto=2015-12-20 00:00:00&uId=3";
+		return url;
+	}
 }
