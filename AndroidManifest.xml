@@ -40,6 +40,8 @@
         </activity>
         <activity android:name="com.jsservey.view.login.DeviceCreationActivity" >
         </activity>
+        <activity android:name="com.jsservey.view.home.ProfileMainActivity" >
+        </activity>
     </application>
 
 </manifest>

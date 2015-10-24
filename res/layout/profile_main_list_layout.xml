@@ -5,6 +5,7 @@
     android:background="#ffffff"
     android:orientation="vertical" >
 
+    <include layout="@layout/header_layout"/>
     <ListView
         android:id="@+id/listView"
         android:layout_width="fill_parent"

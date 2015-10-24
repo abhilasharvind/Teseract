@@ -61,7 +61,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener{
 			break;
 			
 		case R.id.profile_bt:
-			Utility.startActivity(HomeActivity.this, ReportActivity.class);
+			Utility.startActivity(HomeActivity.this, ProfileMainActivity.class);
 			break;
 		
 		
