@@ -111,6 +111,7 @@ public class ApiRequester extends AsyncTask<String, Void, JSONObject> implements
 	@Override
 	protected void onPostExecute(JSONObject result) {
 		super.onPostExecute(result);
+		Log.e("abx", "responce="+result.toString());
 		if(result!=null){
 			apiRequestListner.onSuccess(result);
 		}else{

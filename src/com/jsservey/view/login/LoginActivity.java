@@ -2,6 +2,8 @@ package com.jsservey.view.login;
 
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.abx.jsservey.R;
@@ -13,6 +15,7 @@ import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -59,17 +62,36 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 	@Override
 	public String onSuccess(JSONObject result) {
 		Toast.makeText(this, "Login Success!", 1500).show();
-		Utility.startActivity(LoginActivity.this, HomeActivity.class);				
-		finish();
+		try {
+			if (result.has("data")) {
+				JSONObject data = result.getJSONObject("data");
+				String isAdvacedUser=data.getString("is_advaced_user");
+				
+				String user_advaced_id=data.getString("user_advaced_id");
+				String  survey_perform_only=data.getString("survey_perform_only");
+				String  user_id=data.getString("user_id");
+				Log.d("abx", user_advaced_id+" "+survey_perform_only+" "+user_id);
+				
+				Utility.startActivity(LoginActivity.this, HomeActivity.class);				
+				finish();
+			}else{
+				Toast.makeText(this, "Login failed!", 1500).show();
+			}
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		return null;
 	}
 
 	@Override
 	public String onFailed() {
-		Toast.makeText(this, "Login failed!", 1500).show();
-		Toast.makeText(this, "Login Success!", 1500).show();
-		Utility.startActivity(LoginActivity.this, HomeActivity.class);
+		
+		Toast.makeText(this, "Login Failed!", 1500).show();
+		//Utility.startActivity(LoginActivity.this, HomeActivity.class);
 		return null;
 	}
 

@@ -38,6 +38,8 @@
         </activity>
         <activity android:name="com.jsservey.view.reportandabout.ReportActivity" >
         </activity>
+        <activity android:name="com.jsservey.view.login.DeviceCreationActivity" >
+        </activity>
     </application>
 
 </manifest>
