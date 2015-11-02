@@ -2,14 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="horizontal" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient_background"
         android:gravity="center_horizontal" >
 
         <TextView
@@ -20,7 +19,7 @@
             android:layout_centerHorizontal="true"
             android:padding="5dp"
             android:text="TextView"
-            android:textColor="@android:color/white"
+            android:textColor="@color/black"
             android:textSize="25dp" />
 
         <ImageView
@@ -29,6 +28,15 @@
             android:layout_height="48dp"
             android:layout_alignParentRight="true"
             android:src="@drawable/more_button_icon" />
+
+        <ImageView
+            android:id="@+id/profile_tick"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/imageView1"
+            android:src="@android:drawable/ic_media_play"
+            android:visibility="gone" />
     </RelativeLayout>
 
 </LinearLayout>

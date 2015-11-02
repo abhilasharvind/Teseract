@@ -61,7 +61,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 
 	@Override
 	public String onSuccess(JSONObject result) {
-		Toast.makeText(this, "Login Success!", 1500).show();
+		Toast.makeText(this, "Login Success!", 1000).show();
 		try {
 			if (result.has("data")) {
 				JSONObject data = result.getJSONObject("data");
@@ -75,7 +75,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 				Utility.startActivity(LoginActivity.this, HomeActivity.class);				
 				finish();
 			}else{
-				Toast.makeText(this, "Login failed!", 1500).show();
+				Toast.makeText(this, "Login failed!", 1000).show();
 			}
 			
 		} catch (JSONException e) {
@@ -90,14 +90,14 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 	@Override
 	public String onFailed() {
 		
-		Toast.makeText(this, "Login Failed!", 1500).show();
+		Toast.makeText(this, "Login Failed!", 1000).show();
 		//Utility.startActivity(LoginActivity.this, HomeActivity.class);
 		return null;
 	}
 
 	@Override
 	public String onStarted() {
-		Toast.makeText(this, "Login Initiated!", 1500).show();
+		Toast.makeText(this, "Login Initiated!", 1000).show();
 		return null;
 	}
 

@@ -11,7 +11,7 @@ public class RequestCreator implements URLConstants{
 	public String initLoad(String deviceId){
 		String url=BASE_URL;	
 		
-		url=url+"SurveyAPI/LoginServlet?initconn=true&deviceId=123456";
+		url=url+"SurveyAPI/LoginServlet?initconn=true&deviceId=12345645";
 		return url;
 	}
 	
@@ -19,7 +19,7 @@ public class RequestCreator implements URLConstants{
 	public String userLoad(String dbname,String deviceId){
 		String url=BASE_URL;	
 		
-		url=url+"SurveyAPI/LoginServlet?userload=true&dbName=csfeedback&deviceId=123456";
+		url=url+"SurveyAPI/LoginServlet?userload=true&dbName=csfeedback&deviceId=12345645";
 		return url;
 	}
 	

@@ -5,14 +5,14 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="22"
+        android:minSdkVersion="19"
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/survey_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -40,7 +40,11 @@
         </activity>
         <activity android:name="com.jsservey.view.login.DeviceCreationActivity" >
         </activity>
-        <activity android:name="com.jsservey.view.home.ProfileMainActivity" >
+        <activity android:name="com.jsservey.view.home.profile.ProfileMainActivity" >
+        </activity>
+        <activity android:name="com.jsservey.view.home.profile.ProfileCreationActivity" >
+        </activity>
+        <activity android:name="com.jsservey.view.home.profile.SurveyListActvity" >
         </activity>
     </application>
 

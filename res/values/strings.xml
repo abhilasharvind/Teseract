@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Tessaract</string>
+    <string name="app_name">SurveY</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="login">LOG IN</string>
@@ -34,6 +34,14 @@
     <string name="profile_text">Profile</string>
     <string name="about_text">About</string>
     <string name="user_list_title">User List</string>
+    
+     <string name="date_button_set">Set Date</string>
+   <string name="date_view_set">The Date is: </string>
+   <string name="date_selected"></string>
+   <string name="permission_for_child">Permissions for child</string>
+   <string name="visible_for_child_login">Visible for child login</string>
+   <string name="child_selection">Selection possible for child login</string>
+   <string name="create_profile">Create Profile</string>
     
     
 

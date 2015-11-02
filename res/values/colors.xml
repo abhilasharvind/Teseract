@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+ <color name="BG_GRREN">#004D40</color>
+  <color name="BG_BLUE_HEADER">#3E51B5</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="header">#383838</color>

@@ -5,18 +5,32 @@
     android:background="#ffffff"
     android:orientation="vertical" >
 
-    <include layout="@layout/header_layout"/>
-    <ListView
-        android:id="@+id/listView"
+    <include layout="@layout/header_layout" />
+
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
-    </ListView>
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </ListView>
+        <ImageView 
+            android:id="@+id/add_profile_imbt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/add_new"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="25dp"/>
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/user_popup_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        
         android:foregroundGravity="right"
         android:visibility="gone" >
 

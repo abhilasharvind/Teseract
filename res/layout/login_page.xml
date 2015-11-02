@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="@color/white"
     android:clickable="true"
     android:scrollbars="vertical"
     tools:context="com.example.surveyprograme.Login.LoginActivity" >
@@ -13,7 +13,6 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/gradient_background"
         android:orientation="vertical" >
 
         <ImageView
@@ -76,10 +75,9 @@
                 android:padding="5dp" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="save password"
-                android:textColor="@android:color/white" />
+                android:text="save password" />
         </LinearLayout>
 
         <Button
@@ -91,7 +89,8 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/round_corner"
             android:text="@string/login"
-            android:textSize="15dp" />
+            android:textSize="20dp" 
+            android:textColor="@color/BG_BLUE_HEADER"/>
 
         <TextView
             android:id="@+id/signup_textview"

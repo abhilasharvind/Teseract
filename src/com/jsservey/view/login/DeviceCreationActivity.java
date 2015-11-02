@@ -32,7 +32,7 @@ public class DeviceCreationActivity extends Activity {
 				EditText compnyKey_id = (EditText) findViewById(R.id.company_key_edittext);
 				final String cmpnyKey=compnyKey_id.getText().toString();
 				Log.d("abx", "cmpnyKey="+cmpnyKey);
-				new ApiRequester(DeviceCreationActivity.this, rq.devicereg(cmpnyKey,  "123334"), new ApiRequestListner() {
+				new ApiRequester(DeviceCreationActivity.this, rq.devicereg(cmpnyKey,  "12345645"), new ApiRequestListner() {
 					
 					@Override
 					public String onSuccess(JSONObject result) {

@@ -13,6 +13,7 @@ import com.jsservey.webservices.RequestCreator;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 
 public class SplashActivity extends BaseActivity implements ApiRequestListner{	
 	
@@ -21,7 +22,9 @@ public class SplashActivity extends BaseActivity implements ApiRequestListner{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_splash_layout);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.splash_layout);
+	
 		RequestCreator requestCreator = new RequestCreator();
 		Log.d("abx", "SplashActivity");
 		new ApiRequester(this,requestCreator.initLoad( "deviceId"),this).execute("");
