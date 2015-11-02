@@ -29,7 +29,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	public static final String USER_LAST_NAME = "user_LastName";
 	public static final String USER_PASSWORD = "user_password";
 	public static final String USER_CONFIRM_PASSWORD = "user_confirm_password";
-	public static final String USER_Profiles = "user_profiles";
+	public static final String UERS_PROFILES = "user_profiles";
 
 	private static final String TABLE_PROFILE_DETAILS = "PROFILE_DETAILS";
 	public static final String USER_ID = "user_id";
@@ -58,7 +58,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 			+ QUESTION_NAME + " text, " + ANSWER_ID + " text, " + ANSWER_NAME
 			+ " text , " + IS_ACTIVATED+ " integer);";
 	private static final String TABLE_USER_PROFILE_CREATE = "create table "
-			+ USER_Profiles + "( profile_id  text,  Profile_name text ,is_activated boolean );";
+			+ UERS_PROFILES + "( profile_id  text,  Profile_name text ,is_activated boolean );";
 	private SQLiteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -149,9 +149,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 			values.put(ANSWER_ID, profile.getAnswerId());
 			values.put(ANSWER_NAME, profile.getAnswerName());
 			values.put(IS_ACTIVATED, 0);
-
+			values2.put(PROFILE_ID, profile.getProfileId());
+			values2.put(PROFILE_NAME, profile.getProfileName());
 			createSuccessful = db.insert(TABLE_PROFILE_DETAILS, null, values) > 0;
-			db.insert(USER_Profiles, null, values) ;
+			db.insert(UERS_PROFILES, null, values2) ;//inserting data into user_profiles
 		}
 
 		db.close();
@@ -170,7 +171,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		
 		SQLiteDatabase db = this.getWritableDatabase();
 
-		createSuccessful = db.insert(USER_Profiles, null, values) > 0;
+		createSuccessful = db.insert(UERS_PROFILES, null, values) > 0;
 		db.close();
 
 		return createSuccessful;}
@@ -195,7 +196,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 	}
 	public ProfileName getProfileDetailsNames() {
-		String query = "SELECT * FROM "+USER_Profiles;
+		String query = "SELECT * FROM "+UERS_PROFILES;
 		ProfileName profile = new ProfileName();
 		SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 		Cursor cursor = sqLiteDatabase.rawQuery(query, null);
@@ -210,7 +211,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	public ArrayList<ProfileName>  getProfileNames_bulk() {
 		Log.d("abx", "in getProfileNames_bulk");
 		ArrayList<ProfileName> profileArray= new ArrayList<ProfileName>();	
-		String query = "SELECT DISTINCT * FROM "+USER_Profiles;
+		String query = "SELECT DISTINCT * FROM "+UERS_PROFILES;
 		
 		SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 		Cursor cursor = sqLiteDatabase.rawQuery(query, null);

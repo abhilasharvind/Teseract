@@ -90,7 +90,7 @@ public class DbAsyncTask extends AsyncTask<String, Void, ArrayList<ProfileName>>
 	}
 	@Override
 	protected void onPostExecute(ArrayList<ProfileName> result) {
-		lv.setAdapter(new UsersListCustomAdapter(getApplicationContext(),result));
+		lv.setAdapter(new ProfileListCustomAdapter(getApplicationContext(),result));
 		super.onPostExecute(result);
 	}
 	

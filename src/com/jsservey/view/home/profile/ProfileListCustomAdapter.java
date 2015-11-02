@@ -22,7 +22,7 @@ import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class UsersListCustomAdapter extends BaseAdapter implements OnClickListener{
+public class ProfileListCustomAdapter extends BaseAdapter implements OnClickListener{
 
 	//private String[] result;
 	private Context context;
@@ -32,7 +32,7 @@ public class UsersListCustomAdapter extends BaseAdapter implements OnClickListen
 	//public static String[] prgmNameList = { "user 1", "user 2", "user 3",	"user 4" };
 	private static LayoutInflater inflater = null;
 
-	public UsersListCustomAdapter(Context context,ArrayList<ProfileName> profileArray) {
+	public ProfileListCustomAdapter(Context context,ArrayList<ProfileName> profileArray) {
 		// TODO Auto-generated constructor stub
 		//this.result = prgmNameList;
 		this.context = context;
@@ -77,6 +77,11 @@ public class UsersListCustomAdapter extends BaseAdapter implements OnClickListen
 		holder.img.setOnClickListener(this);
 		holder.tv.setText(profileArray.get(position).getProfilr_name());
 		holder.select_tick= (ImageView) rowView.findViewById(R.id.profile_tick);
+		if (profileArray.get(position).isIs_activated()) {
+			holder.select_tick.setVisibility(View.VISIBLE);	
+		}else{
+			holder.select_tick.setVisibility(View.GONE);	
+		}
 		holder.img.setImageResource(R.drawable.more_button_icon);
 		rowView.setTag(profileArray.get(position));		
 		holder.img.setOnClickListener(new OnClickListener() {
@@ -96,7 +101,7 @@ public class UsersListCustomAdapter extends BaseAdapter implements OnClickListen
 							AppPref appPref = new AppPref(null);
 							ProfileName pf= (ProfileName) view.getTag();
 							Toast.makeText(context, "Profile Activated "+pf.getProfilr_name(), 1000).show();
-							//appPref.putString(PrefConstant.ACTIVATED_PROFILE,profileArray.get() );
+							appPref.putString(PrefConstant.ACTIVATED_PROFILE,pf.getProfile_id());
 						}
 						return false;
 					}

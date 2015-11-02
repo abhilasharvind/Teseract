@@ -14,6 +14,7 @@ import com.jsservey.model.Profile;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.BaseActivity;
 import com.jsservey.view.home.profile.ProfileMainActivity;
+import com.jsservey.view.home.survey.StartSurveyActivity;
 import com.jsservey.view.reportandabout.AboutActivity;
 import com.jsservey.view.reportandabout.ReportActivity;
 import com.jsservey.webservices.ApiRequestListner;
@@ -36,7 +37,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener,ApiReq
 		setListners();
 		
 		RequestCreator requestCreator = new RequestCreator();
-		//new ApiRequester(this, requestCreator.profileFetch("csfeedback", "123456"), this).execute("");
+		new ApiRequester(this, requestCreator.profileFetch("csfeedback", "123456"), this).execute("");
 		
 		
 		
@@ -84,7 +85,9 @@ public class HomeActivity extends BaseActivity implements OnClickListener,ApiReq
 		case R.id.profile_bt:
 			Utility.startActivity(HomeActivity.this, ProfileMainActivity.class);
 			break;
-		
+		case R.id.start_srvey_bt:
+			Utility.startActivity(HomeActivity.this, StartSurveyActivity.class);
+			break;
 		
 		
 		}
