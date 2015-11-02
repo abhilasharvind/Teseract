@@ -69,7 +69,7 @@ public class ProfileListCustomAdapter extends BaseAdapter implements OnClickList
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final Holder holder = new Holder();
-		View rowView;
+		final View rowView;
 		rowView = inflater.inflate(R.layout.user_list_raw_layout, null);
 		holder.tv = (TextView) rowView.findViewById(R.id.textView1);
 		holder.img = (ImageView) rowView.findViewById(R.id.imageView1);
@@ -98,10 +98,16 @@ public class ProfileListCustomAdapter extends BaseAdapter implements OnClickList
 						int id = mt.getItemId();
 						if (id == R.id.activate_profile) {
 							
-							AppPref appPref = new AppPref(null);
-							ProfileName pf= (ProfileName) view.getTag();
-							Toast.makeText(context, "Profile Activated "+pf.getProfilr_name(), 1000).show();
-							appPref.putString(PrefConstant.ACTIVATED_PROFILE,pf.getProfile_id());
+							AppPref appPref = new AppPref(context);
+							ProfileName pf= (ProfileName) rowView.getTag();
+							if (pf!= null) {
+								Toast.makeText(context, "Profile Activated "+pf.getProfilr_name(), 1000).show();
+								appPref.putString(PrefConstant.ACTIVATED_PROFILE,pf.getProfile_id());
+							}else{
+								Toast.makeText(context, "Unable to Activate profile", 1000).show();
+							}
+							
+							//
 						}
 						return false;
 					}
