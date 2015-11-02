@@ -53,6 +53,8 @@ public class HomeActivity extends BaseActivity implements OnClickListener,ApiReq
 		findViewById(R.id.settings_bt).setOnClickListener(this);
 		findViewById(R.id.about_bt).setOnClickListener(this);
 		findViewById(R.id.profile_bt).setOnClickListener(this);
+		findViewById(R.id.start_srvey_bt).setOnClickListener(this);
+		
 	}
 
 	@Override
