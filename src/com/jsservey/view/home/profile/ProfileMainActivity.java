@@ -50,7 +50,7 @@ public class ProfileMainActivity extends Activity {
 				ProfileName pro =(ProfileName) arg1.getTag();
 				//Toast.makeText(getApplicationContext(), "yy"+pro.getProfile_id(), 1500).show();
 				Bundle bundle = new Bundle();
-				bundle.putString("pro_id", pro.getProfile_id());
+				bundle.putString("pf_id", pro.getProfile_id());
 				Intent intent = new Intent(ProfileMainActivity.this, SurveyListActvity.class);
 				intent.putExtras(bundle);
 				startActivity(intent);

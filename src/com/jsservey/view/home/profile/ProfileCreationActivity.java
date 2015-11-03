@@ -2,16 +2,20 @@ package com.jsservey.view.home.profile;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import org.json.JSONObject;
+
 import com.abx.jsservey.R;
 import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.ProfileName;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.RequestCreator;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -24,7 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ProfileCreationActivity extends Activity implements OnClickListener{
+public class ProfileCreationActivity extends Activity implements OnClickListener,ApiRequestListner{
 	private DatePicker datePicker;
 	private Calendar calendar;
 	private TextView dateView;
@@ -80,7 +84,10 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 			
 			@Override
 			public void onClick(View arg0) {
-				new DbInsertDbop(profile_name_ed.getText().toString()).execute("");
+				RequestCreator requestCreator = new RequestCreator();
+				String pf_name=profile_name_ed.getText().toString();
+				new ApiRequester(ProfileCreationActivity.this, requestCreator.createProfile("csfeedback", "123456", pf_name), ProfileCreationActivity.this).execute("");
+				//new DbInsertDbop(pf_name).execute("");
 			}
 		});
 	}
@@ -146,5 +153,25 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 			onBackPressed();
 		}
 		
+	}
+	@Override
+	public String onSuccess(JSONObject result) {
+		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
+		
+		return null;
+	}
+
+
+	@Override
+	public String onFailed() {
+		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
+		return null;
+	}
+
+
+	@Override
+	public String onStarted() {
+		findViewById(R.id.home_pg_rl).setVisibility(View.VISIBLE);
+		return null;
 	}
 }

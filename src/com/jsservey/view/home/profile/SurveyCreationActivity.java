@@ -2,7 +2,12 @@ package com.jsservey.view.home.profile;
 
 import java.util.Calendar;
 
+import org.json.JSONObject;
+
 import com.abx.jsservey.R;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.RequestCreator;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -13,13 +18,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
-import android.widget.TextView;
-import android.widget.ToggleButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
-public class SurveyCreationActivity extends Activity implements OnClickListener {
+public class SurveyCreationActivity extends Activity implements OnClickListener,ApiRequestListner {
 	private Calendar calendar;
 	private TextView dateView;
 	private int year, month, day;
@@ -38,8 +45,22 @@ public class SurveyCreationActivity extends Activity implements OnClickListener 
 		year = calendar.get(Calendar.YEAR);
 		month = calendar.get(Calendar.MONTH);
 		day = calendar.get(Calendar.DAY_OF_MONTH);
+		Bundle bundle= getIntent().getExtras();
+		final String pf_id=bundle.getString("pf_id");
 		initView();
 		LinearLayout scheduleSurveyLayout = (LinearLayout) findViewById(R.id.schedule_survey_layout);
+		final EditText survey_name_ed =(EditText)findViewById(R.id.survey_name_ed);
+		findViewById(R.id.create_survey).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				RequestCreator requestCreator = new RequestCreator();
+				String pf_name=survey_name_ed.getText().toString();
+				new ApiRequester(SurveyCreationActivity.this, requestCreator.createSurvey("csfeedback", "123456", pf_name, pf_id, "thenga"), SurveyCreationActivity.this).execute("");
+				//new DbInsertDbop(pf_name).execute("");
+				
+			}
+		});
 	}
 
 	private void initView() {
@@ -150,6 +171,30 @@ public class SurveyCreationActivity extends Activity implements OnClickListener 
 
 		}
 
+	}
+
+	@Override
+	public String onSuccess(JSONObject result) {
+		findViewById(R.id.home_pg_rl).setVisibility(View.VISIBLE);
+		Toast.makeText(getApplicationContext(), "Survey created", 1000).show();
+		onBackPressed();
+		return null;
+	}
+
+	@Override
+	public String onFailed() {
+		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
+		// TODO Auto-generated method stub
+		onBackPressed();
+		return null;
+	}
+
+	@Override
+	public String onStarted() {
+		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
+		// TODO Auto-generated method stub
+		onBackPressed();
+		return null;
 	}
 
 }

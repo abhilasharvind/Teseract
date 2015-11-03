@@ -9,6 +9,7 @@ import com.jsservey.model.Survey;
 import com.jsservey.utils.Utility;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,7 +31,8 @@ public class SurveyListActvity extends Activity {
 		//handleHomeClick(this.findViewById(android.R.id.content));
 		//menuHandler(this.findViewById(android.R.id.content));
 		Bundle bundle =getIntent().getExtras();
-		String p_id=bundle.getString("pro_id");
+		final String p_id=bundle.getString("pf_id");
+		Log.d("abx", "(SurveyListActvity)pfrofile id"+p_id);
 		//Toast.makeText(getApplicationContext(), "yy"+p_id, 1500).show();
 		
 		 lv = (ListView) findViewById(R.id.listView);
@@ -38,7 +40,12 @@ public class SurveyListActvity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				Utility.startActivity(SurveyListActvity.this, ProfileCreationActivity.class);
+				//Utility.startActivity(SurveyListActvity.this, SurveyCreationActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("pf_id", p_id);
+				Intent intent = new Intent(SurveyListActvity.this, SurveyCreationActivity.class);
+				intent.putExtras(bundle);
+				startActivity(intent);
 				
 			}
 		});;
