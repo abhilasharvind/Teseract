@@ -48,6 +48,8 @@
         </activity>
         <activity android:name="com.jsservey.view.home.survey.StartSurveyActivity" >
         </activity>
+        <activity android:name="com.jsservey.view.home.profile.SurveyCreationActivity" >
+        </activity>
     </application>
 
 </manifest>
