@@ -42,5 +42,11 @@ public class RequestCreator implements URLConstants{
 		url=url+"SurveyAPI/LoginServlet?menulist=true&deviceId="+deviceId+"&uId=3&dbName="+dbName;
 		return url;
 	}
+	public String createProfile(String dbName,String deviceId,String profile_name){
+		String url=BASE_URL;	
+		
+		url=url+"SurveyAPI/LoginServlet?profilecreation=true&dbName="+dbName+"&deviceId="+deviceId+"&profileName="+profile_name+"&permissionId=1&validUptoactive=1&validUpto=2015-12-20%2000:00:00&uId=3&useMultiplesurvey=1";
+		return url;
+	}
 	
 }
