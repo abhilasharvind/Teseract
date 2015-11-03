@@ -42,6 +42,22 @@
    <string name="visible_for_child_login">Visible for child login</string>
    <string name="child_selection">Selection possible for child login</string>
    <string name="create_profile">Create Profile</string>
+   <string name="write_question">Write the question here</string>
+   <string name="question_answer">Question and Answer</string>
+   <string name="write_answer">Write the Answer</string>
+   <string-array name="question_array">
+        <item>Text</item>
+        <item>Rating</item>
+        <item>SeekBar</item>
+        <item>Smiely</item>
+    </string-array>
+   
+    <string name="select_question_type">Select Question Type</string>
+    <string name="enter_max_value">Enter max value</string>
+    <string name="enter_min_value">Enter min value</string>
+    
+   
+   
     
     
 
