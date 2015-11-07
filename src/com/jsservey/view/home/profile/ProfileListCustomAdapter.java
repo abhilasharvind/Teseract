@@ -3,7 +3,7 @@ package com.jsservey.view.home.profile;
 import java.util.ArrayList;
 
 import com.abx.jsservey.R;
-import com.jsservey.model.Profile;
+import com.jsservey.model.ProfileHugePojo;
 import com.jsservey.model.ProfileName;
 import com.jsservey.utils.AppPref;
 import com.jsservey.utils.PrefConstant;

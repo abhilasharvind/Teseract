@@ -5,7 +5,7 @@ package com.jsservey.database;
 
 import java.util.ArrayList;
 
-import com.jsservey.model.Profile;
+import com.jsservey.model.ProfileHugePojo;
 import com.jsservey.model.ProfileName;
 import com.jsservey.model.RegistrationDetailsBean;
 import com.jsservey.model.Survey;
@@ -97,7 +97,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		return createSuccessful;
 	}
 
-	public boolean insertProfileDetails(Profile profile) {
+	public boolean insertProfileDetails(ProfileHugePojo profile) {
 
 		boolean createSuccessful = false;
 
@@ -122,7 +122,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		return createSuccessful;
 	}
 	
-	public boolean insertProfileDetails_bulk(ArrayList<Profile> profileArray) {
+	public boolean insertProfileDetails_bulk(ArrayList<ProfileHugePojo> profileArray) {
 		
 		Log.d("abx", "in insertProfileDetails_bulk profileArray size= "+profileArray.size());
 		boolean createSuccessful = false;
@@ -134,7 +134,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 			// TODO: handle exception
 		}
 		 
-		for (Profile profile : profileArray) {
+		for (ProfileHugePojo profile : profileArray) {
 			ContentValues values = new ContentValues();
 			ContentValues values2 = new ContentValues();
 
@@ -175,9 +175,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		db.close();
 
 		return createSuccessful;}
-	public Profile getProfileDetails() {
+	public ProfileHugePojo getProfileDetails() {
 		String query = "SELECT * FROM "+TABLE_PROFILE_DETAILS;
-		Profile profile = new Profile();
+		ProfileHugePojo profile = new ProfileHugePojo();
 		SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 		Cursor cursor = sqLiteDatabase.rawQuery(query, null);
 		cursor.moveToFirst();
@@ -232,8 +232,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		return profileArray;
 
 	}
-	public ArrayList<Profile>  getProfileDetails_bulk() {
-		ArrayList<Profile> profileArray= new ArrayList<Profile>();	
+	public ArrayList<ProfileHugePojo>  getProfileDetails_bulk() {
+		ArrayList<ProfileHugePojo> profileArray= new ArrayList<ProfileHugePojo>();	
 		String query = "SELECT DISTINCT * FROM "+TABLE_PROFILE_DETAILS;
 		
 		SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
@@ -241,7 +241,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		//cursor.moveToFirst();
 		if (cursor.moveToFirst()) {
 			do {
-				Profile profile = new Profile();
+				ProfileHugePojo profile = new ProfileHugePojo();
 			
 				profile.setUserId(cursor.getString(cursor.getColumnIndex("user_id")));
 				profile.setUserName(cursor.getString(cursor.getColumnIndex("user_name")));

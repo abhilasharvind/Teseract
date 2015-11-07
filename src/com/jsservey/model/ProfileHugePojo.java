@@ -1,6 +1,6 @@
 package com.jsservey.model;
 
-public class Profile {
+public class ProfileHugePojo {
 private String user_id;
 private String user_name;
 private String profile_id;
