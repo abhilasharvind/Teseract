@@ -38,8 +38,20 @@ public class RequestCreator implements URLConstants{
 	
 	public String profileFetch(String dbName,String deviceId){
 		String url=BASE_URL;	
-		
-		url=url+"SurveyAPI/LoginServlet?menulist=true&deviceId="+deviceId+"&uId=3&dbName="+dbName;
+		//SurveyAPI/LoginServlet?profilelist=true&dbName=csfeedback&deviceId=123456&uId=4
+		url=url+"SurveyAPI/LoginServlet?profilelist=true&deviceId="+deviceId+"&uId=3&dbName="+dbName;
+		return url;
+	}
+	public String surveyFetch(String dbName,String deviceId,String profile_id){
+		String url=BASE_URL;	
+		//SurveyAPI/LoginServlet?surveylist=true&dbName=csfeedback&deviceId=123456&profileId=1
+		url=url+"SurveyAPI/LoginServlet?surveylist=true&deviceId="+deviceId+"&uId=3&dbName="+dbName+"&profileId="+profile_id;
+		return url;
+	}
+	public String questionFetch(String dbName,String deviceId,String survey_id){
+		String url=BASE_URL;	
+		//SurveyAPI/LoginServlet?questionslist=true&dbName=csfeedback&deviceId=123456&surveyId=1
+		url=url+"SurveyAPI/LoginServlet?surveylist=true&deviceId="+deviceId+"&uId=3&dbName="+dbName+"&surveyId="+survey_id;
 		return url;
 	}
 	public String createProfile(String dbName,String deviceId,String profile_name){
@@ -54,5 +66,6 @@ public class RequestCreator implements URLConstants{
 		url=url+"SurveyAPI/LoginServlet?surveycreation=true&dbName="+dbName+"&deviceId="+deviceId+"&surveyName="+survey_name+"&profileId="+pf_id+"&description="+description+"&activateSchedule=1&scheduleTimefrom=02:35:25&scheduleTimeto=03:35:25&scheduleDays";
 		return url;
 	}
+	
 	
 }

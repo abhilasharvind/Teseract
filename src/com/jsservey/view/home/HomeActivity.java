@@ -37,7 +37,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener,ApiReq
 		setListners();
 		
 		RequestCreator requestCreator = new RequestCreator();
-		new ApiRequester(this, requestCreator.profileFetch("csfeedback", "123456"), this).execute("");
+		//new ApiRequester(this, requestCreator.profileFetch("csfeedback", "123456"), this).execute("");
 		
 		
 		

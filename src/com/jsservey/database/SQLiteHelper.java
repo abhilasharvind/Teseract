@@ -6,7 +6,7 @@ package com.jsservey.database;
 import java.util.ArrayList;
 
 import com.jsservey.model.ProfileHugePojo;
-import com.jsservey.model.ProfileName;
+import com.jsservey.model.Profile;
 import com.jsservey.model.RegistrationDetailsBean;
 import com.jsservey.model.Survey;
 
@@ -29,7 +29,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	public static final String USER_LAST_NAME = "user_LastName";
 	public static final String USER_PASSWORD = "user_password";
 	public static final String USER_CONFIRM_PASSWORD = "user_confirm_password";
-	public static final String UERS_PROFILES = "user_profiles";
+	public static final String PROFILES = "profiles";
 
 	private static final String TABLE_PROFILE_DETAILS = "PROFILE_DETAILS";
 	public static final String USER_ID = "user_id";
@@ -42,7 +42,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	public static final String QUESTION_NAME = "question_name";
 	public static final String ANSWER_ID = "answer_id";
 	public static final String ANSWER_NAME = "answer_name";
-	public static final String IS_ACTIVATED = "activated";
+	public static final String IS_ACTIVATED = "is_activated";
 
 	// Database creation sql statement
 	private static final String TABLE_USER_DETAILS_CREATE = "create table "
@@ -57,8 +57,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 			+ PROFILE_SURVEY_NAME + " text, " + QUESTION_ID + " text, "
 			+ QUESTION_NAME + " text, " + ANSWER_ID + " text, " + ANSWER_NAME
 			+ " text , " + IS_ACTIVATED+ " integer);";
+	
 	private static final String TABLE_USER_PROFILE_CREATE = "create table "
-			+ UERS_PROFILES + "( profile_id  text,  Profile_name text ,is_activated boolean );";
+			+ PROFILES + "( profile_id  text,  Profile_name text ,is_activated boolean );";
 	private SQLiteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -122,6 +123,33 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		return createSuccessful;
 	}
 	
+	public boolean insertProfiles(ArrayList<Profile> profileArray) {
+		Log.d("abx", "in insertProfiles profileArray size= "+profileArray.size());
+		boolean createSuccessful = false;
+		SQLiteDatabase db = this.getWritableDatabase();
+		for (Profile profile : profileArray){
+			
+		ContentValues values = new ContentValues();
+
+		values.put(PROFILE_ID, profile.getProfile_id());
+		values.put(PROFILE_NAME, profile.getProfilr_name());		
+		values.put(IS_ACTIVATED, profile.isIs_activated());
+		
+		try {
+			createSuccessful = db.insert(PROFILES, null, values)  > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			Log.d("abx", ""+e.toString());
+		}
+
+		
+		
+		}
+		db.close();
+		Log.d("abx", "in insertProfiles done! "+createSuccessful);
+		return createSuccessful;
+	}
+	
 	public boolean insertProfileDetails_bulk(ArrayList<ProfileHugePojo> profileArray) {
 		
 		Log.d("abx", "in insertProfileDetails_bulk profileArray size= "+profileArray.size());
@@ -152,7 +180,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 			values2.put(PROFILE_ID, profile.getProfileId());
 			values2.put(PROFILE_NAME, profile.getProfileName());
 			createSuccessful = db.insert(TABLE_PROFILE_DETAILS, null, values) > 0;
-			db.insert(UERS_PROFILES, null, values2) ;//inserting data into user_profiles
+			db.insert(PROFILES, null, values2) ;//inserting data into user_profiles
 		}
 
 		db.close();
@@ -160,7 +188,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		return createSuccessful;
 	}
 
-	public boolean insertProfileNames(ProfileName profile) {
+	public boolean insertProfileNames(Profile profile) {
 		boolean createSuccessful = false;
 
 		ContentValues values = new ContentValues();
@@ -171,7 +199,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		
 		SQLiteDatabase db = this.getWritableDatabase();
 
-		createSuccessful = db.insert(UERS_PROFILES, null, values) > 0;
+		createSuccessful = db.insert(PROFILES, null, values) > 0;
 		db.close();
 
 		return createSuccessful;}
@@ -195,9 +223,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		return profile;
 
 	}
-	public ProfileName getProfileDetailsNames() {
-		String query = "SELECT * FROM "+UERS_PROFILES;
-		ProfileName profile = new ProfileName();
+	public Profile getProfileDetailsNames() {
+		String query = "SELECT * FROM "+PROFILES;
+		Profile profile = new Profile();
 		SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 		Cursor cursor = sqLiteDatabase.rawQuery(query, null);
 		cursor.moveToFirst();
@@ -208,18 +236,19 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		return profile;
 
 	}
-	public ArrayList<ProfileName>  getProfileNames_bulk() {
-		Log.d("abx", "in getProfileNames_bulk");
-		ArrayList<ProfileName> profileArray= new ArrayList<ProfileName>();	
-		String query = "SELECT DISTINCT * FROM "+UERS_PROFILES;
+	public ArrayList<Profile>  getProfiles() {
+		
+		ArrayList<Profile> profileArray= new ArrayList<Profile>();	
+		String query = "SELECT * FROM "+PROFILES;
 		
 		SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 		Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+		Log.d("abx", "in getProfileNames_bulk "+query+" cursor :"+cursor.getCount());
 		//cursor.moveToFirst();
 		if (cursor.moveToFirst()) {
 			Log.d("abx", "in getProfileNames_bulk11"+cursor.getCount()+"");
 			do {
-				ProfileName profile = new ProfileName();
+				Profile profile = new Profile();
 				
 				Log.d("abx", "in getProfileNames_bulk"+cursor.getString(cursor.getColumnIndex("profile_id")));
 				profile.setProfile_id(cursor.getString(cursor.getColumnIndex("profile_id")));
@@ -286,8 +315,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 	}
 	
-	public ArrayList<ProfileName>  getProfileNames() {
-		ArrayList<ProfileName> profileArray= new ArrayList<ProfileName>();	
+	public ArrayList<Profile>  getProfileNames() {
+		ArrayList<Profile> profileArray= new ArrayList<Profile>();	
 		String query = "SELECT DISTINCT profile_id,profile_name FROM "+TABLE_PROFILE_DETAILS;
 		
 		SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
@@ -295,7 +324,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		//cursor.moveToFirst();
 		if (cursor.moveToFirst()) {
 			do {
-				ProfileName profile = new ProfileName();
+				Profile profile = new Profile();
 			
 				profile.setProfile_id(cursor.getString(cursor.getColumnIndex("profile_id")));
 				profile.setProfilr_name(cursor.getString(cursor.getColumnIndex("profile_name")));

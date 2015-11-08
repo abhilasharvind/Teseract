@@ -18,7 +18,11 @@
         <activity
             android:name="com.jsservey.view.login.SplashActivity"
             android:label="@string/app_name" >
-            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name="com.jsservey.view.home.HomeActivity" >
         </activity>
@@ -46,13 +50,8 @@
         </activity>
         <activity android:name="com.jsservey.view.home.survey.questions.QuestionsDisplayActivity" >
         </activity>
-        <activity android:name="com.jsservey.view.home.survey.questions.CreateQuestionTextActivity">
        
-        <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter></activity>
+        
         <activity android:name="com.jsservey.view.home.profile.SurveyCreationActivity" >
         </activity>
     </application>

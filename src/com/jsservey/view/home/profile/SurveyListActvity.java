@@ -3,8 +3,11 @@ package com.jsservey.view.home.profile;
 import java.util.ArrayList;
 
 import com.abx.jsservey.R;
+import com.adapters.ProfileListCustomAdapter;
+import com.adapters.SurveyListAdapter;
+import com.jsservey.Questions.QuestionListActivity;
 import com.jsservey.database.SQLiteHelper;
-import com.jsservey.model.ProfileName;
+import com.jsservey.model.Profile;
 import com.jsservey.model.Survey;
 import com.jsservey.utils.Utility;
 
@@ -56,8 +59,13 @@ public class SurveyListActvity extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				ProfileName pro =(ProfileName) arg1.getTag();
+				Survey survey =(Survey) arg1.getTag();
 				//Toast.makeText(getApplicationContext(), "xx"+pro.getProfilr_name(), 1500).show();
+				Bundle bundle = new Bundle();
+				bundle.putString("survey_id", survey.getSurvey_id());
+				Intent intent = new Intent(SurveyListActvity.this, QuestionListActivity.class);
+				intent.putExtras(bundle);
+				startActivity(intent);
 				
 			}
 		});
@@ -66,13 +74,13 @@ public class SurveyListActvity extends Activity {
 		
 	}
 
-public class DbAsyncTask extends AsyncTask<String, Void, ArrayList<ProfileName>>{
+public class DbAsyncTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 
 	@Override
-	protected ArrayList<ProfileName> doInBackground(String... arg0) {
+	protected ArrayList<Profile> doInBackground(String... arg0) {
 		Log.d("abx", "DbAsyncTask in do in back");
 		SQLiteHelper db = 	SQLiteHelper.getInstance(getApplicationContext());	
-		ArrayList<ProfileName> result;
+		ArrayList<Profile> result;
 		result=db. getProfileNames() ;
 		Log.d("abx", "DbAsyncTask in do in back result size="+result.size());
 		
@@ -85,7 +93,7 @@ public class DbAsyncTask extends AsyncTask<String, Void, ArrayList<ProfileName>>
 		super.onPreExecute();
 	}
 	@Override
-	protected void onPostExecute(ArrayList<ProfileName> result) {
+	protected void onPostExecute(ArrayList<Profile> result) {
 		lv.setAdapter(new ProfileListCustomAdapter(getApplicationContext(),result));
 		super.onPostExecute(result);
 	}
