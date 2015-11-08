@@ -49,10 +49,10 @@
         <activity android:name="com.jsservey.view.home.survey.StartSurveyActivity" >
         </activity>
         <activity android:name="com.jsservey.view.home.survey.questions.QuestionsDisplayActivity" >
-        </activity>
-       
-        
+        </activity>    
         <activity android:name="com.jsservey.view.home.profile.SurveyCreationActivity" >
+        </activity>
+        <activity android:name="com.jsservey.Questions.QuestionListActivity" >
         </activity>
     </application>
 

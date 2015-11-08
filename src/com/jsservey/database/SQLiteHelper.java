@@ -30,6 +30,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	public static final String USER_PASSWORD = "user_password";
 	public static final String USER_CONFIRM_PASSWORD = "user_confirm_password";
 	public static final String PROFILES = "profiles";
+	public static final String SURVEY_TABLE = "survey_table";
 
 	private static final String TABLE_PROFILE_DETAILS = "PROFILE_DETAILS";
 	public static final String USER_ID = "user_id";
@@ -60,6 +61,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	
 	private static final String TABLE_USER_PROFILE_CREATE = "create table "
 			+ PROFILES + "( profile_id  text,  Profile_name text ,is_activated boolean );";
+	
+	private static final String TABLE_USER_SURVEY_CREATE = "create table "
+			+ SURVEY_TABLE + "( survey_id  text,  survey_name text );";
+	
+	
 	private SQLiteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -78,6 +84,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		database.execSQL(TABLE_USER_DETAILS_CREATE);
 		database.execSQL(TABLE_PROFILE_DETAILS_CREATE);
 		database.execSQL(TABLE_USER_PROFILE_CREATE);
+		database.execSQL(TABLE_USER_SURVEY_CREATE);
 	}
 
 	public boolean insertDetails(RegistrationDetailsBean registrationDetailsBean) {
@@ -127,6 +134,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		Log.d("abx", "in insertProfiles profileArray size= "+profileArray.size());
 		boolean createSuccessful = false;
 		SQLiteDatabase db = this.getWritableDatabase();
+		try {
+			// String query = "TRUNCATE  TABLE "+TABLE_PROFILE_DETAILS;
+			 db.delete(PROFILES, null, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		for (Profile profile : profileArray){
 			
 		ContentValues values = new ContentValues();
@@ -150,6 +163,38 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		return createSuccessful;
 	}
 	
+	public boolean insertSurvey(ArrayList<Survey> surveyArray) {
+		Log.d("abx", "in insertSurvey surveyArray size= "+surveyArray.size());
+		boolean createSuccessful = false;
+		SQLiteDatabase db = this.getWritableDatabase();
+		try {
+			// String query = "TRUNCATE  TABLE "+TABLE_PROFILE_DETAILS;
+			 db.delete(SURVEY_TABLE, null, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		for (Survey survey : surveyArray){
+			
+		ContentValues values = new ContentValues();
+
+		values.put(SURVEY_ID, survey.getSurvey_id());
+		values.put(PROFILE_SURVEY_NAME, survey.getSurvey_name());		
+		//values.put(IS_ACTIVATED, profile.isIs_activated());		
+		try {
+			createSuccessful = db.insert(SURVEY_TABLE, null, values)  > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			Log.d("abx", ""+e.toString());
+		}
+
+		
+		
+		}
+		db.close();
+		Log.d("abx", "in insertSurvey done! "+createSuccessful);
+		return createSuccessful;
+	}
+	
 	public boolean insertProfileDetails_bulk(ArrayList<ProfileHugePojo> profileArray) {
 		
 		Log.d("abx", "in insertProfileDetails_bulk profileArray size= "+profileArray.size());
@@ -159,7 +204,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 			// String query = "TRUNCATE  TABLE "+TABLE_PROFILE_DETAILS;
 			 db.delete(TABLE_PROFILE_DETAILS, null, null);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		 
 		for (ProfileHugePojo profile : profileArray) {
@@ -261,6 +306,35 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		return profileArray;
 
 	}
+	
+public ArrayList<Survey>  getSurvey() {
+		
+		ArrayList<Survey> surveyArray= new ArrayList<Survey>();	
+		String query = "SELECT * FROM "+SURVEY_TABLE;
+		
+		SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+		Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+		Log.d("abx", "in getProfileNames_bulk "+query+" cursor :"+cursor.getCount());
+		//cursor.moveToFirst();
+		if (cursor.moveToFirst()) {
+			Log.d("abx", "in getProfileNames_bulk11"+cursor.getCount()+"");
+			do {
+				Survey survey = new Survey();
+				
+				Log.d("abx", "in getProfileNames_bulk"+cursor.getString(cursor.getColumnIndex(PROFILE_SURVEY_NAME)));
+				survey.setSurvey_id(cursor.getString(cursor.getColumnIndex(SURVEY_ID)));
+				survey.setSurvey_name(cursor.getString(cursor.getColumnIndex(PROFILE_SURVEY_NAME)));
+				//profile.setProfile_id(cursor.getString(cursor.getColumnIndex("profile_id")));
+				//profile.setProfilr_name(cursor.getString(cursor.getColumnIndex("Profile_name")));
+				surveyArray.add(survey);
+			} while (cursor.moveToNext());
+		}
+		
+		
+		return surveyArray;
+
+	}
+	
 	public ArrayList<ProfileHugePojo>  getProfileDetails_bulk() {
 		ArrayList<ProfileHugePojo> profileArray= new ArrayList<ProfileHugePojo>();	
 		String query = "SELECT DISTINCT * FROM "+TABLE_PROFILE_DETAILS;
@@ -363,6 +437,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_DETAILS);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROFILE_DETAILS);
+		db.execSQL("DROP TABLE IF EXISTS " + PROFILES);
+		db.execSQL("DROP TABLE IF EXISTS " + SURVEY_TABLE);
 		onCreate(db);
 	}
 

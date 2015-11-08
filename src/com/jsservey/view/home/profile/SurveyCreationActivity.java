@@ -64,6 +64,7 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 	}
 
 	private void initView() {
+		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		final LinearLayout scheduleSurveyLayout = (LinearLayout) findViewById(R.id.schedule_survey_layout);
 		CheckBox validUpto = (CheckBox) findViewById(R.id.valid_upto);
 		CheckBox scheduleSurveyCheckbox = (CheckBox) findViewById(R.id.schedule_survey);
@@ -175,7 +176,7 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 
 	@Override
 	public String onSuccess(JSONObject result) {
-		findViewById(R.id.home_pg_rl).setVisibility(View.VISIBLE);
+		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		Toast.makeText(getApplicationContext(), "Survey created", 1000).show();
 		onBackPressed();
 		return null;
@@ -191,7 +192,7 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 
 	@Override
 	public String onStarted() {
-		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
+		findViewById(R.id.home_pg_rl).setVisibility(View.VISIBLE);
 		// TODO Auto-generated method stub
 		onBackPressed();
 		return null;
