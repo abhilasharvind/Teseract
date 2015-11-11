@@ -48,6 +48,8 @@
             android:id="@+id/max_value"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:numeric="integer"
+            android:inputType="number"
             android:layout_marginBottom="10dp"
             android:ems="10" >
         </EditText>
@@ -66,6 +68,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:inputType="number"
             android:ems="10" />
     </LinearLayout>
 

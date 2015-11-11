@@ -4,28 +4,63 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <RatingBar
-        android:id="@+id/ratingBar1"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp" >
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp" >
-
-        <RadioButton
-            android:id="@+id/radioButton1"
+        <TextView
+            android:id="@+id/selected_progress_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="" />
+
+        <RatingBar
+            android:id="@+id/ratingBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            style="?android:attr/ratingBarStyle"
+            android:numStars="5"
+            android:max="5"
+            android:stepSize="1.0" />
+        <RatingBar
+            android:id="@+id/ratingBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            style="?android:attr/ratingBarStyle"
+            android:numStars="10"
+            android:max="10"
+            android:stepSize="1.0"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/progress_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp" >
+
+        <RadioButton
+            android:id="@+id/five_star_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
             android:text="5 stars" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/ten_star_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10 stars" />

@@ -27,27 +27,38 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical" >
 
-   
+        <SeekBar
+            android:id="@+id/seekBar1"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+        
+        <TextView 
+            android:id="@+id/seek_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/seekBar1"
+            android:text="1"
+            android:layout_alignLeft="@id/seekBar1"/>
+         <TextView 
+             android:id="@+id/seek_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/seekBar1"
+            android:text="100"
+            android:layout_alignRight="@id/seekBar1"/>
 
         <Button
             android:id="@+id/next_done_btn"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:padding="6dp"
-            android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/round_corner"
-            android:textColor="@android:color/holo_blue_dark"
-            android:text="Next" />
-
-        <SeekBar
-            android:id="@+id/seekBar1"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
-
+            android:padding="6dp"
+            android:text="Next"
+            android:textColor="@android:color/holo_blue_dark" />
     </RelativeLayout>
-    
 
 </LinearLayout>

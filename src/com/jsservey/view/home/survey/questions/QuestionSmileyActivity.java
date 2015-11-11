@@ -8,15 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class QuestionTextFragment extends Fragment {
-
+public class QuestionSmileyActivity extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		View view = inflater.inflate(R.layout.question_type_text_layout,
+		View view = inflater.inflate(R.layout.question_type_smiley_layout,
 				container, false);
 		return view;
 	}
-
 }
