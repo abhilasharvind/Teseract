@@ -1,5 +1,7 @@
 package com.jsservey.Questions;
 
-public class QuestionListActivity {
+import android.app.Activity;
+
+public class QuestionListActivity extends Activity{
 
 }
