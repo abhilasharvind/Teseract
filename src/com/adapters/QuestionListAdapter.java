@@ -2,26 +2,25 @@ package com.adapters;
 
 import java.util.ArrayList;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.PopupMenu.OnMenuItemClickListener;
-
 import com.abx.jsservey.R;
-import com.adapters.ProfileListCustomAdapter.Holder;
 import com.jsservey.model.Profile;
 import com.jsservey.model.Question;
 import com.jsservey.utils.AppPref;
 import com.jsservey.utils.PrefConstant;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.PopupMenu.OnMenuItemClickListener;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class QuestionListAdapter  extends BaseAdapter implements OnClickListener{
 

@@ -5,7 +5,6 @@ import com.abx.jsservey.R;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.home.HomeActivity;
 import com.jsservey.view.login.LoginActivity;
-import com.jsservey.view.reportandabout.ReportActivity;
 
 import android.app.Activity;
 import android.os.Bundle;

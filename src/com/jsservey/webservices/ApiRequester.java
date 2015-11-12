@@ -15,9 +15,6 @@ import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.jsservey.utils.AppPref;
-import com.jsservey.utils.PrefConstant;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;

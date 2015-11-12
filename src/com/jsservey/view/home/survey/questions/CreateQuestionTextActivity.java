@@ -1,5 +1,7 @@
 package com.jsservey.view.home.survey.questions;
 
+import com.abx.jsservey.R;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,16 +16,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.SeekBar;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.abx.jsservey.R;
 
 public class CreateQuestionTextActivity extends Activity implements
 		OnItemSelectedListener, OnClickListener, OnRatingBarChangeListener,

@@ -5,8 +5,8 @@ package com.jsservey.database;
 
 import java.util.ArrayList;
 
-import com.jsservey.model.ProfileHugePojo;
 import com.jsservey.model.Profile;
+import com.jsservey.model.ProfileHugePojo;
 import com.jsservey.model.RegistrationDetailsBean;
 import com.jsservey.model.Survey;
 

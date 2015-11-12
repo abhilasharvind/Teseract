@@ -18,7 +18,6 @@ import com.jsservey.view.home.survey.StartSurveyActivity;
 import com.jsservey.view.reportandabout.AboutActivity;
 import com.jsservey.view.reportandabout.ReportActivity;
 import com.jsservey.webservices.ApiRequestListner;
-import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
 
 import android.os.Bundle;

@@ -1,12 +1,20 @@
 package com.jsservey.Questions;
 
-import android.app.Activity;
-
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.abx.jsservey.R;
+import com.adapters.ProfileListCustomAdapter;
+import com.jsservey.database.SQLiteHelper;
+import com.jsservey.model.Profile;
+import com.jsservey.utils.Utility;
+import com.jsservey.view.home.profile.ProfileCreationActivity;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.RequestCreator;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -19,16 +27,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.abx.jsservey.R;
-import com.adapters.ProfileListCustomAdapter;
-import com.jsservey.database.SQLiteHelper;
-import com.jsservey.model.Profile;
-import com.jsservey.utils.Utility;
-import com.jsservey.view.home.profile.ProfileCreationActivity;
-import com.jsservey.webservices.ApiRequestListner;
-import com.jsservey.webservices.ApiRequester;
-import com.jsservey.webservices.RequestCreator;
 
 public class QuestionListActivity extends Activity implements OnClickListener,ApiRequestListner {
 	
