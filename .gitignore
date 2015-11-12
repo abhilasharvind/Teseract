@@ -1,0 +1,9 @@
+bin/
+
+bin/classes/com/abx/jsservey/BuildConfig.class
+
+bin/classes.dex
+
+*.class
+
+*.dex
