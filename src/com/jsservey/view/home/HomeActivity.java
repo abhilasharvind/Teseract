@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 import com.abx.jsservey.R;
 import com.jsservey.database.SQLiteHelper;
-import com.jsservey.model.Profile;
+import com.jsservey.model.ProfileHugePojo;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.BaseActivity;
 import com.jsservey.view.home.profile.ProfileMainActivity;
@@ -36,8 +36,8 @@ public class HomeActivity extends BaseActivity implements OnClickListener,ApiReq
 		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		setListners();
 		
-		RequestCreator requestCreator = new RequestCreator();
-		new ApiRequester(this, requestCreator.profileFetch("csfeedback", "123456"), this).execute("");
+		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+		//new ApiRequester(this, requestCreator.profileFetch("csfeedback", "123456"), this).execute("");
 		
 		
 		
@@ -104,9 +104,9 @@ public class HomeActivity extends BaseActivity implements OnClickListener,ApiReq
 		{
 			try {
 				JSONArray data=result.getJSONArray("data");
-				ArrayList<Profile> profileArray= new ArrayList<Profile>();	
+				ArrayList<ProfileHugePojo> profileArray= new ArrayList<ProfileHugePojo>();	
 				for ( int i=0;i<data.length();i++) {
-					Profile profile = new Profile();
+					ProfileHugePojo profile = new ProfileHugePojo();
 					JSONObject innerobj = (JSONObject) data.get(i);
 					profile.setUserId(innerobj.getString("user_id"));
 					profile.setUserName(innerobj.getString("user_name"));

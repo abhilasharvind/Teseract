@@ -1,6 +1,4 @@
-/**
- *	DuURL.java
- **/
+
 package com.jsservey.webservices;
 
 public interface URLConstants {

@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import com.abx.jsservey.R;
 import com.jsservey.database.SQLiteHelper;
-import com.jsservey.model.ProfileName;
+import com.jsservey.model.Profile;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
@@ -84,9 +84,9 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 			
 			@Override
 			public void onClick(View arg0) {
-				RequestCreator requestCreator = new RequestCreator();
+				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 				String pf_name=profile_name_ed.getText().toString();
-				new ApiRequester(ProfileCreationActivity.this, requestCreator.createProfile("csfeedback", "123456", pf_name), ProfileCreationActivity.this).execute("");
+				new ApiRequester(ProfileCreationActivity.this, requestCreator.createProfile( "123456", pf_name), ProfileCreationActivity.this).execute("");
 				//new DbInsertDbop(pf_name).execute("");
 			}
 		});
@@ -120,16 +120,16 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 		if(view.getId() == R.id.set_date)
 		showDialog(999);	
 	}
-	public class DbInsertDbop extends AsyncTask<String, Void, ArrayList<ProfileName>>{
+	public class DbInsertDbop extends AsyncTask<String, Void, ArrayList<Profile>>{
 		String prof_name;
 		public DbInsertDbop(String prof_name) {
 			this.prof_name=prof_name;
 		}
 
 		@Override
-		protected ArrayList<ProfileName> doInBackground(String... arg0) {
+		protected ArrayList<Profile> doInBackground(String... arg0) {
 			SQLiteHelper db = 	SQLiteHelper.getInstance(getApplicationContext());
-			ProfileName profile= new ProfileName();
+			Profile profile= new Profile();
 			
 			profile.setProfile_id("123456");
 			profile.setProfilr_name(""+prof_name);
@@ -145,7 +145,7 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 			findViewById(R.id.home_pg_rl).setVisibility(View.VISIBLE);
 		}
 		@Override
-		protected void onPostExecute(ArrayList<ProfileName> result) {
+		protected void onPostExecute(ArrayList<Profile> result) {
 			
 			super.onPostExecute(result);
 			findViewById(R.id.home_pg_rl).setVisibility(View.GONE);

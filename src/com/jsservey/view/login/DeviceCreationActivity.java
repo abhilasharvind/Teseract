@@ -28,7 +28,7 @@ public class DeviceCreationActivity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				RequestCreator rq = new RequestCreator();
+				RequestCreator rq = new RequestCreator(getApplicationContext());
 				EditText compnyKey_id = (EditText) findViewById(R.id.company_key_edittext);
 				final String cmpnyKey=compnyKey_id.getText().toString();
 				Log.d("abx", "cmpnyKey="+cmpnyKey);

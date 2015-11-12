@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp" >
+        <TextView
+            android:id="@+id/selected_value_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:text="75" />
+
+        <SeekBar
+            android:id="@+id/answer_seek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/selected_value_text" />
+
+        
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/max_value_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/enter_max_value"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/max_value"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:numeric="integer"
+            android:inputType="number"
+            android:layout_marginBottom="10dp"
+            android:ems="10" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/min_value_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/enter_min_value"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/min_value"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:inputType="number"
+            android:ems="10" />
+    </LinearLayout>
+
+</LinearLayout>

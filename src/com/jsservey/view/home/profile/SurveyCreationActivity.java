@@ -41,6 +41,7 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.survey_creation_layout);
+		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		calendar = Calendar.getInstance();
 		year = calendar.get(Calendar.YEAR);
 		month = calendar.get(Calendar.MONTH);
@@ -54,9 +55,9 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 			
 			@Override
 			public void onClick(View arg0) {
-				RequestCreator requestCreator = new RequestCreator();
+				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 				String pf_name=survey_name_ed.getText().toString();
-				new ApiRequester(SurveyCreationActivity.this, requestCreator.createSurvey("csfeedback", "123456", pf_name, pf_id, "thenga"), SurveyCreationActivity.this).execute("");
+				new ApiRequester(SurveyCreationActivity.this, requestCreator.createSurvey("123456", pf_name, pf_id, "thenga"), SurveyCreationActivity.this).execute("");
 				//new DbInsertDbop(pf_name).execute("");
 				
 			}
@@ -64,6 +65,7 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 	}
 
 	private void initView() {
+		
 		final LinearLayout scheduleSurveyLayout = (LinearLayout) findViewById(R.id.schedule_survey_layout);
 		CheckBox validUpto = (CheckBox) findViewById(R.id.valid_upto);
 		CheckBox scheduleSurveyCheckbox = (CheckBox) findViewById(R.id.schedule_survey);
@@ -175,9 +177,18 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 
 	@Override
 	public String onSuccess(JSONObject result) {
-		findViewById(R.id.home_pg_rl).setVisibility(View.VISIBLE);
-		Toast.makeText(getApplicationContext(), "Survey created", 1000).show();
-		onBackPressed();
+		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
+		try{
+		 if(result!=null && result.has("survey_creation") && result.getInt("survey_creation")==1){
+			 Toast.makeText(getApplicationContext(), "Survey created", 1000).show();
+		 }
+		 else{
+			 Toast.makeText(getApplicationContext(), "Survey creation failed", 1000).show(); 
+		 }
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		//onBackPressed();
 		return null;
 	}
 
@@ -191,7 +202,7 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 
 	@Override
 	public String onStarted() {
-		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
+		findViewById(R.id.home_pg_rl).setVisibility(View.VISIBLE);
 		// TODO Auto-generated method stub
 		onBackPressed();
 		return null;

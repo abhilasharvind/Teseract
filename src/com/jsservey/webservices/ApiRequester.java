@@ -15,6 +15,9 @@ import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.jsservey.utils.AppPref;
+import com.jsservey.utils.PrefConstant;
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -25,12 +28,14 @@ public class ApiRequester extends AsyncTask<String, Void, JSONObject> implements
 	ApiRequestListner apiRequestListner;
 	private boolean timeOut = false;
 	private String url;
+	
 
 	public ApiRequester(Context context,String url,ApiRequestListner apiRequestListner) {
 
 		this.context = context;
 		this.apiRequestListner=apiRequestListner;
 		this.url=url;
+		
 	}
 	
 
@@ -111,8 +116,9 @@ public class ApiRequester extends AsyncTask<String, Void, JSONObject> implements
 	@Override
 	protected void onPostExecute(JSONObject result) {
 		super.onPostExecute(result);
-		Log.e("abx", "responce="+result.toString());
+
 		if(result!=null){
+			Log.e("abx", "responce="+result.toString());
 			apiRequestListner.onSuccess(result);
 		}else{
 			apiRequestListner.onFailed();

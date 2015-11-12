@@ -4,6 +4,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.abx.jsservey.R;
+import com.jsservey.utils.AppPref;
+import com.jsservey.utils.PrefConstant;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.BaseActivity;
 import com.jsservey.view.home.HomeActivity;
@@ -25,7 +27,7 @@ public class SplashActivity extends BaseActivity implements ApiRequestListner{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.splash_layout);
 	
-		RequestCreator requestCreator = new RequestCreator();
+		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 		Log.d("abx", "SplashActivity");
 		new ApiRequester(this,requestCreator.initLoad( "deviceId"),this).execute("");
 		
@@ -34,15 +36,18 @@ public class SplashActivity extends BaseActivity implements ApiRequestListner{
 
 	@Override
 	public String onSuccess(JSONObject result) {
-		if (result.has("db_name")) {
+		if (result!=null && result.has("db_name")) {
 			try {
 				String dbname=result.getString("db_name");
 				if(dbname.equals("0")){
 					Utility.startActivity(SplashActivity.this, DeviceCreationActivity.class);
 					finish();
 				}else{
-					RequestCreator requestCreator = new RequestCreator();
-					new ApiRequester(this,requestCreator.userLoad("dbname", "deviceId"),new ApiRequestListner() {
+					Log.d("abx", "dbname= "+dbname);
+					RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+					AppPref appPref = new AppPref(getApplicationContext());
+					appPref.putString(PrefConstant.DB_NAME, dbname);
+					new ApiRequester(this,requestCreator.userLoad("deviceId"),new ApiRequestListner() {
 						
 						@Override
 						public String onSuccess(JSONObject result) {
@@ -88,6 +93,8 @@ public class SplashActivity extends BaseActivity implements ApiRequestListner{
 				e.printStackTrace();
 			}
 			
+		}else{
+			Log.d("abx", "json null in splash");
 		}
 		
 		

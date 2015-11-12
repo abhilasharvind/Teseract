@@ -47,8 +47,8 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 			
 			@Override
 			public void onClick(View v) {
-				RequestCreator requestCreator = new RequestCreator();
-				new ApiRequester(LoginActivity.this,requestCreator.loginRequest("csfeedback", username_ed.getText().toString(), pass_ed.getText().toString(), "123456"),LoginActivity.this).execute("");
+				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+				new ApiRequester(LoginActivity.this,requestCreator.loginRequest( username_ed.getText().toString(), pass_ed.getText().toString(), "123456"),LoginActivity.this).execute("");
 				
 			}
 		});;
