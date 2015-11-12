@@ -58,7 +58,7 @@
             <LinearLayout
                 android:id="@+id/question_type_layout"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="400dp"
                 android:orientation="vertical" />
         </ScrollView>
     </LinearLayout>

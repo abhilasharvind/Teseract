@@ -28,10 +28,12 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/text_layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="5dp" >
+        android:layout_marginBottom="5dp"
+        android:visibility="gone" >
 
         <RadioButton
             android:id="@+id/radioButton1"
@@ -51,10 +53,12 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/text_layout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="5dp" >
+        android:layout_marginBottom="5dp"
+        android:visibility="gone" >
 
         <RadioButton
             android:id="@+id/radioButton2"
@@ -75,10 +79,12 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/text_layout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="5dp" >
+        android:layout_marginBottom="5dp"
+        android:visibility="gone" >
 
         <RadioButton
             android:id="@+id/radioButton3"
@@ -99,10 +105,12 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/text_layout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="5dp" >
+        android:layout_marginBottom="5dp" 
+        android:visibility="gone">
 
         <RadioButton
             android:id="@+id/radioButton4"
@@ -123,10 +131,12 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/text_layout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="5dp" >
+        android:layout_marginBottom="5dp"
+        android:visibility="gone" >
 
         <RadioButton
             android:id="@+id/radioButton5"
@@ -146,7 +156,7 @@
             android:textColor="@android:color/holo_orange_dark" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <!-- <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -216,7 +226,7 @@
             android:background="@drawable/answer_button_shape"
             android:text="Bad"
             android:textColor="@android:color/holo_orange_dark" />
-    </RelativeLayout>
+    </RelativeLayout> -->
 
     <Button
         android:id="@+id/next_done_btn"

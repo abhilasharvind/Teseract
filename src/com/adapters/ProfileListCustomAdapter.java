@@ -2,11 +2,6 @@ package com.adapters;
 
 import java.util.ArrayList;
 
-import com.abx.jsservey.R;
-import com.jsservey.model.Profile;
-import com.jsservey.utils.AppPref;
-import com.jsservey.utils.PrefConstant;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -20,6 +15,11 @@ import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.abx.jsservey.R;
+import com.jsservey.model.Profile;
+import com.jsservey.utils.AppPref;
+import com.jsservey.utils.PrefConstant;
 
 public class ProfileListCustomAdapter extends BaseAdapter implements OnClickListener{
 
