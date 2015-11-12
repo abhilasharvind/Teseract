@@ -98,12 +98,13 @@ public class HomeActivity extends BaseActivity implements OnClickListener,ApiReq
 	@Override
 	public String onSuccess(JSONObject result) {
 		
-		if(result.has("data"))
+		if(result!=null && result.has("data"))
 			
 		{
 			try {
 				JSONArray data=result.getJSONArray("data");
 				ArrayList<ProfileHugePojo> profileArray= new ArrayList<ProfileHugePojo>();	
+				
 				for ( int i=0;i<data.length();i++) {
 					ProfileHugePojo profile = new ProfileHugePojo();
 					JSONObject innerobj = (JSONObject) data.get(i);

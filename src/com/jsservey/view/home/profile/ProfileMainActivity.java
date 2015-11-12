@@ -108,7 +108,7 @@ public class DbAsyncTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 
 @Override
 public String onSuccess(JSONObject result) {
-	if(result.has("data"))
+	if(result!=null &&  result.has("data"))
 		
 	{
 		try {

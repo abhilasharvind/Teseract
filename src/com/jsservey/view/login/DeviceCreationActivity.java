@@ -36,7 +36,7 @@ public class DeviceCreationActivity extends Activity {
 					
 					@Override
 					public String onSuccess(JSONObject result) {
-						if (result.has("registration_sucess")) {
+						if (result!=null && result.has("registration_sucess")) {
 							try {
 								int regid= result.getInt("registration_sucess");
 								if(regid == 1){

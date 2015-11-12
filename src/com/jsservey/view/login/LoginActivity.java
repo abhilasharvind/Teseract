@@ -62,7 +62,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 	public String onSuccess(JSONObject result) {
 		//Toast.makeText(this, "Login Success!", 1000).show();
 		try {
-			if (result.has("data")) {
+			if (result!=null && result.has("data")) {
 				JSONObject data = result.getJSONObject("data");
 				String isAdvacedUser=data.getString("is_advaced_user");
 				
