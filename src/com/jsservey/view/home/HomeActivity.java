@@ -13,7 +13,7 @@ import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.ProfileHugePojo;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.BaseActivity;
-import com.jsservey.view.home.profile.ProfileMainActivity;
+import com.jsservey.view.home.profile.ProfileListMainActivity;
 import com.jsservey.view.home.survey.StartSurveyActivity;
 import com.jsservey.view.reportandabout.AboutActivity;
 import com.jsservey.view.reportandabout.ReportActivity;
@@ -84,7 +84,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener,ApiReq
 			break;
 			
 		case R.id.profile_bt:
-			Utility.startActivity(HomeActivity.this, ProfileMainActivity.class);
+			Utility.startActivity(HomeActivity.this, ProfileListMainActivity.class);
 			break;
 		case R.id.start_srvey_bt:
 			Utility.startActivity(HomeActivity.this, StartSurveyActivity.class);

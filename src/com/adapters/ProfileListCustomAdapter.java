@@ -2,6 +2,11 @@ package com.adapters;
 
 import java.util.ArrayList;
 
+import com.abx.jsservey.R;
+import com.jsservey.model.Profile;
+import com.jsservey.utils.AppPref;
+import com.jsservey.utils.PrefConstant;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,11 +20,6 @@ import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.abx.jsservey.R;
-import com.jsservey.model.Profile;
-import com.jsservey.utils.AppPref;
-import com.jsservey.utils.PrefConstant;
 
 public class ProfileListCustomAdapter extends BaseAdapter implements OnClickListener{
 
@@ -72,7 +72,7 @@ public class ProfileListCustomAdapter extends BaseAdapter implements OnClickList
 		rowView = inflater.inflate(R.layout.user_list_raw_layout, null);
 		holder.tv = (TextView) rowView.findViewById(R.id.textView1);
 		holder.img = (ImageView) rowView.findViewById(R.id.imageView1);
-		holder.popupMenu = (FrameLayout) rowView.findViewById(R.id.user_popup_menu);
+		holder.popupMenu = (FrameLayout) rowView.findViewById(R.id.user_popup_menu);//why is it here
 		holder.img.setOnClickListener(this);
 		holder.tv.setText(profileArray.get(position).getProfilr_name());
 		holder.select_tick= (ImageView) rowView.findViewById(R.id.profile_tick);

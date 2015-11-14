@@ -40,7 +40,7 @@
         </activity>
         <activity android:name="com.jsservey.view.login.DeviceCreationActivity" >
         </activity>
-        <activity android:name="com.jsservey.view.home.profile.ProfileMainActivity" >
+        <activity android:name="com.jsservey.view.home.profile.ProfileListMainActivity" >
         </activity>
         <activity android:name="com.jsservey.view.home.profile.ProfileCreationActivity" >
         </activity>

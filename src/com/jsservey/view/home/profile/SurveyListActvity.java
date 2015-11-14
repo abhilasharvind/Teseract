@@ -30,6 +30,7 @@ import android.widget.ListView;
 public class SurveyListActvity extends Activity implements OnClickListener,ApiRequestListner {
 	
 	ListView lv;
+	static String p_id="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -39,10 +40,9 @@ public class SurveyListActvity extends Activity implements OnClickListener,ApiRe
 		//handleHomeClick(this.findViewById(android.R.id.content));
 		//menuHandler(this.findViewById(android.R.id.content));
 		Bundle bundle =getIntent().getExtras();
-		final String p_id=bundle.getString("pf_id");
+		 p_id=bundle.getString("pf_id");
 		Log.d("abx", "(SurveyListActvity) pfrofile id:"+p_id);
-		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-		new ApiRequester(this, requestCreator.surveyFetch( "123456",p_id), this).execute("");
+		
 		 lv = (ListView) findViewById(R.id.listView);
 		 findViewById(R.id.add_profile_imbt).setOnClickListener(new OnClickListener() {
 			
@@ -82,7 +82,8 @@ public class SurveyListActvity extends Activity implements OnClickListener,ApiRe
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-			
+		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+		new ApiRequester(this, requestCreator.surveyFetch( "123456",p_id), this).execute("");	
 		
 	}
 	

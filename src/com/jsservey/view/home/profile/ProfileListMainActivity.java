@@ -27,7 +27,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class ProfileMainActivity extends Activity implements OnClickListener,ApiRequestListner {
+public class ProfileListMainActivity extends Activity implements OnClickListener,ApiRequestListner {
 	
 	ListView lv;
 	@Override
@@ -38,14 +38,14 @@ public class ProfileMainActivity extends Activity implements OnClickListener,Api
 		setContentView(R.layout.profile_main_list_layout);
 		//handleHomeClick(this.findViewById(android.R.id.content));
 		//menuHandler(this.findViewById(android.R.id.content));
-		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-		new ApiRequester(this, requestCreator.profileFetch("123456"), this).execute("");
+		
+		
 		 lv = (ListView) findViewById(R.id.listView);
 		 findViewById(R.id.add_profile_imbt).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
-				Utility.startActivity(ProfileMainActivity.this, ProfileCreationActivity.class);
+				Utility.startActivity(ProfileListMainActivity.this, ProfileCreationActivity.class);
 				
 			}
 		});;
@@ -60,7 +60,7 @@ public class ProfileMainActivity extends Activity implements OnClickListener,Api
 				//Toast.makeText(getApplicationContext(), "yy"+pro.getProfile_id(), 1500).show();
 				Bundle bundle = new Bundle();
 				bundle.putString("pf_id", pro.getProfile_id());
-				Intent intent = new Intent(ProfileMainActivity.this, SurveyListActvity.class);
+				Intent intent = new Intent(ProfileListMainActivity.this, SurveyListActvity.class);
 				intent.putExtras(bundle);
 				startActivity(intent);
 				//Utility.startActivity(ProfileMainActivity.this, SurveyListActvity.class);
@@ -76,7 +76,8 @@ public class ProfileMainActivity extends Activity implements OnClickListener,Api
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-			
+		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+		new ApiRequester(this, requestCreator.profileFetch("123456"), this).execute("");
 		
 	}
 	
