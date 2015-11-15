@@ -180,15 +180,15 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		try{
 		 if(result!=null && result.has("survey_creation") && result.getInt("survey_creation")==1){
-			 Toast.makeText(getApplicationContext(), "Survey created", 1000).show();
+			 Toast.makeText(getApplicationContext(), "Survey created", 1500).show();
 		 }
 		 else{
-			 Toast.makeText(getApplicationContext(), "Survey creation failed", 1000).show(); 
+			 Toast.makeText(getApplicationContext(), "Survey creation failed", 1500).show(); 
 		 }
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		//onBackPressed();
+		//onBackPressed();//have an issue here
 		return null;
 	}
 

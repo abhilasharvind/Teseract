@@ -29,7 +29,7 @@ public class SplashActivity extends BaseActivity implements ApiRequestListner{
 	
 		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 		Log.d("abx", "SplashActivity");
-		new ApiRequester(this,requestCreator.initLoad( "deviceId"),this).execute("");
+		new ApiRequester(this,requestCreator.initLoad("deviceId"),this).execute("");
 		
 		
 	}

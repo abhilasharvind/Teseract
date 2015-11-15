@@ -8,9 +8,11 @@ import org.json.JSONObject;
 
 import com.abx.jsservey.R;
 import com.adapters.ProfileListCustomAdapter;
+import com.interfaces.EditDeleteUpdate_listner;
 import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Profile;
 import com.jsservey.utils.Utility;
+import com.jsservey.view.home.EditUpdateDelete;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
@@ -26,8 +28,9 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
-public class ProfileMainActivity extends Activity implements OnClickListener,ApiRequestListner {
+public class ProfileListMainActivity extends Activity implements OnClickListener,ApiRequestListner,EditDeleteUpdate_listner {
 	
 	ListView lv;
 	@Override
@@ -38,14 +41,14 @@ public class ProfileMainActivity extends Activity implements OnClickListener,Api
 		setContentView(R.layout.profile_main_list_layout);
 		//handleHomeClick(this.findViewById(android.R.id.content));
 		//menuHandler(this.findViewById(android.R.id.content));
-		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-		new ApiRequester(this, requestCreator.profileFetch("123456"), this).execute("");
+		
+		
 		 lv = (ListView) findViewById(R.id.listView);
 		 findViewById(R.id.add_profile_imbt).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
-				Utility.startActivity(ProfileMainActivity.this, ProfileCreationActivity.class);
+				Utility.startActivity(ProfileListMainActivity.this, ProfileCreationActivity.class);
 				
 			}
 		});;
@@ -60,7 +63,7 @@ public class ProfileMainActivity extends Activity implements OnClickListener,Api
 				//Toast.makeText(getApplicationContext(), "yy"+pro.getProfile_id(), 1500).show();
 				Bundle bundle = new Bundle();
 				bundle.putString("pf_id", pro.getProfile_id());
-				Intent intent = new Intent(ProfileMainActivity.this, SurveyListActvity.class);
+				Intent intent = new Intent(ProfileListMainActivity.this, SurveyListActvity.class);
 				intent.putExtras(bundle);
 				startActivity(intent);
 				//Utility.startActivity(ProfileMainActivity.this, SurveyListActvity.class);
@@ -76,7 +79,8 @@ public class ProfileMainActivity extends Activity implements OnClickListener,Api
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-			
+		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+		new ApiRequester(this, requestCreator.profileFetch("123456"), this).execute("");
 		
 	}
 	
@@ -100,7 +104,7 @@ public class DbAsyncTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 	@Override
 	protected void onPostExecute(ArrayList<Profile> result) {
 		Log.d("abx", "DbAsyncTask in onpost adapterset with size ="+result.size());
-		lv.setAdapter(new ProfileListCustomAdapter(getApplicationContext(),result));
+		lv.setAdapter(new ProfileListCustomAdapter(getApplicationContext(),result,ProfileListMainActivity.this));
 		super.onPostExecute(result);
 	}
 	
@@ -156,6 +160,82 @@ public void onClick(View arg0) {
 	// TODO Auto-generated method stub
 	
 }
+
+
+@Override
+public void onEditTaskStart(int type, String id) {
+	Toast.makeText(this, "Unable to edit profile"+id, 1000).show();
 	
+}
+
+@Override
+public void onUpdtaeTaskStart(int type, String id) {
+	Toast.makeText(this, "Unable to update profile"+id, 1000).show();
+	
+}
+
+@Override
+public void onDeleteTaskStart(int type, String id) {
+	
+	EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext());
+	
+	new ApiRequester(this, editUpdateDelete.deleteProfileTask(id), new ApiRequestListner() {
+		
+		@Override
+		public String onSuccess(JSONObject result) {
+			loddingIndicator(0);
+			Toast.makeText(ProfileListMainActivity.this, "Profile has been Deleted", 1000).show();
+			return null;
+		}
+		
+		@Override
+		public String onStarted() {
+			loddingIndicator(1);
+			return null;
+		}
+
+		
+		@Override
+		public String onFailed() {
+			loddingIndicator(0);
+			return null;
+		}
+	}).execute("");
+	
+}
+
+@Override
+public void onActivateTaskStart(int type, String id) {
+EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext());
+	
+	new ApiRequester(this, editUpdateDelete.activateProfileTask(id), new ApiRequestListner() {
+		
+		@Override
+		public String onSuccess(JSONObject result) {
+			loddingIndicator(0);
+			Toast.makeText(ProfileListMainActivity.this, "Profile has been Activated", 1500).show();
+			return null;
+		}
+		
+		@Override
+		public String onStarted() {
+			loddingIndicator(1);
+			return null;
+		}
+
+		
+		@Override
+		public String onFailed() {
+			loddingIndicator(0);
+			return null;
+		}
+	}).execute("");
+	
+}
+
+private void loddingIndicator(int visibility) {
+	findViewById(R.id.home_pg_rl).setVisibility(visibility);;
+}
+
 	
 }

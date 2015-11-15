@@ -84,5 +84,17 @@ public class RequestCreator implements URLConstants{
 		return url;
 	}
 	
+	public String createQuestion(String deviceId,String srv_id,String questionName,String description){
+		String url=BASE_URL;	
+		//SurveyAPI/LoginServlet?questioncreation=true&dbName=csfeedback&deviceId=123456&questionName=ithuname&profileSurveyid=1&question=ithu%20queston&isVisisble=1&surveyTypeid=3&advId=2
+		url=url+"SurveyAPI/LoginServlet?questioncreation=true&dbName="+dbname+"&deviceId="+deviceId+"&questionName="+questionName+"&profileSurveyid="+srv_id+"&question=ithu%20queston&isVisisble=1&surveyTypeid=3&advId=2";
+		return url;
+	}
+	public String createAnswer(String deviceId,String survey_name,String pf_id,String description){
+		String url=BASE_URL;	
+		//SurveyAPI/LoginServlet?answercreation=true&dbName=csfeedback&deviceId=123456&answerName=ansname&value=2.3&surveyQuestionid=2&imageId=1
+		url=url+"SurveyAPI/LoginServlet?answercreation=true&dbName="+dbname+"&deviceId=123456&answerName=ansname&value=2.3&surveyQuestionid=2&imageId=1";
+		return url;
+	}
 	
 }
