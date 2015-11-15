@@ -8,4 +8,8 @@ public class Utility {
 		Intent intent = new Intent(c, cl);
 		c.startActivity(intent);
 }
+	public static String getDeviceId(Context context){
+		String unique_id = android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+		return unique_id;
+	}
 }
