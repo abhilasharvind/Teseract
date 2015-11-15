@@ -8,10 +8,12 @@ import org.json.JSONObject;
 
 import com.abx.jsservey.R;
 import com.adapters.ProfileListCustomAdapter;
+import com.interfaces.EditDeleteUpdate_listner;
 import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Profile;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.home.profile.ProfileCreationActivity;
+import com.jsservey.view.home.profile.ProfileListMainActivity;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
@@ -28,7 +30,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class QuestionListActivity extends Activity implements OnClickListener,ApiRequestListner {
+public class QuestionListActivity extends Activity implements OnClickListener,ApiRequestListner ,EditDeleteUpdate_listner{
 	
 	ListView lv;
 	@Override
@@ -105,7 +107,7 @@ public class DbAsyncTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 	@Override
 	protected void onPostExecute(ArrayList<Profile> result) {
 		Log.d("abx", "DbAsyncTask in onpost adapterset with size ="+result.size());
-		lv.setAdapter(new ProfileListCustomAdapter(getApplicationContext(),result));
+		lv.setAdapter(new ProfileListCustomAdapter(getApplicationContext(),result,QuestionListActivity.this));
 		super.onPostExecute(result);
 	}
 	
@@ -158,6 +160,32 @@ public String onStarted() {
 
 @Override
 public void onClick(View arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+@Override
+public void onEditTaskStart(int type, String id) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void onUpdtaeTaskStart(int type, String id) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void onDeleteTaskStart(int type, String id) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void onActivateTaskStart(int type, String id) {
 	// TODO Auto-generated method stub
 	
 }

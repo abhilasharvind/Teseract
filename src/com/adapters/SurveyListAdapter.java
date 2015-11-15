@@ -70,9 +70,9 @@ public class SurveyListAdapter extends BaseAdapter implements OnClickListener{
 		View rowView;
 		rowView = inflater.inflate(R.layout.user_list_raw_layout, null);
 		holder.tv = (TextView) rowView.findViewById(R.id.textView1);
-		holder.img = (ImageView) rowView.findViewById(R.id.imageView1);
+		holder.img = (ImageView) rowView.findViewById(R.id.pop_up);
 		holder.popupMenu = (FrameLayout) rowView.findViewById(R.id.user_popup_menu);
-		holder.img.setOnClickListener(this);
+		//holder.img.setOnClickListener(this);
 		holder.tv.setText(surveyArray.get(position).getSurvey_name());
 		holder.select_tick= (ImageView) rowView.findViewById(R.id.profile_tick);
 		holder.img.setImageResource(R.drawable.more_button_icon);

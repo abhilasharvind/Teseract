@@ -23,7 +23,7 @@
             android:textSize="25dp" />
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/pop_up"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_alignParentRight="true"
