@@ -75,7 +75,7 @@ public class ProfileListCustomAdapter extends BaseAdapter implements OnClickList
 		holder.tv = (TextView) rowView.findViewById(R.id.textView1);
 		holder.img = (ImageView) rowView.findViewById(R.id.pop_up);
 		//holder.popupMenu = (FrameLayout) rowView.findViewById(R.id.user_popup_menu);//why is it here
-		holder.img.setOnClickListener(this);
+		//holder.img.setOnClickListener(this);
 		holder.tv.setText(profileArray.get(position).getProfilr_name());
 		holder.select_tick= (ImageView) rowView.findViewById(R.id.profile_tick);
 		if (profileArray.get(position).isIs_activated()) {

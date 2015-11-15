@@ -1,8 +1,13 @@
 package com.jsservey.view.home.survey.questions;
 
+import org.json.JSONObject;
+
 import com.abx.jsservey.R;
 import com.jsservey.model.QuestionAPojo;
 import com.jsservey.model.QuestionBPojo;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.RequestCreator;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -41,11 +46,14 @@ public class CreateQuestionTextActivity extends Activity implements
 	private int isHalfRating = 0;
 	private int maxValue = 5;
 
+	String survey_id="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.create_question_type_layout);
 		super.onCreate(savedInstanceState);
 		addListenerOnButton();
+		Bundle bundle =getIntent().getExtras();
+		survey_id=bundle.getString("survey_id");
 		Spinner staticSpinner = (Spinner) findViewById(R.id.question_type_spinner);
 
 		ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
@@ -177,26 +185,16 @@ public class CreateQuestionTextActivity extends Activity implements
 
 		if (view.getId() == R.id.add_text_answer) {
 
-			RelativeLayout textLayout1 = (RelativeLayout) answerView
-					.findViewById(R.id.text_layout1);
-			RelativeLayout textLayout2 = (RelativeLayout) answerView
-					.findViewById(R.id.text_layout2);
-			RelativeLayout textLayout3 = (RelativeLayout) answerView
-					.findViewById(R.id.text_layout3);
-			RelativeLayout textLayout4 = (RelativeLayout) answerView
-					.findViewById(R.id.text_layout4);
-			RelativeLayout textLayout5 = (RelativeLayout) answerView
-					.findViewById(R.id.text_layout5);
-			RelativeLayout textLayout6 = (RelativeLayout) answerView
-					.findViewById(R.id.text_layout6);
-			RelativeLayout textLayout7 = (RelativeLayout) answerView
-					.findViewById(R.id.text_layout7);
-			RelativeLayout textLayout8 = (RelativeLayout) answerView
-					.findViewById(R.id.text_layout8);
-			RelativeLayout textLayout9 = (RelativeLayout) answerView
-					.findViewById(R.id.text_layout9);
-			RelativeLayout textLayout10 = (RelativeLayout) answerView
-					.findViewById(R.id.text_layout10);
+			RelativeLayout textLayout1 = (RelativeLayout) answerView.findViewById(R.id.text_layout1);
+			RelativeLayout textLayout2 = (RelativeLayout) answerView.findViewById(R.id.text_layout2);
+			RelativeLayout textLayout3 = (RelativeLayout) answerView.findViewById(R.id.text_layout3);
+			RelativeLayout textLayout4 = (RelativeLayout) answerView.findViewById(R.id.text_layout4);
+			RelativeLayout textLayout5 = (RelativeLayout) answerView.findViewById(R.id.text_layout5);
+			RelativeLayout textLayout6 = (RelativeLayout) answerView.findViewById(R.id.text_layout6);
+			RelativeLayout textLayout7 = (RelativeLayout) answerView.findViewById(R.id.text_layout7);
+			RelativeLayout textLayout8 = (RelativeLayout) answerView.findViewById(R.id.text_layout8);
+			RelativeLayout textLayout9 = (RelativeLayout) answerView.findViewById(R.id.text_layout9);
+			RelativeLayout textLayout10 = (RelativeLayout) answerView.findViewById(R.id.text_layout10);
 			textAnserCount++;
 			if (textAnserCount < 11) {
 				if (textAnserCount == 2) {
@@ -223,84 +221,107 @@ public class CreateQuestionTextActivity extends Activity implements
 
 		} else if (view.getId() == R.id.create) {
 			EditText questionText = (EditText) findViewById(R.id.create_question);
+			EditText questionName = (EditText) findViewById(R.id.question_name_ed);
+
 			LinearLayout questionLayout = (LinearLayout) findViewById(R.id.question_type_layout);
 			if (questionType == 0 && null != questionText) {
-
-				EditText opt1 = (EditText) questionLayout
-						.findViewById(R.id.answer1);
-				EditText opt2 = (EditText) questionLayout
-						.findViewById(R.id.answer2);
-				EditText opt3 = (EditText) questionLayout
-						.findViewById(R.id.answer3);
-				EditText opt4 = (EditText) questionLayout
-						.findViewById(R.id.answer4);
-				EditText opt5 = (EditText) questionLayout
-						.findViewById(R.id.answer5);
-				EditText opt6 = (EditText) questionLayout
-						.findViewById(R.id.answer6);
-				EditText opt7 = (EditText) questionLayout
-						.findViewById(R.id.answer7);
-				EditText opt8 = (EditText) questionLayout
-						.findViewById(R.id.answer8);
-				EditText opt9 = (EditText) questionLayout
-						.findViewById(R.id.answer9);
-				EditText opt10 = (EditText) questionLayout
-						.findViewById(R.id.answer10);
-				QuestionBPojo textPojo = new QuestionBPojo();
-				textPojo.setQuestionName(questionText.getText().toString());
+				QuestionBPojo textPojo = new QuestionBPojo();//////////////////////////
+				EditText opt1 = (EditText) questionLayout.findViewById(R.id.answer1);
+				EditText opt2 = (EditText) questionLayout.findViewById(R.id.answer2);
+				EditText opt3 = (EditText) questionLayout.findViewById(R.id.answer3);
+				EditText opt4 = (EditText) questionLayout.findViewById(R.id.answer4);
+				EditText opt5 = (EditText) questionLayout.findViewById(R.id.answer5);
+				EditText opt6 = (EditText) questionLayout.findViewById(R.id.answer6);
+				EditText opt7 = (EditText) questionLayout.findViewById(R.id.answer7);
+				EditText opt8 = (EditText) questionLayout.findViewById(R.id.answer8);
+				EditText opt9 = (EditText) questionLayout.findViewById(R.id.answer9);
+				EditText opt10 = (EditText) questionLayout.findViewById(R.id.answer10);
+				
+				textPojo.setQuestionName(questionName.getText().toString());
 				textPojo.setQuestionText(questionText.getText().toString());
-				textPojo.setQuestionType(questionType);
-				textPojo.setOption1(opt1 == null ? "" : opt1.getText()
-						.toString());
-				textPojo.setOption2(opt2 == null ? "" : opt2.getText()
-						.toString());
-				textPojo.setOption3(opt3 == null ? "" : opt3.getText()
-						.toString());
-				textPojo.setOption4(opt4 == null ? "" : opt4.getText()
-						.toString());
-				textPojo.setOption5(opt5 == null ? "" : opt5.getText()
-						.toString());
-				textPojo.setOption6(opt6 == null ? "" : opt6.getText()
-						.toString());
-				textPojo.setOption7(opt7 == null ? "" : opt7.getText()
-						.toString());
-				textPojo.setOption8(opt8 == null ? "" : opt8.getText()
-						.toString());
-				textPojo.setOption9(opt9 == null ? "" : opt9.getText()
-						.toString());
-				textPojo.setOption10(opt10 == null ? "" : opt10.getText()
-						.toString());
-			} else if (questionType != 0 && null != questionText) {
-				QuestionAPojo textPojo = new QuestionAPojo();
-				textPojo.setQuestionName(questionText.getText().toString());
-				textPojo.setQuestionText(questionText.getText().toString());
-				textPojo.setQuestionType(questionType);
+				textPojo.setQuestionType(questionType+3);
+				textPojo.setOption1(opt1.getText().toString().equals("") ? "null" : opt1.getText().toString());
+				textPojo.setOption2(opt2.getText().toString().equals("") ? "null" : opt2.getText().toString());
+				textPojo.setOption3(opt3.getText().toString().equals("") ? "null" : opt3.getText().toString());
+				textPojo.setOption4(opt4.getText().toString().equals("") ? "null" : opt4.getText().toString());
+				textPojo.setOption5(opt5.getText().toString().equals("") ? "null" : opt5.getText().toString());
+				textPojo.setOption6(opt6.getText().toString().equals("") ? "null" : opt6.getText().toString());
+				textPojo.setOption7(opt7.getText().toString().equals("") ? "null" : opt7.getText().toString());
+				textPojo.setOption8(opt8.getText().toString().equals("") ? "null" : opt8.getText().toString());
+				textPojo.setOption9(opt9.getText().toString().equals("") ? "null" : opt9.getText().toString());
+				textPojo.setOption10(opt10.getText().toString().equals("")  ? "null" : opt10.getText().toString());
+				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+				new ApiRequester(getApplicationContext(), requestCreator.createQuestionB("deviceId", textPojo,survey_id, textPojo.getQuestionName(), ""+textPojo.getQuestionText(), ""+textPojo.getQuestionType()), new ApiRequestListner() {
+					
+					@Override
+					public String onSuccess(JSONObject result) {
+						// TODO Auto-generated method stub
+						return null;
+					}
+					
+					@Override
+					public String onStarted() {
+						// TODO Auto-generated method stub
+						return null;
+					}
+					
+					@Override
+					public String onFailed() {
+						// TODO Auto-generated method stub
+						return null;
+					}
+				}).execute("");
+			
+			}
+				else if (questionType != 0 && null != questionText) {
+				QuestionAPojo questionAPojo = new QuestionAPojo();
+				questionAPojo.setQuestionName(questionText.getText().toString());
+				questionAPojo.setQuestionText(questionText.getText().toString());
+				questionAPojo.setQuestionType(questionType+2);
 				switch (questionType) {
-				case 1: {
-					textPojo.setMaxValue(maxValue);
-					textPojo.setOtherValue(isHalfRating);
+				case 1: {//rating
+					questionAPojo.setMaxValue(maxValue);
+					questionAPojo.setOtherValue(isHalfRating);
 					break;
 				}
-				case 2: {
-					textPojo.setMaxValue(Integer.parseInt(seekValueText
-							.getText().toString()));
-					textPojo.setOtherValue(1);
+				case 2: {//seek
+					questionAPojo.setMaxValue(Integer.parseInt(seekValueText.getText().toString()));
+					questionAPojo.setOtherValue(1);
 					break;
 				}
-				case 3: {
-					textPojo.setMaxValue(Integer.parseInt(seekValueText
-							.getText().toString()));
-					textPojo.setOtherValue(1);
-					break;
-				}
-				case 4: {
-					textPojo.setMaxValue(maxValue);
-					textPojo.setOtherValue(1);
+				
+				case 3: {//smiley
+					questionAPojo.setMaxValue(maxValue);
+					questionAPojo.setOtherValue(1);
 					break;
 				}
 				default:
 					break;
 				}
+				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+				new ApiRequester(getApplicationContext(), requestCreator.createQuestionA("deviceId", survey_id, questionAPojo.getQuestionName(), ""+questionAPojo.getQuestionText(), ""+questionAPojo.getQuestionType(), ""+questionAPojo.getOtherValue(), ""+questionAPojo.getMaxValue()), new ApiRequestListner() {
+					
+					@Override
+					public String onSuccess(JSONObject result) {
+						// TODO Auto-generated method stub
+						return null;
+					}
+					
+					@Override
+					public String onStarted() {
+						// TODO Auto-generated method stub
+						return null;
+					}
+					
+					@Override
+					public String onFailed() {
+						// TODO Auto-generated method stub
+						return null;
+					}
+				}).execute("");
+				
+
+				
 			}
 		}
 	}

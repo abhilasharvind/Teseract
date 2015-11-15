@@ -8,17 +8,23 @@ import org.json.JSONObject;
 
 import com.abx.jsservey.R;
 import com.adapters.ProfileListCustomAdapter;
+import com.adapters.QuestionListAdapter;
 import com.interfaces.EditDeleteUpdate_listner;
 import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Profile;
+import com.jsservey.model.Question;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.home.profile.ProfileCreationActivity;
 import com.jsservey.view.home.profile.ProfileListMainActivity;
+import com.jsservey.view.home.profile.SurveyCreationActivity;
+import com.jsservey.view.home.profile.SurveyListActvity;
+import com.jsservey.view.home.survey.questions.CreateQuestionTextActivity;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +37,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class QuestionListActivity extends Activity implements OnClickListener,ApiRequestListner ,EditDeleteUpdate_listner{
-	
+	String survey_id="";
 	ListView lv;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +48,7 @@ public class QuestionListActivity extends Activity implements OnClickListener,Ap
 		//handleHomeClick(this.findViewById(android.R.id.content));
 		//menuHandler(this.findViewById(android.R.id.content));
 		Bundle bundle =getIntent().getExtras();
-		final String survey_id=bundle.getString("survey_id");
+		survey_id=bundle.getString("survey_id");
 		Log.d("abx", "(QuestionListActivity)survey id"+survey_id);
 		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 		new ApiRequester(this, requestCreator.questionFetch("123456",survey_id), this).execute("");
@@ -51,8 +57,12 @@ public class QuestionListActivity extends Activity implements OnClickListener,Ap
 			
 			@Override
 			public void onClick(View arg0) {
-				
-				Utility.startActivity(QuestionListActivity.this, ProfileCreationActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("survey_id", survey_id);
+				Intent intent = new Intent(QuestionListActivity.this, CreateQuestionTextActivity.class);
+				intent.putExtras(bundle);
+				startActivity(intent);
+				//Utility.startActivity(QuestionListActivity.this, CreateQuestionTextActivity.class);
 				
 			}
 		});;
@@ -107,7 +117,8 @@ public class DbAsyncTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 	@Override
 	protected void onPostExecute(ArrayList<Profile> result) {
 		Log.d("abx", "DbAsyncTask in onpost adapterset with size ="+result.size());
-		lv.setAdapter(new ProfileListCustomAdapter(getApplicationContext(),result,QuestionListActivity.this));
+		//
+		//lv.setAdapter(new QuestionListAdapter(getApplicationContext(),result,QuestionListActivity.this));
 		super.onPostExecute(result);
 	}
 	
@@ -120,20 +131,18 @@ public String onSuccess(JSONObject result) {
 	{
 		try {
 			JSONArray data=result.getJSONArray("data");
-			ArrayList<Profile> profileArray= new ArrayList<Profile>();	
+			ArrayList<Question> questionArray= new ArrayList<Question>();	
 			for ( int i=0;i<data.length();i++) {
-				Profile profile = new Profile();
+				Question question = new Question();
 				JSONObject innerobj = (JSONObject) data.get(i);
-				profile.setProfile_id(innerobj.getString("id"));
-				Log.d("abx", "pf_name= "+innerobj.getString("profile_name"));
-				profile.setProfilr_name(innerobj.getString("profile_name"));
-				profile.setIs_activated(false);
+				question.setQuestId(innerobj.getString("id"));
+				question.setQuestionText(innerobj.getString("question_name"));
 				
-				profileArray.add(profile);
+				
+				questionArray.add(question);
 			}
-			SQLiteHelper db =SQLiteHelper.getInstance(this);
-			db.insertProfiles(profileArray);
-			new DbAsyncTask().execute("");
+			Log.d("abx", "DbAsyncTask in onSuccess ="+questionArray.size());
+			lv.setAdapter(new QuestionListAdapter(getApplicationContext(),questionArray,QuestionListActivity.this));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

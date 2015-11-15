@@ -1,5 +1,6 @@
 package com.jsservey.webservices;
 
+import com.jsservey.model.QuestionBPojo;
 import com.jsservey.utils.AppPref;
 import com.jsservey.utils.PrefConstant;
 
@@ -67,7 +68,7 @@ public class RequestCreator implements URLConstants{
 	public String questionFetch(String deviceId,String survey_id){
 		String url=BASE_URL;	
 		//SurveyAPI/LoginServlet?questionslist=true&dbName=csfeedback&deviceId=123456&surveyId=1
-		url=url+"SurveyAPI/LoginServlet?surveylist=true&deviceId="+deviceId+"&uId=3&dbName="+dbname+"&surveyId="+survey_id;
+		url=url+"SurveyAPI/LoginServlet?questionslist=true&dbName="+dbname+"&deviceId=123456&surveyId="+survey_id;
 		Log.d("abx", url);
 		return url;
 	}
@@ -84,13 +85,19 @@ public class RequestCreator implements URLConstants{
 		return url;
 	}
 	
-	public String createQuestion(String deviceId,String srv_id,String questionName,String description){
+	public String createQuestionA(String deviceId,String srv_id,String questionName,String questiontext,String surveyTypeid,String halfRating,String value){
 		String url=BASE_URL;	
-		//SurveyAPI/LoginServlet?questioncreation=true&dbName=csfeedback&deviceId=123456&questionName=ithuname&profileSurveyid=1&question=ithu%20queston&isVisisble=1&surveyTypeid=3&advId=2
-		url=url+"SurveyAPI/LoginServlet?questioncreation=true&dbName="+dbname+"&deviceId="+deviceId+"&questionName="+questionName+"&profileSurveyid="+srv_id+"&question=ithu%20queston&isVisisble=1&surveyTypeid=3&advId=2";
+		//LoginServlet?questioncreation=true&dbName=csfeedback&deviceId=123456&questionName=ithuname&profileSurveyid=1&question=ithu%20queston&isVisisble=1&surveyTypeid=3&halfRating=1&Value=10
+		url=url+"SurveyAPI/LoginServlet?questioncreation=true&dbName="+dbname+"&deviceId=123456&questionName="+questionName+"&profileSurveyid="+srv_id+"&question="+questiontext+"&isVisisble=1&surveyTypeid="+surveyTypeid+"&halfRating="+halfRating+"&Value="+value;
 		return url;
 	}
-	public String createAnswer(String deviceId,String survey_name,String pf_id,String description){
+	public String createQuestionB(String deviceId,QuestionBPojo questionBPojo,String srv_id,String questionName,String questiontext,String surveyTypeid){
+		String url=BASE_URL;	
+		//LoginServlet?questioncreation=true&dbName=csfeedback&deviceId=123456&questionName=ithuname&profileSurveyid=1&question=ithu%20queston&isVisisble=1&surveyTypeid=3&halfRating=1&Value=10
+		url=url+"SurveyAPI/LoginServlet?questioncreationtext=true&dbName=csfeedback&deviceId=123456&questionName="+questionName+"&profileSurveyid="+srv_id+"&question="+questiontext+"&isVisisble=1&surveyTypeid="+surveyTypeid+"&answer1="+questionBPojo.getOption1()+"&answer2="+questionBPojo.getOption2()+"&answer3="+questionBPojo.getOption3()+"&answer4="+questionBPojo.getOption4()+"&answer5="+questionBPojo.getOption5()+"&answer6="+questionBPojo.getOption6()+"&answer7="+questionBPojo.getOption7()+"&answer8="+questionBPojo.getOption8()+"&answer9="+questionBPojo.getOption9()+"&answer10="+questionBPojo.getOption10();
+		return url;
+	}
+	public String createAnswerA(String deviceId,String survey_name,String description){
 		String url=BASE_URL;	
 		//SurveyAPI/LoginServlet?answercreation=true&dbName=csfeedback&deviceId=123456&answerName=ansname&value=2.3&surveyQuestionid=2&imageId=1
 		url=url+"SurveyAPI/LoginServlet?answercreation=true&dbName="+dbname+"&deviceId=123456&answerName=ansname&value=2.3&surveyQuestionid=2&imageId=1";

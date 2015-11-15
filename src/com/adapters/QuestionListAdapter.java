@@ -3,6 +3,8 @@ package com.adapters;
 import java.util.ArrayList;
 
 import com.abx.jsservey.R;
+import com.adapters.ProfileListCustomAdapter.Holder;
+import com.interfaces.EditDeleteUpdate_listner;
 import com.jsservey.model.Profile;
 import com.jsservey.model.Question;
 import com.jsservey.utils.AppPref;
@@ -26,20 +28,21 @@ public class QuestionListAdapter  extends BaseAdapter implements OnClickListener
 
 	//private String[] result;
 	private Context context;
-	private int[] imageId;
+	//private int[] imageId;
 	private ArrayList<Question> questionArray;
-	public static int[] prgmImages = { R.drawable.more_button_icon,R.drawable.more_button_icon,R.drawable.more_button_icon,R.drawable.more_button_icon };
+	//public static int[] prgmImages = { R.drawable.more_button_icon,R.drawable.more_button_icon,R.drawable.more_button_icon,R.drawable.more_button_icon };
 	//public static String[] prgmNameList = { "user 1", "user 2", "user 3",	"user 4" };
 	private static LayoutInflater inflater = null;
+	EditDeleteUpdate_listner editDeleteUpdate_listner;
 
-	public QuestionListAdapter(Context context,ArrayList<Question> questionArray) {
+	public QuestionListAdapter(Context context,ArrayList<Question> questionArray,EditDeleteUpdate_listner editDeleteUpdate_listner) {
 		// TODO Auto-generated constructor stub
 		//this.result = prgmNameList;
 		this.context = context;
-		this.imageId = prgmImages;
-		inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		//this.imageId = prgmImages;
+		inflater = (LayoutInflater) context	.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.questionArray=questionArray;
+		this.editDeleteUpdate_listner=editDeleteUpdate_listner;
 	}
 
 	@Override
@@ -60,7 +63,7 @@ public class QuestionListAdapter  extends BaseAdapter implements OnClickListener
 	public class Holder {
 		TextView tv;
 		ImageView img;
-		FrameLayout popupMenu;
+		//FrameLayout popupMenu;
 		ImageView select_tick;
 	}
 	
@@ -72,16 +75,16 @@ public class QuestionListAdapter  extends BaseAdapter implements OnClickListener
 		final View rowView;
 		rowView = inflater.inflate(R.layout.user_list_raw_layout, null);
 		holder.tv = (TextView) rowView.findViewById(R.id.textView1);
-		holder.img = (ImageView) rowView.findViewById(R.id.imageView1);
-		holder.popupMenu = (FrameLayout) rowView.findViewById(R.id.user_popup_menu);
-		holder.img.setOnClickListener(this);
+		holder.img = (ImageView) rowView.findViewById(R.id.pop_up);
+		//holder.popupMenu = (FrameLayout) rowView.findViewById(R.id.user_popup_menu);//why is it here
+		//holder.img.setOnClickListener(this);
 		holder.tv.setText(questionArray.get(position).getQuestionText());
 		holder.select_tick= (ImageView) rowView.findViewById(R.id.profile_tick);
-		/*if (questionArray.get(position).isIs_activated()) {
-			holder.select_tick.setVisibility(View.VISIBLE);	
-		}else{
-			holder.select_tick.setVisibility(View.GONE);	
-		}*/
+		//if (profileArray.get(position).isIs_activated()) {
+		//	holder.select_tick.setVisibility(View.VISIBLE);	
+		//}else{
+		//	holder.select_tick.setVisibility(View.GONE);	
+		//}
 		holder.img.setImageResource(R.drawable.more_button_icon);
 		rowView.setTag(questionArray.get(position));		
 		holder.img.setOnClickListener(new OnClickListener() {
@@ -89,37 +92,11 @@ public class QuestionListAdapter  extends BaseAdapter implements OnClickListener
 			@Override
 			public void onClick(final View view) {
 				
-				PopupMenu popup = new PopupMenu(context, view);  
-	            //Inflating the Popup using xml file  
-				popup.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-					
-					@Override
-					public boolean onMenuItemClick(MenuItem mt) {
-						int id = mt.getItemId();
-						if (id == R.id.activate_profile) {
-							
-							AppPref appPref = new AppPref(context);
-							Profile pf= (Profile) rowView.getTag();
-							if (pf!= null) {
-								Toast.makeText(context, "Profile Activated "+pf.getProfilr_name(), 1000).show();
-								appPref.putString(PrefConstant.ACTIVATED_PROFILE,pf.getProfile_id());
-							}else{
-								Toast.makeText(context, "Unable to Activate profile", 1000).show();
-							}
-							
-							//
-						}
-						return false;
-					}
-				});
-	            popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());  
-	           
-	            //registering popup with OnMenuItemClickListener
-	            
-	  
-	            popup.show();//showing popup menu  
+				popHandler(rowView, view);
 				
 			}
+
+			
 		});
 		return rowView;
 	}
@@ -129,6 +106,43 @@ public class QuestionListAdapter  extends BaseAdapter implements OnClickListener
 		
 	}
 
-	
+	private void popHandler(final View rowView, final View view) {
+		PopupMenu popup = new PopupMenu(context, view);  
+		popup.getMenuInflater().inflate(R.menu.profile_edit_delete_activate_popup, popup.getMenu()); 
+		popup.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem mt) {
+				int id = mt.getItemId();
+				Profile pf= (Profile) rowView.getTag();
+				if (id == R.id.activate_profile) {
+					
+					AppPref appPref = new AppPref(context);
+					
+					if (pf!= null) {
+						//Toast.makeText(context, "Profile Activated "+pf.getProfilr_name(), 1000).show();
+						appPref.putString(PrefConstant.ACTIVATED_PROFILE,pf.getProfile_id());
+						editDeleteUpdate_listner.onActivateTaskStart(1,pf.getProfile_id());
+					}else{
+						//Toast.makeText(context, "Unable to Activate profile", 1000).show();
+					}
+					
+					//
+				}else if(id == R.id.delete_popup){
+					editDeleteUpdate_listner.onDeleteTaskStart(1, pf.getProfile_id());
+					
+				}else if(id == R.id.edit_popup){
+					editDeleteUpdate_listner.onEditTaskStart(1, pf.getProfile_id());
+				}
+				return false;
+			}
+		});
+          
+       
+        //registering popup with OnMenuItemClickListener
+        
+
+        popup.show();//showing popup menu  
+	}
 
 }
