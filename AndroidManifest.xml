@@ -46,13 +46,13 @@
         </activity>
         <activity android:name="com.jsservey.view.home.profile.SurveyListActvity" >
         </activity>
-        <activity android:name="com.jsservey.view.home.survey.StartSurveyActivity" >
+        <activity android:name="com.jsservey.view.survey.StartSurveyActivity" >
         </activity>
         <activity android:name="com.jsservey.view.home.survey.questions.QuestionsDisplayActivity" >
         </activity>
         <activity android:name="com.jsservey.view.home.profile.SurveyCreationActivity" >
         </activity>
-        <activity android:name="com.jsservey.Questions.QuestionListActivity" >
+        <activity android:name="com.jsservey.view.home.survey.questions.QuestionListActivity" >
         </activity>
         <activity android:name="com.jsservey.view.home.survey.questions.CreateQuestionTextActivity" >
         </activity>

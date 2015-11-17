@@ -3,11 +3,11 @@ package com.jsservey.model;
 public class Profile {
 	String profilr_name;
 	String profile_id;
-	boolean is_activated;
-	public boolean isIs_activated() {
+	String is_activated;
+	public String isIs_activated() {
 		return is_activated;
 	}
-	public void setIs_activated(boolean is_activated) {
+	public void setIs_activated(String is_activated) {
 		this.is_activated = is_activated;
 	}
 	public String getProfilr_name() {

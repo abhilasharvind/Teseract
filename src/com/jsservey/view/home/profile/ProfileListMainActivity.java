@@ -124,7 +124,8 @@ public String onSuccess(JSONObject result) {
 				profile.setProfile_id(innerobj.getString("id"));
 				Log.d("abx", "pf_name= "+innerobj.getString("profile_name"));
 				profile.setProfilr_name(innerobj.getString("profile_name"));
-				profile.setIs_activated(false);
+				profile.setIs_activated(result.getString("activated_id"));
+				//Log.d("abx", "pf_name= "+result.getString("activated_id"));
 				
 				profileArray.add(profile);
 			}

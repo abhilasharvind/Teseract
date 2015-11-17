@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/white" >
 
     <LinearLayout
         android:id="@+id/question_layot"
@@ -19,20 +20,19 @@
             android:text="@string/question_answer"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="24dp" />
-        <EditText
-        android:id="@+id/question_name_ed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/question_layot"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:hint="Question name" >
-    </EditText>
-    </LinearLayout>
 
-    
+        <EditText
+            android:id="@+id/question_name_ed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/question_layot"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:hint="Question name" >
+        </EditText>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/create_question"
@@ -83,6 +83,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal|bottom"
-        android:text="Button" />
+        android:text="Create" />
 
 </RelativeLayout>

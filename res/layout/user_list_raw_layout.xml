@@ -24,19 +24,21 @@
 
         <ImageView
             android:id="@+id/pop_up"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:src="@drawable/more_button_icon" />
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_drawer" />
 
         <ImageView
             android:id="@+id/profile_tick"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/imageView1"
-            android:src="@android:drawable/ic_media_play"
+            android:layout_centerHorizontal="true"
+            android:src="@android:drawable/ic_media_play" 
             android:visibility="gone" />
+
     </RelativeLayout>
 
 </LinearLayout>

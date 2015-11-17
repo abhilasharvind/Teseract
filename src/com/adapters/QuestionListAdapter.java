@@ -3,7 +3,6 @@ package com.adapters;
 import java.util.ArrayList;
 
 import com.abx.jsservey.R;
-import com.adapters.ProfileListCustomAdapter.Holder;
 import com.interfaces.EditDeleteUpdate_listner;
 import com.jsservey.model.Profile;
 import com.jsservey.model.Question;
@@ -17,12 +16,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class QuestionListAdapter  extends BaseAdapter implements OnClickListener{
 

@@ -1,4 +1,4 @@
-package com.jsservey.Questions;
+package com.jsservey.view.home.survey.questions;
 
 import java.util.ArrayList;
 
@@ -7,18 +7,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.abx.jsservey.R;
-import com.adapters.ProfileListCustomAdapter;
 import com.adapters.QuestionListAdapter;
 import com.interfaces.EditDeleteUpdate_listner;
 import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Profile;
 import com.jsservey.model.Question;
-import com.jsservey.utils.Utility;
-import com.jsservey.view.home.profile.ProfileCreationActivity;
-import com.jsservey.view.home.profile.ProfileListMainActivity;
-import com.jsservey.view.home.profile.SurveyCreationActivity;
-import com.jsservey.view.home.profile.SurveyListActvity;
-import com.jsservey.view.home.survey.questions.CreateQuestionTextActivity;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;

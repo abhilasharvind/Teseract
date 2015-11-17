@@ -14,9 +14,9 @@ import com.jsservey.model.ProfileHugePojo;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.BaseActivity;
 import com.jsservey.view.home.profile.ProfileListMainActivity;
-import com.jsservey.view.home.survey.StartSurveyActivity;
 import com.jsservey.view.reportandabout.AboutActivity;
 import com.jsservey.view.reportandabout.ReportActivity;
+import com.jsservey.view.survey.StartSurveyActivity;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.RequestCreator;
 

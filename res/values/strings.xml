@@ -43,7 +43,7 @@
    <string name="child_selection">Selection possible for child login</string>
    <string name="create_profile">Create Profile</string>
    <string name="write_question">Write the question here</string>
-   <string name="question_answer">Question and Answer</string>
+   <string name="question_answer">Create question</string>
    <string name="write_answer">Write the Answer</string>
    <string-array name="question_array">
         <item>Text</item>

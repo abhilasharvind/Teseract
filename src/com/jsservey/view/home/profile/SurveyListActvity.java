@@ -8,9 +8,9 @@ import org.json.JSONObject;
 
 import com.abx.jsservey.R;
 import com.adapters.SurveyListAdapter;
-import com.jsservey.Questions.QuestionListActivity;
 import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Survey;
+import com.jsservey.view.home.survey.questions.QuestionListActivity;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;

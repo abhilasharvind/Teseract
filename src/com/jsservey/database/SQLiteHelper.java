@@ -57,7 +57,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 			+ PROFILE_NAME + " text, " + SURVEY_ID + " text, "
 			+ PROFILE_SURVEY_NAME + " text, " + QUESTION_ID + " text, "
 			+ QUESTION_NAME + " text, " + ANSWER_ID + " text, " + ANSWER_NAME
-			+ " text , " + IS_ACTIVATED+ " integer);";
+			+ " text , " + IS_ACTIVATED+ " text);";
 	
 	private static final String TABLE_USER_PROFILE_CREATE = "create table "
 			+ PROFILES + "( profile_id  text,  Profile_name text ,is_activated boolean );";
@@ -298,6 +298,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 				Log.d("abx", "in getProfileNames_bulk"+cursor.getString(cursor.getColumnIndex("profile_id")));
 				profile.setProfile_id(cursor.getString(cursor.getColumnIndex("profile_id")));
 				profile.setProfilr_name(cursor.getString(cursor.getColumnIndex("Profile_name")));
+				profile.setIs_activated(cursor.getString(cursor.getColumnIndex(IS_ACTIVATED)));
 				profileArray.add(profile);
 			} while (cursor.moveToNext());
 		}

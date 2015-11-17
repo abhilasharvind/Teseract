@@ -9,18 +9,17 @@ import com.jsservey.utils.AppPref;
 import com.jsservey.utils.PrefConstant;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ProfileListCustomAdapter extends BaseAdapter implements OnClickListener{
 
@@ -78,8 +77,11 @@ public class ProfileListCustomAdapter extends BaseAdapter implements OnClickList
 		//holder.img.setOnClickListener(this);
 		holder.tv.setText(profileArray.get(position).getProfilr_name());
 		holder.select_tick= (ImageView) rowView.findViewById(R.id.profile_tick);
-		if (profileArray.get(position).isIs_activated()) {
+		Log.d("abx", "activated profile hgerer>>"+profileArray.get(position).getProfile_id());
+		Log.d("abx", "activated profile hgerer>>"+profileArray.get(position).isIs_activated());
+		if (profileArray.get(position).getProfile_id().equals(profileArray.get(position).isIs_activated())) {
 			holder.select_tick.setVisibility(View.VISIBLE);	
+			Log.d("abx", "activated profile hgerer");
 		}else{
 			holder.select_tick.setVisibility(View.GONE);	
 		}
