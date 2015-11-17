@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.questionssurvey.MainActivity" >
 
+    <!--
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
@@ -26,296 +27,151 @@
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="24dp" />
     </LinearLayout>
+    -->
 
- <RelativeLayout
-            android:id="@+id/text_layout1"
+    <LinearLayout
+        android:id="@+id/text_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="10dp"
+        android:background="@drawable/answer_button_shape"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/answer1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp" >
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="good"
+            android:textColor="@android:color/holo_orange_dark" />
 
-            <RadioButton
-                android:id="@+id/radioButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true" />
-
-            <EditText
-                android:id="@+id/answer1"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:paddingLeft="10dp"
-                android:layout_toRightOf="@id/radioButton1"
-                android:background="@drawable/answer_button_shape"
-                android:text=""
-                android:textColor="@android:color/holo_orange_dark" />
-            <requestFocus />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/text_layout2"
-            android:layout_below="@id/text_layout1"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="5dp"
-            android:visibility="gone" >
+            android:layout_height="1dp"
+            android:background="#505050" />
 
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp" />
-
-            <EditText
-                android:id="@+id/answer2"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:paddingLeft="10dp"
-                android:layout_toRightOf="@id/radioButton2"
-                android:background="@drawable/answer_button_shape"
-                android:text=""
-                android:textColor="@android:color/holo_orange_dark" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/text_layout3"
-            android:layout_below="@id/text_layout2"
+        <TextView
+            android:id="@+id/answer2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="5dp"
-            android:visibility="gone" >
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="great"
+            android:textColor="@android:color/holo_orange_dark" />
 
-            <RadioButton
-                android:id="@+id/radioButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp" />
-
-            <EditText
-                android:id="@+id/answer3"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:paddingLeft="10dp"
-                android:layout_toRightOf="@id/radioButton3"
-                android:background="@drawable/answer_button_shape"
-                android:text=""
-                android:textColor="@android:color/holo_orange_dark" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/text_layout4"
-            android:layout_below="@id/text_layout3"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="5dp"
-            android:visibility="gone" >
+            android:layout_height="1dp"
+            android:background="#505050" />
 
-            <RadioButton
-                android:id="@+id/radioButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp" />
+        <TextView
+            android:id="@+id/answer3"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="nice"
+            android:textColor="@android:color/holo_orange_dark" />
 
-            <EditText
-                android:id="@+id/answer4"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:paddingLeft="10dp"
-                android:layout_toRightOf="@id/radioButton4"
-                android:background="@drawable/answer_button_shape"
-                android:text=""
-                android:textColor="@android:color/holo_orange_dark" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/text_layout5"
-            android:layout_below="@id/text_layout4"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="5dp"
-            android:visibility="gone" >
+            android:layout_height="1dp"
+            android:background="#505050" />
 
-            <RadioButton
-                android:id="@+id/radioButton5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp" />
-
-            <EditText
-                android:id="@+id/answer5"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:paddingLeft="10dp"
-                android:layout_toRightOf="@id/radioButton5"
-                android:background="@drawable/answer_button_shape"
-                android:text=""
-                android:textColor="@android:color/holo_orange_dark" />
-        </RelativeLayout>
-        
-        <RelativeLayout
-            android:id="@+id/text_layout6"
-            android:layout_below="@id/text_layout5"
+        <TextView
+            android:id="@+id/answer4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="5dp"
-            android:visibility="gone" >
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="wow"
+            android:textColor="@android:color/holo_orange_dark" />
 
-            <RadioButton
-                android:id="@+id/radioButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp" />
-
-            <EditText
-                android:id="@+id/answer6"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:paddingLeft="10dp"
-                android:layout_toRightOf="@id/radioButton6"
-                android:background="@drawable/answer_button_shape"
-                android:text=""
-                android:textColor="@android:color/holo_orange_dark" />
-        </RelativeLayout>
-        
-        <RelativeLayout
-            android:id="@+id/text_layout7"
-            android:layout_below="@id/text_layout6"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="5dp"
-            android:visibility="gone" >
+            android:layout_height="1dp"
+            android:background="#505050" />
 
-            <RadioButton
-                android:id="@+id/radioButton7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp" />
-
-            <EditText
-                android:id="@+id/answer7"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:paddingLeft="10dp"
-                android:layout_toRightOf="@id/radioButton7"
-                android:background="@drawable/answer_button_shape"
-                android:text=""
-                android:textColor="@android:color/holo_orange_dark" />
-        </RelativeLayout>
-        
-        <RelativeLayout
-            android:id="@+id/text_layout8"
-            android:layout_below="@id/text_layout7"
+        <TextView
+            android:id="@+id/answer5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="5dp"
-            android:visibility="gone" >
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="coool"
+            android:textColor="@android:color/holo_orange_dark" />
 
-            <RadioButton
-                android:id="@+id/radioButton8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp" />
-
-            <EditText
-                android:id="@+id/answer8"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:paddingLeft="10dp"
-                android:layout_toRightOf="@id/radioButton8"
-                android:background="@drawable/answer_button_shape"
-                android:text=""
-                android:textColor="@android:color/holo_orange_dark" />
-        </RelativeLayout>
-        
-        <RelativeLayout
-            android:id="@+id/text_layout9"
-            android:layout_below="@id/text_layout8"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="5dp"
-            android:visibility="gone" >
+            android:layout_height="1dp"
+            android:background="#505050" />
 
-            <RadioButton
-                android:id="@+id/radioButton9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp" />
-
-            <EditText
-                android:id="@+id/answer9"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:paddingLeft="10dp"
-                android:layout_toRightOf="@id/radioButton9"
-                android:background="@drawable/answer_button_shape"
-                android:text=""
-                android:textColor="@android:color/holo_orange_dark" />
-        </RelativeLayout>
-        
-        <RelativeLayout
-            android:id="@+id/text_layout10"
-            android:layout_below="@id/text_layout9"
+        <TextView
+            android:id="@+id/answer6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="5dp"
-            android:visibility="gone" >
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="hot"
+            android:textColor="@android:color/holo_orange_dark" />
 
-            <RadioButton
-                android:id="@+id/radioButton10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#505050" />
 
-            <EditText
-                android:id="@+id/answer10"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:paddingLeft="10dp"
-                android:layout_toRightOf="@id/radioButton10"
-                android:background="@drawable/answer_button_shape"
-                android:text=""
-                android:textColor="@android:color/holo_orange_dark" />
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/answer7"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="excellent"
+            android:textColor="@android:color/holo_orange_dark" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#505050" />
 
-    <Button
-        android:id="@+id/next_done_btn"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/round_corner"
-        android:padding="6dp"
-        android:text="Next"
-        android:textColor="@android:color/holo_blue_dark" />
+        <TextView
+            android:id="@+id/answer8"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="delicious"
+            android:textColor="@android:color/holo_orange_dark" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#505050" />
+
+        <TextView
+            android:id="@+id/answer9"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="goood"
+            android:textColor="@android:color/holo_orange_dark" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#505050" />
+
+        <TextView
+            android:id="@+id/answer10"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="fantastic"
+            android:textColor="@android:color/holo_orange_dark" />
+    </LinearLayout>
 
 </LinearLayout>

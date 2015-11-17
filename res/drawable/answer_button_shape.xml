@@ -12,7 +12,7 @@
         android:top="1dp"
         android:bottom="1dp"/>
 
-    <solid android:color="@android:color/background_light"/>
+    <solid android:color="@color/yellow"/>
     
 
 </shape>
