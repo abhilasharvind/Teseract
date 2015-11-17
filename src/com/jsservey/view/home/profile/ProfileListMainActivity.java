@@ -13,6 +13,7 @@ import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Profile;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.home.EditUpdateDelete;
+import com.jsservey.view.home.survey.SurveyRequestCreator;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
@@ -206,15 +207,39 @@ public void onDeleteTaskStart(int type, String id) {
 }
 
 @Override
-public void onActivateTaskStart(int type, String id) {
+public void onActivateTaskStart(int type, final String id) {
 EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext());
 	
 	new ApiRequester(this, editUpdateDelete.activateProfileTask(id), new ApiRequestListner() {
 		
 		@Override
 		public String onSuccess(JSONObject result) {
-			loddingIndicator(0);
+			loddingIndicator(View.GONE);
 			Toast.makeText(ProfileListMainActivity.this, "Profile has been Activated", 1500).show();
+			SurveyRequestCreator requestCreator = new SurveyRequestCreator(getApplicationContext());
+			new ApiRequester(ProfileListMainActivity.this,requestCreator.surveyQuesFetch(id), new ApiRequestListner() {
+				
+				@Override
+				public String onSuccess(JSONObject result) {
+					SQLiteHelper db = 	SQLiteHelper.getInstance(getApplicationContext());
+					db.insertSurveyQuestions(result.toString());
+					String d=db.getSurveyQuestions();
+					Log.d("abx", d);
+					return null;
+				}
+				
+				@Override
+				public String onStarted() {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public String onFailed() {
+					// TODO Auto-generated method stub
+					return null;
+				}
+			}).execute("");
 			return null;
 		}
 		
@@ -227,7 +252,7 @@ EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext())
 		
 		@Override
 		public String onFailed() {
-			loddingIndicator(0);
+			loddingIndicator(View.GONE);
 			return null;
 		}
 	}).execute("");

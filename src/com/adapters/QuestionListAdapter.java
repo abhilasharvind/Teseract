@@ -75,7 +75,7 @@ public class QuestionListAdapter  extends BaseAdapter implements OnClickListener
 		holder.img = (ImageView) rowView.findViewById(R.id.pop_up);
 		//holder.popupMenu = (FrameLayout) rowView.findViewById(R.id.user_popup_menu);//why is it here
 		//holder.img.setOnClickListener(this);
-		holder.tv.setText(questionArray.get(position).getQuestionText());
+		holder.tv.setText(questionArray.get(position).getQuestion());
 		holder.select_tick= (ImageView) rowView.findViewById(R.id.profile_tick);
 		//if (profileArray.get(position).isIs_activated()) {
 		//	holder.select_tick.setVisibility(View.VISIBLE);	

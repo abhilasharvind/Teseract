@@ -14,6 +14,7 @@ import com.jsservey.model.ProfileHugePojo;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.BaseActivity;
 import com.jsservey.view.home.profile.ProfileListMainActivity;
+import com.jsservey.view.home.survey.questions.QuestionsDisplayActivity;
 import com.jsservey.view.reportandabout.AboutActivity;
 import com.jsservey.view.reportandabout.ReportActivity;
 import com.jsservey.view.survey.StartSurveyActivity;
@@ -87,7 +88,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener,ApiReq
 			Utility.startActivity(HomeActivity.this, ProfileListMainActivity.class);
 			break;
 		case R.id.start_srvey_bt:
-			Utility.startActivity(HomeActivity.this, StartSurveyActivity.class);
+			Utility.startActivity(HomeActivity.this, QuestionsDisplayActivity.class);
 			break;
 		
 		

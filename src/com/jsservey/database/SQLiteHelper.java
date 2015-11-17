@@ -21,7 +21,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 	private static SQLiteHelper sInstance;
 	private static final String DATABASE_NAME = "datastore.db";
-	private static final int DATABASE_VERSION = 6;
+	private static final int DATABASE_VERSION = 7;
 
 	private static final String TABLE_USER_DETAILS = "USER_DETAILS";
 	public static final String USER_NAME = "user_name";
@@ -44,6 +44,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	public static final String ANSWER_ID = "answer_id";
 	public static final String ANSWER_NAME = "answer_name";
 	public static final String IS_ACTIVATED = "is_activated";
+	public static final String SURVEYQUESTIONS_TABLE = "surveyquestion_table";
 
 	// Database creation sql statement
 	private static final String TABLE_USER_DETAILS_CREATE = "create table "
@@ -65,7 +66,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	private static final String TABLE_USER_SURVEY_CREATE = "create table "
 			+ SURVEY_TABLE + "( survey_id  text,  survey_name text );";
 	
-	
+	private static final String SURVEYQUESTIONS_TABLE_Create = "create table "
+			+ SURVEYQUESTIONS_TABLE + "( questions  text );";
 	private SQLiteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -85,6 +87,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		database.execSQL(TABLE_PROFILE_DETAILS_CREATE);
 		database.execSQL(TABLE_USER_PROFILE_CREATE);
 		database.execSQL(TABLE_USER_SURVEY_CREATE);
+		database.execSQL(SURVEYQUESTIONS_TABLE_Create);
 	}
 
 	public boolean insertDetails(RegistrationDetailsBean registrationDetailsBean) {
@@ -162,7 +165,38 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		Log.d("abx", "in insertProfiles done! "+createSuccessful);
 		return createSuccessful;
 	}
-	
+	public boolean insertSurveyQuestions(String questions) {
+
+		boolean createSuccessful = false;
+
+		ContentValues values = new ContentValues();
+
+		values.put("questions", questions);		
+		SQLiteDatabase db = this.getWritableDatabase();
+		try {
+			// String query = "TRUNCATE  TABLE "+TABLE_PROFILE_DETAILS;
+			 db.delete(SURVEYQUESTIONS_TABLE, null, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		createSuccessful = db.insert(SURVEYQUESTIONS_TABLE, null, values) > 0;
+		db.close();
+
+		return createSuccessful;
+	}
+	public String getSurveyQuestions() {
+		String query = "SELECT * FROM "+SURVEYQUESTIONS_TABLE;
+		Profile profile = new Profile();
+		SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+		Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+		cursor.moveToFirst();
+		
+		String questions=cursor.getString(cursor.getColumnIndex("questions"));
+		//profile.setProfilr_name(cursor.getString(cursor.getColumnIndex("profile_name")));
+		
+		return questions;
+
+	}
 	public boolean insertSurvey(ArrayList<Survey> surveyArray) {
 		Log.d("abx", "in insertSurvey surveyArray size= "+surveyArray.size());
 		boolean createSuccessful = false;

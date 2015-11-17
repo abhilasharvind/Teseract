@@ -128,8 +128,8 @@ public String onSuccess(JSONObject result) {
 			for ( int i=0;i<data.length();i++) {
 				Question question = new Question();
 				JSONObject innerobj = (JSONObject) data.get(i);
-				question.setQuestId(innerobj.getString("id"));
-				question.setQuestionText(innerobj.getString("question_name"));
+				question.setQuestion_id(innerobj.getString("id"));
+				question.setQuestion(innerobj.getString("question_name"));
 				
 				
 				questionArray.add(question);
