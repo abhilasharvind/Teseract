@@ -33,7 +33,7 @@
     <LinearLayout
         android:id="@+id/text_layout1"
         android:layout_width="match_parent"
-        android:layout_height="370dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_margin="10dp"
         android:background="@drawable/answer_button_shape"
@@ -45,7 +45,8 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="good"
+            android:text=""
+            android:visibility="gone"
             android:textColor="@android:color/holo_orange_dark" />
 
         <View
@@ -59,7 +60,8 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="great"
+            android:text=""
+            android:visibility="gone"
             android:textColor="@android:color/holo_orange_dark" />
 
         <View
@@ -73,7 +75,8 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="nice"
+            android:text=""
+            android:visibility="gone"
             android:textColor="@android:color/holo_orange_dark" />
 
         <View
@@ -87,7 +90,8 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="wow"
+            android:text=""
+            android:visibility="gone"
             android:textColor="@android:color/holo_orange_dark" />
 
         <View
@@ -101,7 +105,8 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="coool"
+            android:text=""
+            android:visibility="gone"
             android:textColor="@android:color/holo_orange_dark" />
 
         <View
@@ -115,7 +120,8 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="hot"
+            android:text=""
+            android:visibility="gone"
             android:textColor="@android:color/holo_orange_dark" />
 
         <View
@@ -129,7 +135,8 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="excellent"
+            android:text=""
+            android:visibility="gone"
             android:textColor="@android:color/holo_orange_dark" />
 
         <View
@@ -143,7 +150,8 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="delicious"
+            android:text=""
+            android:visibility="gone"
             android:textColor="@android:color/holo_orange_dark" />
 
         <View
@@ -157,7 +165,8 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="goood"
+            android:text=""
+            android:visibility="gone"
             android:textColor="@android:color/holo_orange_dark" />
 
         <View
@@ -171,7 +180,8 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="fantastic"
+            android:text=""
+            android:visibility="gone"
             android:textColor="@android:color/holo_orange_dark" />
     </LinearLayout>
 
