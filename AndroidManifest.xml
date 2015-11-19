@@ -32,8 +32,6 @@
         </activity>
         <activity android:name="com.jsservey.view.login.LoginActivity" >
         </activity>
-        <activity android:name="com.jsservey.view.login.AccountCreationActivity" >
-        </activity>
         <activity android:name="com.jsservey.view.reportandabout.AboutActivity" >
         </activity>
         <activity android:name="com.jsservey.view.reportandabout.ReportActivity" >
@@ -55,6 +53,8 @@
         <activity android:name="com.jsservey.view.home.survey.questions.QuestionListActivity" >
         </activity>
         <activity android:name="com.jsservey.view.home.survey.questions.CreateQuestionTextActivity" >
+        </activity>
+        <activity android:name="com.jsservey.view.login.CreateNewUserActivity" >
         </activity>
     </application>
 

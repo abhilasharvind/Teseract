@@ -4,9 +4,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import com.jsservey.model.NewUser;
 import com.jsservey.model.QuestionBPojo;
 import com.jsservey.utils.AppPref;
 import com.jsservey.utils.PrefConstant;
+import com.jsservey.utils.Utility;
 
 import android.content.Context;
 import android.util.Log;
@@ -14,16 +16,18 @@ import android.util.Log;
 public class RequestCreator implements URLConstants{
 	private Context context;
 	String dbname;
+	String deviceId;
 	private RequestCreator(){}
 	public RequestCreator(Context context){
 		this.context=context;
 		AppPref appPref = new AppPref(context);
 		this.dbname= appPref.getString(PrefConstant.DB_NAME);
+		this.deviceId=Utility.getDeviceId(context);
 	}
 	
 	
 	
-	public String loginRequest(String uname,String pwd,String deviceId){
+	public String loginRequest(String uname,String pwd){
 		String url=BASE_URL;	
 		try {
 			url=url+"SurveyAPI/LoginServlet?surveylogin=true&dbName="+dbname +"&userName="+URLEncoder.encode(uname, "UTF-8")+"&pwd="+pwd+"&svPwd=1&deviceId="+deviceId;
@@ -34,59 +38,64 @@ public class RequestCreator implements URLConstants{
 		}
 		return url;
 	}
-	public String initLoad(String deviceId){
+	public String initLoad(){
 		String url=BASE_URL;	
 		
-		url=url+"SurveyAPI/LoginServlet?initconn=true&deviceId=12345645";
+		url=url+"SurveyAPI/LoginServlet?initconn=true&deviceId="+deviceId;
 		return url;
 	}
 	
 	
-	public String userLoad(String deviceId){
+	public String userLoad(){
 		String url=BASE_URL;	
 		
-		url=url+"SurveyAPI/LoginServlet?userload=true&dbName=csfeedback&deviceId=12345645";
+		url=url+"SurveyAPI/LoginServlet?userload=true&dbName=csfeedback&deviceId="+deviceId;
 		return url;
 	}
 	
-	public String createUser(String uname,String deviceId){
+	public String createUser(NewUser user){
 		String url=BASE_URL;	
 		
 		try {
-			url=url+"SurveyAPI/LoginServlet?profilecreation=true&dbName="+dbname +"&deviceId="+deviceId+"&profileName="+URLEncoder.encode(uname, "UTF-8")+"&permissionId=1&activateSchedule=1&scheduleTimefrom=02:35:25&scheduleTimeto=03:35:25&scheduleDays=1011010&scheduleUpto=2015-12-20 00:00:00&uId=3";
+			url=url+"SurveyAPI/LoginServlet?usercreation=true&dbName="+dbname+"&deviceId"+deviceId+"&firstName="+user.getFname()+"&lastName="+user.getLname()+"&emailId="+user.getUsername()+"&Pwd="+user.getPasswrd()+"&userAddress="+URLEncoder.encode(user.getAddress(),"UTF-8")+"&phNo="+user.getPhonenumb()+"&Department="+user.getDepartment()+"&Designation="+user.getDesignation()+"&Gender=male";
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return url;
 	}
-	public String devicereg(String companykey,String deviceId){
+	public String devicereg(String companykey){
 		String url=BASE_URL;	
 		
 		url=url+"SurveyAPI/LoginServlet?devicereg=true&deviceId="+deviceId+"&compKey="+companykey;
 		return url;
 	}
-	
-	public String profileFetch(String deviceId){
+	public String logout(){
+		String url=BASE_URL;	
+		
+		url=url+"SurveyAPI/LoginServlet?userlogout=true&dbName=csfeedback&deviceId="+deviceId;
+		return url;
+	}
+	public String profileFetch(){
 		String url=BASE_URL;	
 		//SurveyAPI/LoginServlet?profilelist=true&dbName=csfeedback&deviceId=123456&uId=4
 		url=url+"SurveyAPI/LoginServlet?profilelist=true&deviceId="+deviceId+"&uId=3&dbName="+dbname;
 		return url;
 	}
-	public String surveyFetch(String deviceId,String profile_id){
+	public String surveyFetch(String profile_id){
 		String url=BASE_URL;	
 		//SurveyAPI/LoginServlet?surveylist=true&dbName=csfeedback&deviceId=123456&profileId=1
 		url=url+"SurveyAPI/LoginServlet?surveylist=true&deviceId="+deviceId+"&uId=3&dbName="+dbname+"&profileId="+profile_id;
 		return url;
 	}
-	public String questionFetch(String deviceId,String survey_id){
+	public String questionFetch(String survey_id){
 		String url=BASE_URL;	
 		//SurveyAPI/LoginServlet?questionslist=true&dbName=csfeedback&deviceId=123456&surveyId=1
-		url=url+"SurveyAPI/LoginServlet?questionslist=true&dbName="+dbname+"&deviceId=123456&surveyId="+survey_id;
+		url=url+"SurveyAPI/LoginServlet?questionslist=true&dbName="+dbname+"&deviceId="+deviceId+"&surveyId="+survey_id;
 		Log.d("abx", url);
 		return url;
 	}
-	public String createProfile(String deviceId,String profile_name){
+	public String createProfile(String profile_name){
 		String url=BASE_URL;	
 		
 		try {
@@ -97,7 +106,7 @@ public class RequestCreator implements URLConstants{
 		}
 		return url;
 	}
-	public String createSurvey(String deviceId,String survey_name,String pf_id,String description){
+	public String createSurvey(String survey_name,String pf_id,String description){
 		String url=BASE_URL;	
 		
 		try {
@@ -109,22 +118,22 @@ public class RequestCreator implements URLConstants{
 		return url;
 	}
 	
-	public String createQuestionA(String deviceId,String srv_id,String questionName,String questiontext,String surveyTypeid,String halfRating,String value){
+	public String createQuestionA(String srv_id,String questionName,String questiontext,String surveyTypeid,String halfRating,String value){
 		String url=BASE_URL;	
 		//LoginServlet?questioncreation=true&dbName=csfeedback&deviceId=123456&questionName=ithuname&profileSurveyid=1&question=ithu%20queston&isVisisble=1&surveyTypeid=3&halfRating=1&Value=10
 		try {
-			url=url+"SurveyAPI/LoginServlet?questioncreation=true&dbName="+dbname+"&deviceId=123456&questionName="+URLEncoder.encode(questionName, "UTF-8")+"&profileSurveyid="+srv_id+"&question="+URLEncoder.encode(questiontext, "UTF-8")+"&isVisisble=1&surveyTypeid="+surveyTypeid+"&halfRating="+halfRating+"&Value="+value;
+			url=url+"SurveyAPI/LoginServlet?questioncreation=true&dbName="+dbname+"&deviceId="+deviceId+"&questionName="+URLEncoder.encode(questionName, "UTF-8")+"&profileSurveyid="+srv_id+"&question="+URLEncoder.encode(questiontext, "UTF-8")+"&isVisisble=1&surveyTypeid="+surveyTypeid+"&halfRating="+halfRating+"&Value="+value;
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return url;
 	}
-	public String createQuestionB(String deviceId,QuestionBPojo questionBPojo,String srv_id,String questionName,String questiontext,String surveyTypeid){
+	public String createQuestionB(QuestionBPojo questionBPojo,String srv_id,String questionName,String questiontext,String surveyTypeid){
 		String url=BASE_URL;	
 		//LoginServlet?questioncreation=true&dbName=csfeedback&deviceId=123456&questionName=ithuname&profileSurveyid=1&question=ithu%20queston&isVisisble=1&surveyTypeid=3&halfRating=1&Value=10
 		try {
-			url=url+"SurveyAPI/LoginServlet?questioncreationtext=true&dbName=csfeedback&deviceId=123456&questionName="+URLEncoder.encode(questionName, "UTF-8")+"&profileSurveyid="+srv_id+"&question="+URLEncoder.encode(questiontext, "UTF-8")+"&isVisisble=1&surveyTypeid="+surveyTypeid+"&answer1="+questionBPojo.getOption1()+"&answer2="+questionBPojo.getOption2()+"&answer3="+questionBPojo.getOption3()+"&answer4="+questionBPojo.getOption4()+"&answer5="+questionBPojo.getOption5()+"&answer6="+questionBPojo.getOption6()+"&answer7="+questionBPojo.getOption7()+"&answer8="+questionBPojo.getOption8()+"&answer9="+questionBPojo.getOption9()+"&answer10="+questionBPojo.getOption10();
+			url=url+"SurveyAPI/LoginServlet?questioncreationtext=true&dbName=csfeedback&deviceId="+deviceId+"&questionName="+URLEncoder.encode(questionName, "UTF-8")+"&profileSurveyid="+srv_id+"&question="+URLEncoder.encode(questiontext, "UTF-8")+"&isVisisble=1&surveyTypeid="+surveyTypeid+"&answer1="+questionBPojo.getOption1()+"&answer2="+questionBPojo.getOption2()+"&answer3="+questionBPojo.getOption3()+"&answer4="+questionBPojo.getOption4()+"&answer5="+questionBPojo.getOption5()+"&answer6="+questionBPojo.getOption6()+"&answer7="+questionBPojo.getOption7()+"&answer8="+questionBPojo.getOption8()+"&answer9="+questionBPojo.getOption9()+"&answer10="+questionBPojo.getOption10();
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

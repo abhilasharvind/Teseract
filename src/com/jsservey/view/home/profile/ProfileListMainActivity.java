@@ -81,7 +81,7 @@ public class ProfileListMainActivity extends Activity implements OnClickListener
 		// TODO Auto-generated method stub
 		super.onResume();
 		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-		new ApiRequester(this, requestCreator.profileFetch("123456"), this).execute("");
+		new ApiRequester(this, requestCreator.profileFetch(), this).execute("");
 		
 	}
 	
@@ -125,7 +125,7 @@ public String onSuccess(JSONObject result) {
 				profile.setProfile_id(innerobj.getString("id"));
 				Log.d("abx", "pf_name= "+innerobj.getString("profile_name"));
 				profile.setProfilr_name(innerobj.getString("profile_name"));
-				profile.setIs_activated(result.getString("activated_id"));
+				profile.setIs_activated(result.getString("activated_profile_id"));
 				//Log.d("abx", "pf_name= "+result.getString("activated_id"));
 				
 				profileArray.add(profile);

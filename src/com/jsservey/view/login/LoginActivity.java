@@ -37,17 +37,17 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 			
 			@Override
 			public void onClick(View arg0) {
-				Utility.startActivity(LoginActivity.this, AccountCreationActivity.class);				
+				Utility.startActivity(LoginActivity.this, CreateNewUserActivity.class);				
 				finish();
 				
 			}
-		});;
+		});
 		findViewById(R.id.login_button).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-				new ApiRequester(LoginActivity.this,requestCreator.loginRequest( username_ed.getText().toString(), pass_ed.getText().toString(), "123456"),LoginActivity.this).execute("");
+				new ApiRequester(LoginActivity.this,requestCreator.loginRequest( username_ed.getText().toString(), pass_ed.getText().toString()),LoginActivity.this).execute("");
 				
 			}
 		});;

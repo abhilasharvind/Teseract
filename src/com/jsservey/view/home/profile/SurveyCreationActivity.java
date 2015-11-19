@@ -57,7 +57,7 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 			public void onClick(View arg0) {
 				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 				String pf_name=survey_name_ed.getText().toString();
-				new ApiRequester(SurveyCreationActivity.this, requestCreator.createSurvey("123456", pf_name, pf_id, "thenga"), SurveyCreationActivity.this).execute("");
+				new ApiRequester(SurveyCreationActivity.this, requestCreator.createSurvey(pf_name, pf_id, "thenga"), SurveyCreationActivity.this).execute("");
 				//new DbInsertDbop(pf_name).execute("");
 				
 			}

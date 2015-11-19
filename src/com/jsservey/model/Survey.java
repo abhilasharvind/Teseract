@@ -3,6 +3,13 @@ package com.jsservey.model;
 public class Survey {
 	String survey_name;
 	String survey_id;
+	String activated_survey_id;
+	public String getActivated_survey_id() {
+		return activated_survey_id;
+	}
+	public void setActivated_survey_id(String activated_survey_id) {
+		this.activated_survey_id = activated_survey_id;
+	}
 	public String getSurvey_name() {
 		return survey_name;
 	}

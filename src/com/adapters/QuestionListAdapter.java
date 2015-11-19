@@ -3,11 +3,9 @@ package com.adapters;
 import java.util.ArrayList;
 
 import com.abx.jsservey.R;
-import com.interfaces.EditDeleteUpdate_listner;
+import com.interfaces.QuestionPopUpListner;
 import com.jsservey.model.Profile;
 import com.jsservey.model.Question;
-import com.jsservey.utils.AppPref;
-import com.jsservey.utils.PrefConstant;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -30,9 +28,9 @@ public class QuestionListAdapter  extends BaseAdapter implements OnClickListener
 	//public static int[] prgmImages = { R.drawable.more_button_icon,R.drawable.more_button_icon,R.drawable.more_button_icon,R.drawable.more_button_icon };
 	//public static String[] prgmNameList = { "user 1", "user 2", "user 3",	"user 4" };
 	private static LayoutInflater inflater = null;
-	EditDeleteUpdate_listner editDeleteUpdate_listner;
+	QuestionPopUpListner editDeleteUpdate_listner;
 
-	public QuestionListAdapter(Context context,ArrayList<Question> questionArray,EditDeleteUpdate_listner editDeleteUpdate_listner) {
+	public QuestionListAdapter(Context context,ArrayList<Question> questionArray,QuestionPopUpListner editDeleteUpdate_listner) {
 		// TODO Auto-generated constructor stub
 		//this.result = prgmNameList;
 		this.context = context;
@@ -105,31 +103,33 @@ public class QuestionListAdapter  extends BaseAdapter implements OnClickListener
 
 	private void popHandler(final View rowView, final View view) {
 		PopupMenu popup = new PopupMenu(context, view);  
-		popup.getMenuInflater().inflate(R.menu.profile_edit_delete_activate_popup, popup.getMenu()); 
+		popup.getMenuInflater().inflate(R.menu.popup_question, popup.getMenu()); 
 		popup.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			
 			@Override
 			public boolean onMenuItemClick(MenuItem mt) {
 				int id = mt.getItemId();
-				Profile pf= (Profile) rowView.getTag();
-				if (id == R.id.activate_profile) {
+				Question qu= (Question) rowView.getTag();
+				if (id == R.id.visible_profile) {
 					
-					AppPref appPref = new AppPref(context);
 					
-					if (pf!= null) {
-						//Toast.makeText(context, "Profile Activated "+pf.getProfilr_name(), 1000).show();
-						appPref.putString(PrefConstant.ACTIVATED_PROFILE,pf.getProfile_id());
-						editDeleteUpdate_listner.onActivateTaskStart(1,pf.getProfile_id());
+					if (qu!= null) {
+						
+						editDeleteUpdate_listner.onVisible(1,qu.getQuestion_id());
 					}else{
 						//Toast.makeText(context, "Unable to Activate profile", 1000).show();
 					}
 					
 					//
-				}else if(id == R.id.delete_popup){
-					editDeleteUpdate_listner.onDeleteTaskStart(1, pf.getProfile_id());
+				}else if(id == R.id.invisible_profile){
+					editDeleteUpdate_listner.onInVisible(1,qu.getQuestion_id());
+					
+				}
+				else if(id == R.id.delete_popup){
+					editDeleteUpdate_listner.onDeleteTaskStart(1, qu.getQuestion_id());
 					
 				}else if(id == R.id.edit_popup){
-					editDeleteUpdate_listner.onEditTaskStart(1, pf.getProfile_id());
+					editDeleteUpdate_listner.onEditTaskStart(1, qu.getQuestion_id());
 				}
 				return false;
 			}

@@ -64,7 +64,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 			+ PROFILES + "( profile_id  text,  Profile_name text ,is_activated boolean );";
 	
 	private static final String TABLE_USER_SURVEY_CREATE = "create table "
-			+ SURVEY_TABLE + "( survey_id  text,  survey_name text );";
+			+ SURVEY_TABLE + "( survey_id  text,  survey_name text , activated_survey_id text);";
 	
 	private static final String SURVEYQUESTIONS_TABLE_Create = "create table "
 			+ SURVEYQUESTIONS_TABLE + "( questions  text );";
@@ -212,7 +212,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		ContentValues values = new ContentValues();
 
 		values.put(SURVEY_ID, survey.getSurvey_id());
-		values.put(PROFILE_SURVEY_NAME, survey.getSurvey_name());		
+		values.put(PROFILE_SURVEY_NAME, survey.getSurvey_name());
+		values.put("activated_survey_id", survey.getActivated_survey_id());
 		//values.put(IS_ACTIVATED, profile.isIs_activated());		
 		try {
 			createSuccessful = db.insert(SURVEY_TABLE, null, values)  > 0;
@@ -359,6 +360,7 @@ public ArrayList<Survey>  getSurvey() {
 				Log.d("abx", "in getProfileNames_bulk"+cursor.getString(cursor.getColumnIndex(PROFILE_SURVEY_NAME)));
 				survey.setSurvey_id(cursor.getString(cursor.getColumnIndex(SURVEY_ID)));
 				survey.setSurvey_name(cursor.getString(cursor.getColumnIndex(PROFILE_SURVEY_NAME)));
+				survey.setActivated_survey_id(cursor.getString(cursor.getColumnIndex("activated_survey_id")));
 				//profile.setProfile_id(cursor.getString(cursor.getColumnIndex("profile_id")));
 				//profile.setProfilr_name(cursor.getString(cursor.getColumnIndex("Profile_name")));
 				surveyArray.add(survey);

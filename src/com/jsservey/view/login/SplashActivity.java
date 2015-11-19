@@ -29,7 +29,7 @@ public class SplashActivity extends BaseActivity implements ApiRequestListner{
 	
 		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 		Log.d("abx", "SplashActivity");
-		new ApiRequester(this,requestCreator.initLoad("deviceId"),this).execute("");
+		new ApiRequester(this,requestCreator.initLoad(),this).execute("");
 		
 		
 	}
@@ -47,7 +47,8 @@ public class SplashActivity extends BaseActivity implements ApiRequestListner{
 					RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 					AppPref appPref = new AppPref(getApplicationContext());
 					appPref.putString(PrefConstant.DB_NAME, dbname);
-					new ApiRequester(this,requestCreator.userLoad("deviceId"),new ApiRequestListner() {
+					
+					new ApiRequester(this,requestCreator.userLoad(),new ApiRequestListner() {
 						
 						@Override
 						public String onSuccess(JSONObject result) {

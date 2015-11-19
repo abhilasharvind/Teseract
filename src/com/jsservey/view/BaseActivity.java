@@ -1,10 +1,15 @@
 package com.jsservey.view;
 
 
+import org.json.JSONObject;
+
 import com.abx.jsservey.R;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.home.HomeActivity;
 import com.jsservey.view.login.LoginActivity;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.RequestCreator;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -47,8 +52,30 @@ public class BaseActivity extends Activity{
 						int id=arg0.getItemId();
 						switch(id){
 						case R.id.Logout_popup:
-							Utility.startActivity(BaseActivity.this, LoginActivity.class);//should exit app as db name is diff for diff users
-							finish();
+							RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+							new ApiRequester(getApplicationContext(), requestCreator.logout(), new ApiRequestListner() {
+								
+								@Override
+								public String onSuccess(JSONObject result) {
+									Utility.startActivity(BaseActivity.this, LoginActivity.class);//should exit app as db name is diff for diff users
+									finish();
+									return null;
+								}
+								
+								@Override
+								public String onStarted() {
+									// TODO Auto-generated method stub
+									return null;
+								}
+								
+								@Override
+								public String onFailed() {
+									// TODO Auto-generated method stub
+									return null;
+								}
+							}).execute("");
+							
+							
 							break;
 						
 						

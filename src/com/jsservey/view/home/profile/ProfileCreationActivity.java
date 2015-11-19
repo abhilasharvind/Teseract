@@ -86,7 +86,7 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 			public void onClick(View arg0) {
 				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 				String pf_name=profile_name_ed.getText().toString();
-				new ApiRequester(ProfileCreationActivity.this, requestCreator.createProfile( "123456", pf_name), ProfileCreationActivity.this).execute("");
+				new ApiRequester(ProfileCreationActivity.this, requestCreator.createProfile(pf_name), ProfileCreationActivity.this).execute("");
 				//new DbInsertDbop(pf_name).execute("");
 			}
 		});

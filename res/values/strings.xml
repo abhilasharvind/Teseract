@@ -24,7 +24,7 @@
     <string name="company_textview">Enter company key</string> 
     <string name="company_name_edittext">company name</string> 
     <string name="company_key">company key</string> 
-    <string name="register_account"><u>register a new account</u></string>
+    <string name="register_account"><u>Register a new account</u></string>
     <string name="survey_text">survey</string>
     <string name="devices_text">Devices</string>
     <string name="settings_text">Settings</string>

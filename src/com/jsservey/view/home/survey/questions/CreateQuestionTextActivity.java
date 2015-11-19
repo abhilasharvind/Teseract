@@ -251,7 +251,7 @@ public class CreateQuestionTextActivity extends Activity implements
 				textPojo.setOption9(opt9.getText().toString().equals("") ? "null" : opt9.getText().toString());
 				textPojo.setOption10(opt10.getText().toString().equals("")  ? "null" : opt10.getText().toString());
 				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-				new ApiRequester(getApplicationContext(), requestCreator.createQuestionB("deviceId", textPojo,survey_id, textPojo.getQuestionName(), ""+textPojo.getQuestionText(), ""+textPojo.getQuestionType()), new ApiRequestListner() {
+				new ApiRequester(getApplicationContext(), requestCreator.createQuestionB(textPojo,survey_id, textPojo.getQuestionName(), ""+textPojo.getQuestionText(), ""+textPojo.getQuestionType()), new ApiRequestListner() {
 					
 					@Override
 					public String onSuccess(JSONObject result) {
@@ -299,7 +299,7 @@ public class CreateQuestionTextActivity extends Activity implements
 					break;
 				}
 				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-				new ApiRequester(getApplicationContext(), requestCreator.createQuestionA("deviceId", survey_id, questionAPojo.getQuestionName(), ""+questionAPojo.getQuestionText(), ""+questionAPojo.getQuestionType(), ""+questionAPojo.getOtherValue(), ""+questionAPojo.getMaxValue()), new ApiRequestListner() {
+				new ApiRequester(getApplicationContext(), requestCreator.createQuestionA(survey_id, questionAPojo.getQuestionName(), ""+questionAPojo.getQuestionText(), ""+questionAPojo.getQuestionType(), ""+questionAPojo.getOtherValue(), ""+questionAPojo.getMaxValue()), new ApiRequestListner() {
 					
 					@Override
 					public String onSuccess(JSONObject result) {

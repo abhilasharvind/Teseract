@@ -8,10 +8,12 @@ import org.json.JSONObject;
 
 import com.abx.jsservey.R;
 import com.adapters.QuestionListAdapter;
-import com.interfaces.EditDeleteUpdate_listner;
+import com.interfaces.QuestionPopUpListner;
 import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Profile;
 import com.jsservey.model.Question;
+import com.jsservey.view.home.EditUpdateDelete;
+import com.jsservey.view.home.profile.ProfileListMainActivity;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
@@ -29,7 +31,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class QuestionListActivity extends Activity implements OnClickListener,ApiRequestListner ,EditDeleteUpdate_listner{
+public class QuestionListActivity extends Activity implements OnClickListener,ApiRequestListner,QuestionPopUpListner {
 	String survey_id="";
 	ListView lv;
 	@Override
@@ -44,7 +46,7 @@ public class QuestionListActivity extends Activity implements OnClickListener,Ap
 		survey_id=bundle.getString("survey_id");
 		Log.d("abx", "(QuestionListActivity)survey id"+survey_id);
 		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-		new ApiRequester(this, requestCreator.questionFetch("123456",survey_id), this).execute("");
+		new ApiRequester(this, requestCreator.questionFetch(survey_id), this).execute("");
 		 lv = (ListView) findViewById(R.id.listView);
 		 findViewById(R.id.add_profile_imbt).setOnClickListener(new OnClickListener() {
 			
@@ -166,8 +168,6 @@ public void onClick(View arg0) {
 	
 }
 
-
-
 @Override
 public void onEditTaskStart(int type, String id) {
 	// TODO Auto-generated method stub
@@ -182,15 +182,93 @@ public void onUpdtaeTaskStart(int type, String id) {
 
 @Override
 public void onDeleteTaskStart(int type, String id) {
-	// TODO Auto-generated method stub
+EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext());
+	
+	new ApiRequester(this, editUpdateDelete.questionDelete(id), new ApiRequestListner() {
+		
+		@Override
+		public String onSuccess(JSONObject result) {
+			loddingIndicator(0);
+			Toast.makeText(QuestionListActivity.this, "Question has been Deleted", 1500).show();
+			return null;
+		}
+		
+		@Override
+		public String onStarted() {
+			loddingIndicator(1);
+			return null;
+		}
+
+		
+		@Override
+		public String onFailed() {
+			loddingIndicator(0);
+			return null;
+		}
+	}).execute("");
 	
 }
 
 @Override
-public void onActivateTaskStart(int type, String id) {
-	// TODO Auto-generated method stub
+public void onVisible(int type, String id) {
+	EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext());
+new ApiRequester(this, editUpdateDelete.questionVisibility(id, 1), new ApiRequestListner() {
+		
+		@Override
+		public String onSuccess(JSONObject result) {
+			loddingIndicator(0);
+			Toast.makeText(QuestionListActivity.this, "Question has been Deleted", 1500).show();
+			return null;
+		}
+		
+		@Override
+		public String onStarted() {
+			loddingIndicator(1);
+			return null;
+		}
+
+		
+		@Override
+		public String onFailed() {
+			loddingIndicator(0);
+			return null;
+		}
+	}).execute("");
 	
 }
+
+@Override
+public void onInVisible(int type, String id) {
+	EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext());
+	new ApiRequester(this, editUpdateDelete.questionVisibility(id, 3), new ApiRequestListner() {
+			
+			@Override
+			public String onSuccess(JSONObject result) {
+				loddingIndicator(0);
+				Toast.makeText(QuestionListActivity.this, "Question has been Deleted", 1500).show();
+				return null;
+			}
+			
+			@Override
+			public String onStarted() {
+				loddingIndicator(1);
+				return null;
+			}
+
+			
+			@Override
+			public String onFailed() {
+				loddingIndicator(0);
+				return null;
+			}
+		}).execute("");
+	
+}
+
+private void loddingIndicator(int visibility) {
+	findViewById(R.id.home_pg_rl).setVisibility(visibility);;
+}
+
 	
 	
 }

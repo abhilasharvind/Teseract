@@ -98,7 +98,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:text="@string/register_account"
-            android:textColor="@android:color/white"
+            
             android:textSize="15dp" />
     </LinearLayout>
 
