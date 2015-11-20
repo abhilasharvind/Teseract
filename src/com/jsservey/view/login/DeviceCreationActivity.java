@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ public class DeviceCreationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.company_registration);
 		
 		findViewById(R.id.submit_registration).setOnClickListener(new OnClickListener() {
@@ -30,9 +32,11 @@ public class DeviceCreationActivity extends Activity {
 			public void onClick(View arg0) {
 				RequestCreator rq = new RequestCreator(getApplicationContext());
 				EditText compnyKey_id = (EditText) findViewById(R.id.company_key_edittext);
+				EditText device_name = (EditText) findViewById(R.id.company_name_edittext);
 				final String cmpnyKey=compnyKey_id.getText().toString();
+				final String devicename=device_name.getText().toString();
 				Log.d("abx", "cmpnyKey="+cmpnyKey);
-				new ApiRequester(DeviceCreationActivity.this, rq.devicereg(cmpnyKey), new ApiRequestListner() {
+				new ApiRequester(DeviceCreationActivity.this, rq.devicereg(cmpnyKey,devicename), new ApiRequestListner() {
 					
 					@Override
 					public String onSuccess(JSONObject result) {

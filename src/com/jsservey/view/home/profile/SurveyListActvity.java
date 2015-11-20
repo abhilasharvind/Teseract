@@ -220,7 +220,7 @@ new ApiRequester(this, requestCreator.surveyActivate(id), new ApiRequestListner(
 		@Override
 		public String onSuccess(JSONObject result) {
 			loddingIndicator(View.GONE);
-			Toast.makeText(SurveyListActvity.this, "Profile has been Activated", 1500).show();
+			Toast.makeText(SurveyListActvity.this, "Survey has been Activated", 1500).show();
 			SurveyRequestCreator requestCreator = new SurveyRequestCreator(getApplicationContext());
 			new ApiRequester(SurveyListActvity.this,requestCreator.surveyQuesFetch(id), new ApiRequestListner() {
 				
@@ -250,7 +250,7 @@ new ApiRequester(this, requestCreator.surveyActivate(id), new ApiRequestListner(
 		
 		@Override
 		public String onStarted() {
-			loddingIndicator(1);
+			loddingIndicator(View.VISIBLE);
 			return null;
 		}
 

@@ -64,10 +64,10 @@ public class RequestCreator implements URLConstants{
 		}
 		return url;
 	}
-	public String devicereg(String companykey){
+	public String devicereg(String companykey,String device_name){
 		String url=BASE_URL;	
 		
-		url=url+"SurveyAPI/LoginServlet?devicereg=true&deviceId="+deviceId+"&compKey="+companykey;
+		url=url+"SurveyAPI/LoginServlet?devicereg=true&deviceId="+deviceId+"&compKey="+companykey+"&device_name"+device_name;
 		return url;
 	}
 	public String logout(){

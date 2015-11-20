@@ -216,21 +216,21 @@ new ApiRequester(this, editUpdateDelete.questionVisibility(id, 1), new ApiReques
 		
 		@Override
 		public String onSuccess(JSONObject result) {
-			loddingIndicator(0);
+			loddingIndicator(View.GONE);
 			Toast.makeText(QuestionListActivity.this, "Question has been Deleted", 1500).show();
 			return null;
 		}
 		
 		@Override
 		public String onStarted() {
-			loddingIndicator(1);
+			loddingIndicator(View.VISIBLE);
 			return null;
 		}
 
 		
 		@Override
 		public String onFailed() {
-			loddingIndicator(0);
+			loddingIndicator(View.GONE);
 			return null;
 		}
 	}).execute("");
