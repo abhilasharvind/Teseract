@@ -157,7 +157,6 @@ public class CreateQuestionTextActivity extends Activity implements
 					.findViewById(R.id.answer_seek);
 			answerSeek.setOnSeekBarChangeListener(this);
 			EditText seekMaxValue = (EditText) findViewById(R.id.max_value);
-			EditText seekMinValue = (EditText) findViewById(R.id.min_value);
 			seekValueText = (TextView) findViewById(R.id.selected_value_text);
 		}
 		if (position == 3) {

@@ -5,7 +5,8 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
-<!--     <LinearLayout
+    <!--
+         <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,16 +22,17 @@
             android:text="How was the food?"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="24dp" />
-    </LinearLayout> -->
+    </LinearLayout>
+    -->
 
-<RelativeLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginTop="20dp" >
+        android:layout_marginTop="20dp"
+        android:gravity="center" >
 
         <TextView
             android:id="@+id/selected_progress_value"
@@ -39,32 +41,29 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:text="" />
+            android:gravity="center_vertical"
+            android:text="0" />
 
         <RatingBar
             android:id="@+id/ratingBar1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
             style="?android:attr/ratingBarStyle"
-            android:numStars="5"
-            android:max="5"
-            android:stepSize="1.0" />
-        <RatingBar
-            android:id="@+id/ratingBar2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@id/selected_progress_value"
+            android:max="5"
+            android:numStars="5"
+            android:stepSize="1.0" />
+
+        <RatingBar
+            android:id="@+id/ratingBar2"
             style="?android:attr/ratingBarStyle"
-            android:numStars="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/selected_progress_value"
             android:max="10"
+            android:numStars="10"
             android:stepSize="1.0"
             android:visibility="gone" />
     </RelativeLayout>
-    
 
 </LinearLayout>

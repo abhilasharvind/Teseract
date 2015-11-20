@@ -9,6 +9,8 @@ public class Question {
 	String type_id;
 	String type_name;
 	String value;
+	String half_rating;
+	
 	ArrayList<Answer> answerlist = new ArrayList<Answer>();
 	public String getQuestion_id() {
 		return question_id;
@@ -45,6 +47,12 @@ public class Question {
 	}
 	public void setAnswerlist(ArrayList<Answer> answerlist) {
 		this.answerlist = answerlist;
+	}
+	public String getHalf_rating() {
+		return half_rating;
+	}
+	public void setHalf_rating(String half_rating) {
+		this.half_rating = half_rating;
 	}
 
 

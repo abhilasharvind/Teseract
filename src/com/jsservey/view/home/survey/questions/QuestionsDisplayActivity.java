@@ -16,27 +16,30 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.widget.RatingBar.OnRatingBarChangeListener;
 import com.abx.jsservey.R;
 import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Answer;
 import com.jsservey.model.Question;
 
 public class QuestionsDisplayActivity extends Activity implements
-		OnClickListener {
+		OnClickListener,OnRatingBarChangeListener {
 	LinearLayout questionLayout;
 	ArrayList<Answer> answerlist;
 	ArrayList<Question> questionsArray;
 	int questionNumber = 0;
 	int questionCount = 0;
+	RatingBar ratingBar;
+	TextView progressValue;
+	Button submitButton,backButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.question_display_layout);
 		questionLayout = (LinearLayout) findViewById(R.id.answer_type_layout);
-		Button submitButton = (Button) findViewById(R.id.submit);
-		Button backButton = (Button) findViewById(R.id.back);
+		submitButton = (Button) findViewById(R.id.submit);
+		backButton = (Button) findViewById(R.id.back);
 		backButton.setOnClickListener(this);
 		submitButton.setOnClickListener(this);
 		SQLiteHelper sqLiteHelper = SQLiteHelper
@@ -58,6 +61,7 @@ public class QuestionsDisplayActivity extends Activity implements
 				question.setQuestion_id(questionJson.getString("question_id"));
 				question.setType_name(questionJson.getString("type_name"));
 				question.setValue(questionJson.getString("value"));
+				question.setHalf_rating(questionJson.getString("half_rating"));
 				JSONArray answerList = questionJson.getJSONArray("answer");
 				answerlist = new ArrayList<Answer>();
 				for (int j = 0; j < answerList.length(); j++) {
@@ -81,6 +85,8 @@ public class QuestionsDisplayActivity extends Activity implements
 		questionCount = questionsArray.size();
 		setContent(questionsArray.get(0).getType_id(), questionsArray.get(0)
 				.getAnswerlist(), 0); // first question and answers
+		backButton.setVisibility(View.GONE);
+		
 
 	}
 
@@ -90,6 +96,7 @@ public class QuestionsDisplayActivity extends Activity implements
 		// findViewById(R.layout.question_display_layout);
 		TextView questionText = (TextView) findViewById(R.id.question_text);
 		String value = questionsArray.get(questionNumber).getValue();
+		String halfRating = questionsArray.get(questionNumber).getHalf_rating();
 		if (type.equalsIgnoreCase("3")) {
 			questionText.setText(questionsArray.get(questionNumber)
 					.getQuestion());
@@ -105,22 +112,29 @@ public class QuestionsDisplayActivity extends Activity implements
 			View answerView = getLayoutInflater().inflate(
 					R.layout.question_type_progess_layout, questionLayout,
 					false);
+			progressValue = (TextView) answerView.findViewById(R.id.selected_progress_value);
 			if (value.equalsIgnoreCase("10")) {
-				RatingBar ratingBar = (RatingBar) answerView
+				ratingBar = (RatingBar) answerView
 						.findViewById(R.id.ratingBar2);
 				answerView.findViewById(R.id.ratingBar1).setVisibility(
 						View.GONE);
 				ratingBar.setVisibility(View.VISIBLE);
 			} else if (value.equalsIgnoreCase("5")) {
-				RatingBar ratingBar = (RatingBar) answerView
+				ratingBar = (RatingBar) answerView
 						.findViewById(R.id.ratingBar1);
 				answerView.findViewById(R.id.ratingBar2).setVisibility(
 						View.GONE);
 				ratingBar.setVisibility(View.VISIBLE);
 
 			}
+			if(halfRating.equalsIgnoreCase("0")){
+				ratingBar.setStepSize((float) 1.0);
+			}else{
+				ratingBar.setStepSize((float) 0.5);
+			}
 			questionLayout.removeAllViews();
 			questionLayout.addView(answerView);
+			ratingBar.setOnRatingBarChangeListener(this);
 		} else if (type.equalsIgnoreCase("5")) {
 			questionText.setText(questionsArray.get(questionNumber)
 					.getQuestion());
@@ -155,12 +169,18 @@ public class QuestionsDisplayActivity extends Activity implements
 
 	@Override
 	public void onClick(View view) {
+		if(questionNumber < 0){
+			backButton.setVisibility(View.GONE);
+		}else{
+			backButton.setVisibility(View.VISIBLE);
+		}
 		if (view.getId() == R.id.submit) {
 			if (questionNumber < questionCount - 1) {
 				questionNumber++;
 				setContent(questionsArray.get(questionNumber).getType_id(),
 						questionsArray.get(questionNumber).getAnswerlist(),
 						questionNumber);
+				
 			}
 		} else if (view.getId() == R.id.back) {
 			if (questionNumber > 0) {
@@ -170,5 +190,11 @@ public class QuestionsDisplayActivity extends Activity implements
 						questionNumber);
 			}
 		}
+	}
+
+	@Override
+	public void onRatingChanged(RatingBar ratingBar, float rating, boolean from) {
+		progressValue.setText(String.valueOf(rating));
+		
 	}
 }
