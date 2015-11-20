@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,6 +34,8 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 		
 		final EditText username_ed =(EditText) findViewById(R.id.user_name);
 		final EditText pass_ed =(EditText) findViewById(R.id.password);
+		final CheckBox svd =(CheckBox)findViewById(R.id.svdPwd);
+		
 		
 		findViewById(R.id.signup_textview).setOnClickListener(new OnClickListener() {
 			
@@ -47,8 +50,14 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 			
 			@Override
 			public void onClick(View v) {
+				final int svdStatus;
+				if(svd.isChecked()){
+					svdStatus=1;
+				}else{
+					svdStatus=0;
+				}
 				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-				new ApiRequester(LoginActivity.this,requestCreator.loginRequest( username_ed.getText().toString(), pass_ed.getText().toString()),LoginActivity.this).execute("");
+				new ApiRequester(LoginActivity.this,requestCreator.loginRequest( username_ed.getText().toString(), pass_ed.getText().toString(),svdStatus),LoginActivity.this).execute("");
 				
 			}
 		});;

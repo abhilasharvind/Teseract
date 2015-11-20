@@ -27,10 +27,10 @@ public class RequestCreator implements URLConstants{
 	
 	
 	
-	public String loginRequest(String uname,String pwd){
+	public String loginRequest(String uname,String pwd,int svpwd){
 		String url=BASE_URL;	
 		try {
-			url=url+"SurveyAPI/LoginServlet?surveylogin=true&dbName="+dbname +"&userName="+URLEncoder.encode(uname, "UTF-8")+"&pwd="+pwd+"&svPwd=1&deviceId="+deviceId;
+			url=url+"SurveyAPI/LoginServlet?surveylogin=true&dbName="+dbname +"&userName="+URLEncoder.encode(uname, "UTF-8")+"&pwd="+pwd+"&svPwd="+svpwd+"&deviceId="+deviceId;
 
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
