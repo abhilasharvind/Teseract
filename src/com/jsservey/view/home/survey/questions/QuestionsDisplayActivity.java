@@ -107,34 +107,37 @@ public class QuestionsDisplayActivity extends Activity implements
 			enableAnswerTextList(answerView, answerlist);
 
 		} else if (type.equalsIgnoreCase("4")) {
-			questionText.setText(questionsArray.get(questionNumber)
-					.getQuestion());
-			View answerView = getLayoutInflater().inflate(
-					R.layout.question_type_progess_layout, questionLayout,
+			questionText.setText(questionsArray.get(questionNumber)	.getQuestion());
+			View answerView = getLayoutInflater().inflate(R.layout.question_type_progess_layout, questionLayout,
 					false);
 			progressValue = (TextView) answerView.findViewById(R.id.selected_progress_value);
+			Log.d("abx", value);   
 			if (value.equalsIgnoreCase("10")) {
-				ratingBar = (RatingBar) answerView
-						.findViewById(R.id.ratingBar2);
-				answerView.findViewById(R.id.ratingBar1).setVisibility(
-						View.GONE);
+				ratingBar = (RatingBar) answerView.findViewById(R.id.ratingBar2);
+				answerView.findViewById(R.id.ratingBar1).setVisibility(	View.GONE);
 				ratingBar.setVisibility(View.VISIBLE);
+				if(halfRating.equalsIgnoreCase("0")){
+					ratingBar.setStepSize((float) 1.0);
+				}else{
+					ratingBar.setStepSize((float) 0.5);
+				}
+				questionLayout.removeAllViews();
+				questionLayout.addView(answerView);
+				ratingBar.setOnRatingBarChangeListener(this);	
 			} else if (value.equalsIgnoreCase("5")) {
-				ratingBar = (RatingBar) answerView
-						.findViewById(R.id.ratingBar1);
-				answerView.findViewById(R.id.ratingBar2).setVisibility(
-						View.GONE);
+				ratingBar = (RatingBar) answerView.findViewById(R.id.ratingBar1);
+				answerView.findViewById(R.id.ratingBar2).setVisibility(View.GONE);
 				ratingBar.setVisibility(View.VISIBLE);
-
+				if(halfRating.equalsIgnoreCase("0")){
+					ratingBar.setStepSize((float) 1.0);
+				}else{
+					ratingBar.setStepSize((float) 0.5);
+				}
+				questionLayout.removeAllViews();
+				questionLayout.addView(answerView);
+				ratingBar.setOnRatingBarChangeListener(this);
 			}
-			if(halfRating.equalsIgnoreCase("0")){
-				ratingBar.setStepSize((float) 1.0);
-			}else{
-				ratingBar.setStepSize((float) 0.5);
-			}
-			questionLayout.removeAllViews();
-			questionLayout.addView(answerView);
-			ratingBar.setOnRatingBarChangeListener(this);
+			
 		} else if (type.equalsIgnoreCase("5")) {
 			questionText.setText(questionsArray.get(questionNumber)
 					.getQuestion());

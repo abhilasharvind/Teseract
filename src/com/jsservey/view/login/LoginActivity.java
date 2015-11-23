@@ -5,18 +5,6 @@ package com.jsservey.view.login;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.abx.jsservey.R;
-import com.jsservey.database.SQLiteHelper;
-import com.jsservey.utils.Utility;
-import com.jsservey.view.BaseActivity;
-import com.jsservey.view.home.HomeActivity;
-import com.jsservey.view.home.profile.ProfileListMainActivity;
-import com.jsservey.view.home.survey.SurveyRequestCreator;
-import com.jsservey.view.home.survey.questions.QuestionsDisplayActivity;
-import com.jsservey.webservices.ApiRequestListner;
-import com.jsservey.webservices.ApiRequester;
-import com.jsservey.webservices.RequestCreator;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +12,15 @@ import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.abx.jsservey.R;
+import com.jsservey.utils.Utility;
+import com.jsservey.view.BaseActivity;
+import com.jsservey.view.home.HomeActivity;
+import com.jsservey.view.home.survey.StartSurveyActivity;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.RequestCreator;
 
 public class LoginActivity extends BaseActivity implements ApiRequestListner{
 	
@@ -85,8 +82,8 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 				String  user_id=data.getString("user_id");
 				Log.d("abx", user_advaced_id+" "+survey_perform_only+" "+user_id);
 				if(isAdvacedUser.equals("true") && survey_perform_only.equals("1")){
-					
-					SurveyRequestCreator requestCreator = new SurveyRequestCreator(getApplicationContext());
+					Utility.startActivity(LoginActivity.this, StartSurveyActivity.class);
+					/*SurveyRequestCreator requestCreator = new SurveyRequestCreator(getApplicationContext());
 					new ApiRequester(LoginActivity.this,requestCreator.surveyQuesFetch("1"), new ApiRequestListner() {
 						
 						@Override
@@ -111,7 +108,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 							// TODO Auto-generated method stub
 							return null;
 						}
-					}).execute("");
+					}).execute("");*/
 					
 					
 					

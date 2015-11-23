@@ -28,7 +28,7 @@
         </activity>
         <activity android:name="com.jsservey.view.BaseActivity" >
         </activity>
-        <activity android:name="com.jsservey.view.survey.SurveyActivity" >
+        <activity android:name="com.jsservey.view.home.survey.SurveyActivity" >
         </activity>
         <activity android:name="com.jsservey.view.login.LoginActivity" >
         </activity>
@@ -44,7 +44,7 @@
         </activity>
         <activity android:name="com.jsservey.view.home.profile.SurveyListActvity" >
         </activity>
-        <activity android:name="com.jsservey.view.survey.StartSurveyActivity" >
+        <activity android:name="com.jsservey.view.home.survey.StartSurveyActivity" >
         </activity>
         <activity android:name="com.jsservey.view.home.survey.questions.QuestionsDisplayActivity" >
         </activity>

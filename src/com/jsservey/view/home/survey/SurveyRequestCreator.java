@@ -22,7 +22,7 @@ public class SurveyRequestCreator implements URLConstants{
 	public String surveyQuesFetch(String pf_id){
 		String url=BASE_URL;	
 		//http://106.51.126.62:8080/SurveyAPI/LoginServlet?questionanswers=true&dbName=csfeedback&deviceId=123456&surveyId=1&profileId=1
-		url=url+"SurveyAPI/LoginServlet?questionanswers=true&dbName="+dbname+"&deviceId=deviceId&surveyId=1&profileId="+pf_id;
+		url=url+"SurveyAPI/LoginServlet?questionanswers=true&dbName="+dbname+"&deviceId="+deviceId+"&surveyId=1&profileId="+pf_id;
 		Log.d("abx", url);
 		return url;
 	}

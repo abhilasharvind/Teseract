@@ -216,7 +216,7 @@ EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext())
 		public String onSuccess(JSONObject result) {
 			loddingIndicator(View.GONE);
 			Toast.makeText(ProfileListMainActivity.this, "Profile has been Activated", 1500).show();
-			SurveyRequestCreator requestCreator = new SurveyRequestCreator(getApplicationContext());
+			/*SurveyRequestCreator requestCreator = new SurveyRequestCreator(getApplicationContext());
 			new ApiRequester(ProfileListMainActivity.this,requestCreator.surveyQuesFetch(id), new ApiRequestListner() {
 				
 				@Override
@@ -239,7 +239,7 @@ EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext())
 					// TODO Auto-generated method stub
 					return null;
 				}
-			}).execute("");
+			}).execute("");*/
 			return null;
 		}
 		

@@ -14,10 +14,10 @@ import com.jsservey.model.ProfileHugePojo;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.BaseActivity;
 import com.jsservey.view.home.profile.ProfileListMainActivity;
+import com.jsservey.view.home.survey.StartSurveyActivity;
 import com.jsservey.view.home.survey.questions.QuestionsDisplayActivity;
 import com.jsservey.view.reportandabout.AboutActivity;
 import com.jsservey.view.reportandabout.ReportActivity;
-import com.jsservey.view.survey.StartSurveyActivity;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.RequestCreator;
 
@@ -26,7 +26,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public class HomeActivity extends BaseActivity implements OnClickListener,ApiRequestListner{
+public class HomeActivity extends BaseActivity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -36,7 +36,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener,ApiReq
 		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		setListners();
 		
-		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+		//RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 		//new ApiRequester(this, requestCreator.profileFetch("csfeedback", "123456"), this).execute("");
 		
 		
@@ -88,7 +88,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener,ApiReq
 			Utility.startActivity(HomeActivity.this, ProfileListMainActivity.class);
 			break;
 		case R.id.start_srvey_bt:
-			Utility.startActivity(HomeActivity.this, QuestionsDisplayActivity.class);
+			Utility.startActivity(HomeActivity.this, StartSurveyActivity.class);
 			break;
 		
 		
@@ -96,55 +96,4 @@ public class HomeActivity extends BaseActivity implements OnClickListener,ApiReq
 		
 	}
 
-	@Override
-	public String onSuccess(JSONObject result) {
-		
-		if(result!=null && result.has("data"))
-			
-		{
-			try {
-				JSONArray data=result.getJSONArray("data");
-				ArrayList<ProfileHugePojo> profileArray= new ArrayList<ProfileHugePojo>();	
-				
-				for ( int i=0;i<data.length();i++) {
-					ProfileHugePojo profile = new ProfileHugePojo();
-					JSONObject innerobj = (JSONObject) data.get(i);
-					profile.setUserId(innerobj.getString("user_id"));
-					profile.setUserName(innerobj.getString("user_name"));
-					profile.setProfileId(innerobj.getString("profile_id"));
-					profile.setProfileName(innerobj.getString("profile_name"));
-					Log.d("abx", "profile_name "+innerobj.getString("profile_name"));
-					profile.setSurveyId(innerobj.getString("survey_id"));
-					profile.setSurveyName(innerobj.getString("survey_name"));
-					profile.setQuestionId(innerobj.getString("question_id"));
-					profile.setQuestionName(innerobj.getString("question_name"));
-					profile.setAnswerId(innerobj.getString("answer_id"));
-					profile.setAnswerName(innerobj.getString("answer_name"));
-					profileArray.add(profile);
-				}
-				SQLiteHelper db =SQLiteHelper.getInstance(this);
-				db.insertProfileDetails_bulk(profileArray);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}else{
-			Log.d("abx", "elseeeeeee");
-		}
-		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
-		return null;
-	}
-
-	@Override
-	public String onFailed() {
-		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
-		return null;
-	}
-
-	@Override
-	public String onStarted() {
-		findViewById(R.id.home_pg_rl).setVisibility(View.VISIBLE);
-		return null;
-	}
 }
