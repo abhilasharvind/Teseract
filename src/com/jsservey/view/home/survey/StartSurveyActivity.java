@@ -1,4 +1,4 @@
-package com.jsservey.view.home.survey;
+package com.jsservey.view.survey;
 
 import com.abx.jsservey.R;
 import com.jsservey.utils.AppPref;
@@ -16,9 +16,9 @@ public class StartSurveyActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.startsurvey_layout);
-//		TextView prf_name = (TextView) findViewById(R.id.profile_name_tv);
-//		AppPref appPref = new AppPref(getApplicationContext());
-//		prf_name.setText(""+appPref.getString(PrefConstant.ACTIVATED_PROFILE));
+		//TextView prf_name = (TextView) findViewById(R.id.profile_name_tv);
+		//AppPref appPref = new AppPref(getApplicationContext());
+		//prf_name.setText(""+appPref.getString(PrefConstant.ACTIVATED_PROFILE));
 		Utility.startActivity(StartSurveyActivity.this, CreateQuestionTextActivity.class);
 	}
 
