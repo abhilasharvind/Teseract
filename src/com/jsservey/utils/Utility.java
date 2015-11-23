@@ -10,6 +10,6 @@ public class Utility {
 }
 	public static String getDeviceId(Context context){
 		String unique_id = android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-		return  "94465766201111."/*unique_id*/;
+		return  unique_id;//"94465766201111"
 	}
 }

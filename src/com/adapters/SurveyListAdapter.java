@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 import com.abx.jsservey.R;
 import com.interfaces.EditDeleteUpdate_listner;
-import com.jsservey.model.Profile;
 import com.jsservey.model.Survey;
-import com.jsservey.utils.AppPref;
-import com.jsservey.utils.PrefConstant;
 
 import android.content.Context;
 import android.util.Log;

@@ -6,21 +6,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.abx.jsservey.R;
+import com.jsservey.database.SQLiteHelper;
+import com.jsservey.model.Answer;
+import com.jsservey.model.Question;
+import com.jsservey.utils.Utility;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.RatingBar.OnRatingBarChangeListener;
-import com.abx.jsservey.R;
-import com.jsservey.database.SQLiteHelper;
-import com.jsservey.model.Answer;
-import com.jsservey.model.Question;
+import android.widget.TextView;
 
 public class QuestionsDisplayActivity extends Activity implements
 		OnClickListener,OnRatingBarChangeListener {
@@ -36,7 +38,9 @@ public class QuestionsDisplayActivity extends Activity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.question_display_layout);
+		
 		questionLayout = (LinearLayout) findViewById(R.id.answer_type_layout);
 		submitButton = (Button) findViewById(R.id.submit);
 		backButton = (Button) findViewById(R.id.back);
@@ -74,8 +78,7 @@ public class QuestionsDisplayActivity extends Activity implements
 				}
 				question.setAnswerlist(answerlist);
 				questionsArray.add(question);
-				Toast.makeText(this, "total:" + questionsArray.size(), 2000)
-						.show();
+				//Toast.makeText(this, "total:" + questionsArray.size(), 2000).show();
 			}
 
 		} catch (JSONException e) {
@@ -141,8 +144,7 @@ public class QuestionsDisplayActivity extends Activity implements
 		} else if (type.equalsIgnoreCase("5")) {
 			questionText.setText(questionsArray.get(questionNumber)
 					.getQuestion());
-			View answerView = getLayoutInflater().inflate(
-					R.layout.question_type_seek_layout, questionLayout, false);
+			View answerView = getLayoutInflater().inflate(R.layout.question_type_seek_layout, questionLayout, false);
 			questionLayout.removeAllViews();
 			questionLayout.addView(answerView);
 		} else if (type.equalsIgnoreCase("6")) {
@@ -184,6 +186,9 @@ public class QuestionsDisplayActivity extends Activity implements
 						questionsArray.get(questionNumber).getAnswerlist(),
 						questionNumber);
 				
+			}else{
+				Utility.startActivity(QuestionsDisplayActivity.this, ThankyouActivity.class);
+				//load thank you page
 			}
 		} else if (view.getId() == R.id.back) {
 			if (questionNumber > 0) {
