@@ -46,7 +46,7 @@
 
         <RatingBar
             android:id="@+id/ratingBar1"
-            style="?android:attr/ratingBarStyle"
+            style="@style/starRatingBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/selected_progress_value"
@@ -56,7 +56,7 @@
 
         <RatingBar
             android:id="@+id/ratingBar2"
-            style="?android:attr/ratingBarStyle"
+            style="@style/starRatingBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/selected_progress_value"

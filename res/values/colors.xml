@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
- <color name="BG_GRREN">#004D40</color>
-  <color name="BG_BLUE_HEADER">#3E51B5</color>
+
+    <color name="BG_GRREN">#004D40</color>
+    <color name="BG_BLUE_HEADER">#3E51B5</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="header">#383838</color>
@@ -15,10 +16,15 @@
     <color name="disabled_date_color">#545454</color>
     <color name="purple">#bc59d8</color>
     <color name="blue">#668ef3</color>
-    <color name="yellow">#fdc26e</color>
+    <color name="theme_title_color">#fdc26e</color>
     <color name="fsafron">#FF9933</color>
     <color name="fwhite">#FFFFFF</color>
     <color name="fgreen">#138808</color>
+    <color name="answer_text_color">#ffff8800</color>
+    <color name="default_screen_bg">#f9f9f9</color>
+    <color name="rounded_container_bg">#222222</color>
+    <color name="rounded_container_border">#3b3f44</color>
+    <color name="light_gray_header_color">#646663</color>
     <color name="usage_color1">#fb7d01</color>
     <color name="usage_color2">#454545</color>
     <color name="usage_color3">#d1a67c</color>

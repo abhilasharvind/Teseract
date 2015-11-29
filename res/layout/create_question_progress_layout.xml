@@ -28,7 +28,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            style="?android:attr/ratingBarStyle"
+            style="@style/starRatingBar"
             android:numStars="5"
             android:max="5"
             android:stepSize="1.0" />

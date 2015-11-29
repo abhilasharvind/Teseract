@@ -78,10 +78,13 @@
 
     <Button
         android:id="@+id/create"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/answer_button_shape"
         android:layout_gravity="center_horizontal|bottom"
         android:text="Create" />
 
