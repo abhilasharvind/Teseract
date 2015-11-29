@@ -13,7 +13,6 @@ import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Profile;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.home.EditUpdateDelete;
-import com.jsservey.view.home.survey.SurveyRequestCreator;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;

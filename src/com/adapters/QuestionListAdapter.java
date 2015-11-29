@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.abx.jsservey.R;
 import com.interfaces.QuestionPopUpListner;
-import com.jsservey.model.Profile;
 import com.jsservey.model.Question;
 
 import android.content.Context;

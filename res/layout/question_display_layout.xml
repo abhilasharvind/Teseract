@@ -38,17 +38,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+<<<<<<< HEAD
             android:padding="10dp"
             android:text="How was the food?"
+=======
+            android:padding="1dp"            
+>>>>>>> 643e7b76f97ed440cde7552ef020468385ded8ee
             android:textColor="@android:color/holo_blue_dark"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
     </LinearLayout>
 
+<<<<<<< HEAD
 
 
+=======
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/question_layot"
+        android:gravity="center_horizontal"
+         android:textColor="@android:color/holo_blue_dark"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="24sp"
+        android:text="how was the food?" >
+    </TextView>
+>>>>>>> 643e7b76f97ed440cde7552ef020468385ded8ee
     <RelativeLayout
         android:id="@+id/submit_layout"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:padding="10dp" >
@@ -75,6 +96,38 @@
             android:padding="6dp"
             android:text="Submit" />
     </RelativeLayout>
+=======
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true"
+	        android:paddingLeft="10dp"
+	        android:paddingRight="10dp"
+	         android:layout_marginBottom="10dp"
+	        >
+
+	     <Button
+	        android:id="@+id/back"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="15dp"
+	       
+	        android:padding="6dp"
+	        android:background="@drawable/answer_button_shape"
+	        android:layout_alignParentLeft="true"
+	        android:text="Back" />
+	      <Button
+	        android:id="@+id/submit"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginRight="15dp"
+	        android:padding="6dp"
+	        android:background="@drawable/answer_button_shape"
+	        android:layout_alignParentRight="true"
+	        android:text="Submit" /> 
+     </RelativeLayout>
+     
+    
+    
+>>>>>>> 643e7b76f97ed440cde7552ef020468385ded8ee
 
     <LinearLayout
         android:id="@+id/question_layout"
