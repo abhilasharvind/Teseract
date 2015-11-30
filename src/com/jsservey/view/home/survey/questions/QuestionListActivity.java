@@ -44,8 +44,7 @@ public class QuestionListActivity extends Activity implements OnClickListener,Ap
 		Bundle bundle =getIntent().getExtras();
 		survey_id=bundle.getString("survey_id");
 		Log.d("abx", "(QuestionListActivity)survey id"+survey_id);
-		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-		new ApiRequester(this, requestCreator.questionFetch(survey_id), this).execute("");
+		
 		 lv = (ListView) findViewById(R.id.listView);
 		 findViewById(R.id.add_profile_imbt).setOnClickListener(new OnClickListener() {
 			
@@ -87,8 +86,13 @@ public class QuestionListActivity extends Activity implements OnClickListener,Ap
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-			
+		fetchANDreload();	
 		
+	}
+
+	private void fetchANDreload() {
+		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+		new ApiRequester(this, requestCreator.questionFetch(survey_id), this).execute("");
 	}
 	
 public class DbAsyncTask extends AsyncTask<String, Void, ArrayList<Profile>>{
@@ -187,6 +191,7 @@ EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext())
 		
 		@Override
 		public String onSuccess(JSONObject result) {
+			fetchANDreload();	
 			loddingIndicator(0);
 			Toast.makeText(QuestionListActivity.this, "Question has been Deleted", 1500).show();
 			return null;
@@ -215,6 +220,7 @@ new ApiRequester(this, editUpdateDelete.questionVisibility(id, 1), new ApiReques
 		
 		@Override
 		public String onSuccess(JSONObject result) {
+			
 			loddingIndicator(View.GONE);
 			Toast.makeText(QuestionListActivity.this, "Question has been Deleted", 1500).show();
 			return null;

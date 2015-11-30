@@ -86,9 +86,13 @@ public class SurveyListActvity extends Activity implements OnClickListener,ApiRe
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-		new ApiRequester(this, requestCreator.surveyFetch(p_id), this).execute("");	
+		fetchANDreload();	
 		
+	}
+
+	private void fetchANDreload() {
+		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+		new ApiRequester(this, requestCreator.surveyFetch(p_id), this).execute("");
 	}
 	
 public class DbAsyncTask extends AsyncTask<String, Void, ArrayList<Survey>>{
@@ -192,6 +196,7 @@ public void onDeleteTaskStart(int type, String id) {
 		public String onSuccess(JSONObject result) {
 			loddingIndicator(0);
 			Toast.makeText(SurveyListActvity.this, "Profile has been Deleted", 1000).show();
+			fetchANDreload();	
 			return null;
 		}
 		
@@ -245,6 +250,7 @@ new ApiRequester(this, requestCreator.surveyActivate(id), new ApiRequestListner(
 					return null;
 				}
 			}).execute("");
+			fetchANDreload();	
 			return null;
 		}
 		

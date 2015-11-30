@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import com.abx.jsservey.R;
 import com.jsservey.model.NewUser;
+import com.jsservey.utils.Utility;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
@@ -25,7 +26,7 @@ public class CreateNewUserActivity extends Activity implements ApiRequestListner
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.create_account);
-		//findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
+		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		Button createUser=  (Button) findViewById(R.id.create_account_bt);
 		createUser.setOnClickListener(new OnClickListener() {
 			
@@ -81,6 +82,8 @@ public class CreateNewUserActivity extends Activity implements ApiRequestListner
 	public String onSuccess(JSONObject result) {
 		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		Toast.makeText(this, "User created", 1500).show();
+		Utility.startActivity( CreateNewUserActivity.this, LoginActivity.class);				
+		finish();
 		return null;
 	}
 

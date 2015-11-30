@@ -185,6 +185,7 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 		 else{
 			 Toast.makeText(getApplicationContext(), "Survey creation failed", 1500).show(); 
 		 }
+		 onBackPressed();
 		}catch(Exception e){
 			e.printStackTrace();
 		}

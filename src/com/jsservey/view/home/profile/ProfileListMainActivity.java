@@ -79,9 +79,13 @@ public class ProfileListMainActivity extends Activity implements OnClickListener
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		fetchANDreload();
+		
+	}
+
+	private void fetchANDreload() {
 		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 		new ApiRequester(this, requestCreator.profileFetch(), this).execute("");
-		
 	}
 	
 public class DbAsyncTask extends AsyncTask<String, Void, ArrayList<Profile>>{
@@ -184,21 +188,23 @@ public void onDeleteTaskStart(int type, String id) {
 		
 		@Override
 		public String onSuccess(JSONObject result) {
-			loddingIndicator(0);
+			fetchANDreload();
+			loddingIndicator(View.GONE);
 			Toast.makeText(ProfileListMainActivity.this, "Profile has been Deleted", 1000).show();
+			
 			return null;
 		}
 		
 		@Override
 		public String onStarted() {
-			loddingIndicator(1);
+			loddingIndicator(View.VISIBLE);
 			return null;
 		}
 
 		
 		@Override
 		public String onFailed() {
-			loddingIndicator(0);
+			loddingIndicator(View.GONE);
 			return null;
 		}
 	}).execute("");
@@ -213,32 +219,10 @@ EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext())
 		
 		@Override
 		public String onSuccess(JSONObject result) {
+			fetchANDreload();
 			loddingIndicator(View.GONE);
 			Toast.makeText(ProfileListMainActivity.this, "Profile has been Activated", 1500).show();
-			/*SurveyRequestCreator requestCreator = new SurveyRequestCreator(getApplicationContext());
-			new ApiRequester(ProfileListMainActivity.this,requestCreator.surveyQuesFetch(id), new ApiRequestListner() {
-				
-				@Override
-				public String onSuccess(JSONObject result) {
-					SQLiteHelper db = 	SQLiteHelper.getInstance(getApplicationContext());
-					db.insertSurveyQuestions(result.toString());
-					String d=db.getSurveyQuestions();
-					Log.d("abx", d);
-					return null;
-				}
-				
-				@Override
-				public String onStarted() {
-					// TODO Auto-generated method stub
-					return null;
-				}
-				
-				@Override
-				public String onFailed() {
-					// TODO Auto-generated method stub
-					return null;
-				}
-			}).execute("");*/
+			
 			return null;
 		}
 		
