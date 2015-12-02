@@ -22,7 +22,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		Log.d("abx","in Main Activity");
 		setContentView(R.layout.home_layout);
-		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
+		//findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		setListners();
 		
 		//RequestCreator requestCreator = new RequestCreator(getApplicationContext());

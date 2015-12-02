@@ -14,6 +14,7 @@ public class AboutActivity extends BaseActivity {
 		Log.d("abx","in Main Activity");
 		setContentView(R.layout.about_layout);
 		handleHomeClick(this.findViewById(android.R.id.content));
+		menuHandler(this.findViewById(android.R.id.content));
 	}
 }
 

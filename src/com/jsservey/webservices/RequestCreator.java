@@ -139,5 +139,15 @@ public class RequestCreator implements URLConstants{
 		}
 		return url;
 	}
-	
+	public String createCustomerInfo( String customerName,String phoneNo,String emailId,String address,String personalDesc){
+		String url=BASE_URL;	
+		//LoginServlet?questioncreation=true&dbName=csfeedback&deviceId=123456&questionName=ithuname&profileSurveyid=1&question=ithu%20queston&isVisisble=1&surveyTypeid=3&halfRating=1&Value=10
+		try {
+			url=url+"SurveyAPI/LoginServlet?customercreation=true&dbName=csfeedback&deviceId="+deviceId+"&customerName="+URLEncoder.encode(customerName, "UTF-8")+"&phoneNo="+URLEncoder.encode(phoneNo, "UTF-8")+"&emailId="+URLEncoder.encode(emailId, "UTF-8")+"&Address="+URLEncoder.encode(address, "UTF-8")+"&personalDesc="+URLEncoder.encode(personalDesc, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return url;
+	}	
 }

@@ -46,8 +46,7 @@ public class QuestionsDisplayActivity extends Activity implements
 		backButton = (Button) findViewById(R.id.back);
 		backButton.setOnClickListener(this);
 		submitButton.setOnClickListener(this);
-		SQLiteHelper sqLiteHelper = SQLiteHelper
-				.getInstance(getApplicationContext());
+		SQLiteHelper sqLiteHelper = SQLiteHelper.getInstance(getApplicationContext());
 		String stringJsonObject = sqLiteHelper.getSurveyQuestions();
 		Log.e("abx", "" + stringJsonObject);
 		try {
@@ -56,8 +55,7 @@ public class QuestionsDisplayActivity extends Activity implements
 			questionsArray = new ArrayList<Question>();
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject questionJsonParent = (JSONObject) jsonArray.get(i);
-				JSONObject questionJson = questionJsonParent
-						.getJSONObject("questions");
+				JSONObject questionJson = questionJsonParent.getJSONObject("questions");
 
 				Question question = new Question();
 				question.setType_id(questionJson.getString("type_id"));
@@ -73,7 +71,6 @@ public class QuestionsDisplayActivity extends Activity implements
 					JSONObject answerJson = (JSONObject) answerList.get(j);
 					answer.setId(answerJson.getString("id"));
 					answer.setAnswer_name(answerJson.getString("answer_name"));
-
 					answerlist.add(answer);
 				}
 				question.setAnswerlist(answerlist);
@@ -86,8 +83,10 @@ public class QuestionsDisplayActivity extends Activity implements
 			e.printStackTrace();
 		}
 		questionCount = questionsArray.size();
-		setContent(questionsArray.get(0).getType_id(), questionsArray.get(0)
-				.getAnswerlist(), 0); // first question and answers
+		if (!questionsArray.isEmpty()) {
+			setContent(questionsArray.get(0).getType_id(), questionsArray.get(0).getAnswerlist(), 0); // first question and answers
+		}
+		
 		backButton.setVisibility(View.GONE);
 		
 
@@ -187,7 +186,7 @@ public class QuestionsDisplayActivity extends Activity implements
 						questionNumber);
 				
 			}else{
-				Utility.startActivity(QuestionsDisplayActivity.this, ThankyouActivity.class);
+				Utility.startActivity(QuestionsDisplayActivity.this, CustomerInfoActivity.class);
 				//load thank you page
 			}
 		} else if (view.getId() == R.id.back) {

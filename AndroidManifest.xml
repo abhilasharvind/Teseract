@@ -58,6 +58,8 @@
         </activity>
         <activity android:name="com.jsservey.view.home.survey.questions.ThankyouActivity" >
         </activity>
+        <activity android:name="com.jsservey.view.home.survey.questions.CustomerInfoActivity" >
+        </activity>
     </application>
 
 </manifest>
