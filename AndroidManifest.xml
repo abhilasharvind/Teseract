@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="15"
+        android:minSdkVersion="14"
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -46,7 +46,8 @@
         </activity>
         <activity android:name="com.jsservey.view.home.survey.StartSurveyActivity" >
         </activity>
-        <activity android:name="com.jsservey.view.home.survey.questions.QuestionsDisplayActivity" >
+        <activity android:name="com.jsservey.view.home.survey.questions.QuestionsDisplayActivity"
+            android:screenOrientation="portrait" >
         </activity>
         <activity android:name="com.jsservey.view.home.profile.SurveyCreationActivity" >
         </activity>

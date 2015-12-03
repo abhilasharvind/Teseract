@@ -13,6 +13,7 @@ import com.jsservey.model.Question;
 import com.jsservey.utils.Utility;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -96,7 +97,11 @@ public class QuestionsDisplayActivity extends Activity implements
 		
 
 	}
-
+@Override
+public void onConfigurationChanged(Configuration newConfig) {
+	super.onConfigurationChanged(newConfig);
+	//do nothing
+}
 	private void setContent(String type, ArrayList<Answer> answerlist,
 			int questionNumber) {
 		// RelativeLayout mainLayout = (RelativeLayout)
@@ -167,10 +172,15 @@ public class QuestionsDisplayActivity extends Activity implements
 		int[] textViewIds = new int[] { R.id.answer1, R.id.answer2,
 				R.id.answer3, R.id.answer4, R.id.answer5, R.id.answer6,
 				R.id.answer7, R.id.answer8, R.id.answer9, R.id.answer10 };
+		int[] layoutIds = new int[] { R.id.view1, R.id.view2,
+				R.id.view3, R.id.view4, R.id.view5, R.id.view6,
+				R.id.view7, R.id.view8, R.id.view9, R.id.view10 };
 
 		for (int i = 0; i < answerlist.size(); i++) {
-			((TextView) findViewById(textViewIds[i]))
+			((View) findViewById(layoutIds[i]))
 					.setVisibility(View.VISIBLE);
+			((TextView) findViewById(textViewIds[i]))
+			.setVisibility(View.VISIBLE);
 			((TextView) findViewById(textViewIds[i])).setText(answerlist.get(i)
 					.getAnswer_name());
 		}

@@ -48,6 +48,8 @@ public class DeviceCreationActivity extends Activity {
 									finish();
 								}
 								else{
+									Utility.startActivity(DeviceCreationActivity.this, LoginActivity.class);
+									finish();
 									Toast.makeText(DeviceCreationActivity.this, "Registration failed", 1500).show();
 								}
 								

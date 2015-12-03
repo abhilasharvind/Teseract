@@ -117,6 +117,7 @@ public class SplashActivity extends BaseActivity implements ApiRequestListner{
 						@Override
 						public String onFailed() {
 							
+							Utility.startActivity(SplashActivity.this, LoginActivity.class);
 							return null;
 						}
 					}).execute("");
