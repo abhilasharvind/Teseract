@@ -54,10 +54,11 @@ public class QuestionsDisplayActivity extends Activity implements
 			JSONArray jsonArray = jsonObject.getJSONArray("data");
 			questionsArray = new ArrayList<Question>();
 			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject questionJsonParent = (JSONObject) jsonArray.get(i);
-				JSONObject questionJson = questionJsonParent.getJSONObject("questions");
 
 				Question question = new Question();
+				try{
+				JSONObject questionJsonParent = (JSONObject) jsonArray.get(i);
+				JSONObject questionJson = questionJsonParent.getJSONObject("questions");		
 				question.setType_id(questionJson.getString("type_id"));
 				question.setQuestion(questionJson.getString("question"));
 				question.setQuestion_id(questionJson.getString("question_id"));
@@ -76,7 +77,11 @@ public class QuestionsDisplayActivity extends Activity implements
 				question.setAnswerlist(answerlist);
 				questionsArray.add(question);
 				//Toast.makeText(this, "total:" + questionsArray.size(), 2000).show();
-			}
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				}
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

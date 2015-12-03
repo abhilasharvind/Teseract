@@ -31,12 +31,13 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CreateQuestionTextActivity extends Activity implements
 		OnItemSelectedListener, OnClickListener, OnRatingBarChangeListener,
 		OnCheckedChangeListener, OnSeekBarChangeListener {
-	private Spinner spinner1, spinner2;
-	private Button btnSubmit;
+	private Spinner spinner1;//, spinner2;
+	//private Button btnSubmit;
 	private TextView progressValue;
 	private RatingBar ratingBar;
 	private View answerView;
@@ -51,7 +52,8 @@ public class CreateQuestionTextActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.create_question_type_layout);
 		super.onCreate(savedInstanceState);
-		addListenerOnButton();
+		loddingIndicator(View.GONE);
+		setListner();
 		Bundle bundle =getIntent().getExtras();
 		survey_id=bundle.getString("survey_id");
 		Spinner staticSpinner = (Spinner) findViewById(R.id.question_type_spinner);
@@ -60,18 +62,16 @@ public class CreateQuestionTextActivity extends Activity implements
 				.createFromResource(this, R.array.question_array,
 						android.R.layout.simple_spinner_item);
 
-		staticAdapter
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		staticAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		staticSpinner.setAdapter(staticAdapter);
 	}
 
-	public void addListenerOnButton() {
+	public void setListner() {
 
 		spinner1 = (Spinner) findViewById(R.id.question_type_spinner);
-		btnSubmit = (Button) findViewById(R.id.create);
+		 findViewById(R.id.create).setOnClickListener(this);;
 		spinner1.setOnItemSelectedListener(this);
-		btnSubmit.setOnClickListener(this);
 	}
 
 	@Override
@@ -165,10 +165,8 @@ public class CreateQuestionTextActivity extends Activity implements
 					false);
 			RadioGroup progressRadioGroup = (RadioGroup) answerView
 					.findViewById(R.id.smily_radio_group);
-			RadioButton fiveStar = (RadioButton) answerView
-					.findViewById(R.id.type1_smiley);
-			RadioButton tenStar = (RadioButton) answerView
-					.findViewById(R.id.type2_smiley);
+			RadioButton fiveStar = (RadioButton) answerView.findViewById(R.id.type1_smiley);
+			RadioButton tenStar = (RadioButton) answerView	.findViewById(R.id.type2_smiley);
 			progressRadioGroup.setOnCheckedChangeListener(this);
 			questionLayout.removeAllViews();
 			questionLayout.addView(answerView);
@@ -219,110 +217,128 @@ public class CreateQuestionTextActivity extends Activity implements
 			}
 
 		} else if (view.getId() == R.id.create) {
-			EditText questionText = (EditText) findViewById(R.id.create_question);
-			EditText questionName = (EditText) findViewById(R.id.question_name_ed);
-
-			LinearLayout questionLayout = (LinearLayout) findViewById(R.id.question_type_layout);
-			if (questionType == 0 && null != questionText) {
-				QuestionBPojo textPojo = new QuestionBPojo();//////////////////////////
-				EditText opt1 = (EditText) questionLayout.findViewById(R.id.answer1);
-				EditText opt2 = (EditText) questionLayout.findViewById(R.id.answer2);
-				EditText opt3 = (EditText) questionLayout.findViewById(R.id.answer3);
-				EditText opt4 = (EditText) questionLayout.findViewById(R.id.answer4);
-				EditText opt5 = (EditText) questionLayout.findViewById(R.id.answer5);
-				EditText opt6 = (EditText) questionLayout.findViewById(R.id.answer6);
-				EditText opt7 = (EditText) questionLayout.findViewById(R.id.answer7);
-				EditText opt8 = (EditText) questionLayout.findViewById(R.id.answer8);
-				EditText opt9 = (EditText) questionLayout.findViewById(R.id.answer9);
-				EditText opt10 = (EditText) questionLayout.findViewById(R.id.answer10);
-				
-				textPojo.setQuestionName(questionName.getText().toString());
-				textPojo.setQuestionText(questionText.getText().toString());
-				textPojo.setQuestionType(questionType+3);
-				textPojo.setOption1(opt1.getText().toString().equals("") ? "null" : opt1.getText().toString());
-				textPojo.setOption2(opt2.getText().toString().equals("") ? "null" : opt2.getText().toString());
-				textPojo.setOption3(opt3.getText().toString().equals("") ? "null" : opt3.getText().toString());
-				textPojo.setOption4(opt4.getText().toString().equals("") ? "null" : opt4.getText().toString());
-				textPojo.setOption5(opt5.getText().toString().equals("") ? "null" : opt5.getText().toString());
-				textPojo.setOption6(opt6.getText().toString().equals("") ? "null" : opt6.getText().toString());
-				textPojo.setOption7(opt7.getText().toString().equals("") ? "null" : opt7.getText().toString());
-				textPojo.setOption8(opt8.getText().toString().equals("") ? "null" : opt8.getText().toString());
-				textPojo.setOption9(opt9.getText().toString().equals("") ? "null" : opt9.getText().toString());
-				textPojo.setOption10(opt10.getText().toString().equals("")  ? "null" : opt10.getText().toString());
-				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-				new ApiRequester(getApplicationContext(), requestCreator.createQuestionB(textPojo,survey_id, textPojo.getQuestionName(), ""+textPojo.getQuestionText(), ""+textPojo.getQuestionType()), new ApiRequestListner() {
-					
-					@Override
-					public String onSuccess(JSONObject result) {
-						// TODO Auto-generated method stub
-						return null;
-					}
-					
-					@Override
-					public String onStarted() {
-						// TODO Auto-generated method stub
-						return null;
-					}
-					
-					@Override
-					public String onFailed() {
-						// TODO Auto-generated method stub
-						return null;
-					}
-				}).execute("");
-			
-			}
-				else if (questionType != 0 && null != questionText) {
-				QuestionAPojo questionAPojo = new QuestionAPojo();
-				questionAPojo.setQuestionName(questionText.getText().toString());
-				questionAPojo.setQuestionText(questionText.getText().toString());
-				questionAPojo.setQuestionType(questionType+2);
-				switch (questionType) {
-				case 1: {//rating
-					questionAPojo.setMaxValue(maxValue);
-					questionAPojo.setOtherValue(isHalfRating);
-					break;
-				}
-				case 2: {//seek
-					questionAPojo.setMaxValue(Integer.parseInt(seekValueText.getText().toString()));
-					questionAPojo.setOtherValue(1);
-					break;
-				}
-				
-				case 3: {//smiley
-					questionAPojo.setMaxValue(maxValue);
-					questionAPojo.setOtherValue(1);
-					break;
-				}
-				default:
-					break;
-				}
-				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-				new ApiRequester(getApplicationContext(), requestCreator.createQuestionA(survey_id, questionAPojo.getQuestionName(), ""+questionAPojo.getQuestionText(), ""+questionAPojo.getQuestionType(), ""+questionAPojo.getOtherValue(), ""+questionAPojo.getMaxValue()), new ApiRequestListner() {
-					
-					@Override
-					public String onSuccess(JSONObject result) {
-						// TODO Auto-generated method stub
-						return null;
-					}
-					
-					@Override
-					public String onStarted() {
-						// TODO Auto-generated method stub
-						return null;
-					}
-					
-					@Override
-					public String onFailed() {
-						// TODO Auto-generated method stub
-						return null;
-					}
-				}).execute("");
-				
-
-				
-			}
+			createQuestions();
 		}
+	}
+
+	private void createQuestions() {
+		EditText questionText = (EditText) findViewById(R.id.create_question);
+		
+		if (questionType == 0 && null != questionText) {
+			EditText questionName = (EditText) findViewById(R.id.question_name_ed);
+			LinearLayout questionLayout = (LinearLayout) findViewById(R.id.question_type_layout);
+			createTextTypeQuestions(questionText, questionName, questionLayout);
+		
+		}
+			else if (questionType != 0 && null != questionText) {
+			createOtherTypeQuestions(questionText);
+			
+
+			
+		}
+	}
+
+	private void createOtherTypeQuestions(EditText questionText) {
+		QuestionAPojo questionAPojo = new QuestionAPojo();
+		questionAPojo.setQuestionName(questionText.getText().toString());
+		questionAPojo.setQuestionText(questionText.getText().toString());
+		questionAPojo.setQuestionType(questionType+2);
+		switch (questionType) {
+		case 1: {//rating
+			questionAPojo.setMaxValue(maxValue);
+			questionAPojo.setOtherValue(isHalfRating);
+			break;
+		}
+		case 2: {//seek
+			questionAPojo.setMaxValue(Integer.parseInt(seekValueText.getText().toString()));
+			questionAPojo.setOtherValue(1);
+			break;
+		}
+		
+		case 3: {//smiley
+			questionAPojo.setMaxValue(maxValue);
+			questionAPojo.setOtherValue(1);
+			break;
+		}
+		default:
+			break;
+		}
+		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+		new ApiRequester(getApplicationContext(), requestCreator.createQuestionA(survey_id, questionAPojo.getQuestionName(), ""+questionAPojo.getQuestionText(), ""+questionAPojo.getQuestionType(), ""+questionAPojo.getOtherValue(), ""+questionAPojo.getMaxValue()), new ApiRequestListner() {
+			
+			@Override
+			public String onSuccess(JSONObject result) {
+				loddingIndicator(View.GONE);
+				onBackPressed();
+				Toast.makeText(getApplicationContext(), "Question created", 1500).show();
+				return null;
+			}
+			
+			@Override
+			public String onStarted() {
+				loddingIndicator(View.VISIBLE);
+				return null;
+			}
+			
+			@Override
+			public String onFailed() {
+				loddingIndicator(View.GONE);
+				Toast.makeText(getApplicationContext(), "Unable to create the question", 1500).show();
+				return null;
+			}
+		}).execute("");
+	}
+
+	private void createTextTypeQuestions(EditText questionText, EditText questionName, LinearLayout questionLayout) {
+		QuestionBPojo textPojo = new QuestionBPojo();//////////////////////////
+		EditText opt1 = (EditText) questionLayout.findViewById(R.id.answer1);
+		EditText opt2 = (EditText) questionLayout.findViewById(R.id.answer2);
+		EditText opt3 = (EditText) questionLayout.findViewById(R.id.answer3);
+		EditText opt4 = (EditText) questionLayout.findViewById(R.id.answer4);
+		EditText opt5 = (EditText) questionLayout.findViewById(R.id.answer5);
+		EditText opt6 = (EditText) questionLayout.findViewById(R.id.answer6);
+		EditText opt7 = (EditText) questionLayout.findViewById(R.id.answer7);
+		EditText opt8 = (EditText) questionLayout.findViewById(R.id.answer8);
+		EditText opt9 = (EditText) questionLayout.findViewById(R.id.answer9);
+		EditText opt10 = (EditText) questionLayout.findViewById(R.id.answer10);
+		
+		textPojo.setQuestionName(questionName.getText().toString());
+		textPojo.setQuestionText(questionText.getText().toString());
+		textPojo.setQuestionType(questionType+3);
+		textPojo.setOption1(opt1.getText().toString().equals("") ? "null" : opt1.getText().toString());
+		textPojo.setOption2(opt2.getText().toString().equals("") ? "null" : opt2.getText().toString());
+		textPojo.setOption3(opt3.getText().toString().equals("") ? "null" : opt3.getText().toString());
+		textPojo.setOption4(opt4.getText().toString().equals("") ? "null" : opt4.getText().toString());
+		textPojo.setOption5(opt5.getText().toString().equals("") ? "null" : opt5.getText().toString());
+		textPojo.setOption6(opt6.getText().toString().equals("") ? "null" : opt6.getText().toString());
+		textPojo.setOption7(opt7.getText().toString().equals("") ? "null" : opt7.getText().toString());
+		textPojo.setOption8(opt8.getText().toString().equals("") ? "null" : opt8.getText().toString());
+		textPojo.setOption9(opt9.getText().toString().equals("") ? "null" : opt9.getText().toString());
+		textPojo.setOption10(opt10.getText().toString().equals("")  ? "null" : opt10.getText().toString());
+		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+		new ApiRequester(getApplicationContext(), requestCreator.createQuestionB(textPojo,survey_id, textPojo.getQuestionName(), ""+textPojo.getQuestionText(), ""+textPojo.getQuestionType()), new ApiRequestListner() {
+			
+			@Override
+			public String onSuccess(JSONObject result) {
+				loddingIndicator(View.GONE);
+				onBackPressed();
+				Toast.makeText(getApplicationContext(), "Question created", 1500).show();
+				return null;
+			}
+			
+			@Override
+			public String onStarted() {
+				loddingIndicator(View.VISIBLE);
+				return null;
+			}
+			
+			@Override
+			public String onFailed() {
+				loddingIndicator(View.GONE);
+				Toast.makeText(getApplicationContext(), "Unable to create the question", 1500).show();
+				return null;
+			}
+		}).execute("");
 	}
 
 	@Override
@@ -372,5 +388,7 @@ public class CreateQuestionTextActivity extends Activity implements
 		int progessValue = seekBar.getProgress();
 		seekValueText.setText(progessValue + "");
 	}
-
+	private void loddingIndicator(int visibility) {
+		findViewById(R.id.home_pg_rl).setVisibility(visibility);
+	}
 }

@@ -55,19 +55,18 @@ public class QuestionListActivity extends Activity implements OnClickListener,Ap
 				Intent intent = new Intent(QuestionListActivity.this, CreateQuestionTextActivity.class);
 				intent.putExtras(bundle);
 				startActivity(intent);
-				//Utility.startActivity(QuestionListActivity.this, CreateQuestionTextActivity.class);
 				
 			}
 		});;
 		
 		
 		
-		lv.setOnItemClickListener(new OnItemClickListener() {
+		//lv.setOnItemClickListener(new OnItemClickListener() {
 
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+			//@Override
+			//public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				//Profile pro =(Profile) arg1.getTag();
-				Toast.makeText(getApplicationContext(), "yy", 1500).show();
+				//Toast.makeText(getApplicationContext(), "yy", 1500).show();
 //				Bundle bundle = new Bundle();
 //				bundle.putString("pf_id", pro.getProfile_id());
 //				Intent intent = new Intent(QuestionListActivity.this, SurveyListActvity.class);
@@ -75,8 +74,8 @@ public class QuestionListActivity extends Activity implements OnClickListener,Ap
 //				startActivity(intent);
 				//Utility.startActivity(ProfileMainActivity.this, SurveyListActvity.class);
 				
-			}
-		});
+			//}
+		//});
 		
 		
 		

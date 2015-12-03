@@ -12,11 +12,11 @@ import com.interfaces.EditDeleteUpdate_listner;
 import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Survey;
 import com.jsservey.view.home.EditUpdateDelete;
-import com.jsservey.view.home.survey.SurveyRequestCreator;
 import com.jsservey.view.home.survey.questions.QuestionListActivity;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
+import com.jsservey.webservices.SurveyRequestCreator;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -270,7 +270,7 @@ new ApiRequester(this, requestCreator.surveyActivate(id), new ApiRequestListner(
 	
 }
 private void loddingIndicator(int visibility) {
-	findViewById(R.id.home_pg_rl).setVisibility(visibility);;
+	findViewById(R.id.home_pg_rl).setVisibility(visibility);
 }	
 	
 }

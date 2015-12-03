@@ -11,28 +11,28 @@
         android:layout_margin="20dp"
         android:orientation="vertical" >
 
-        <EditView
+        <EditText
             android:id="@+id/name_ed"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp" />
 
-        <EditView
+        <EditText
             android:id="@+id/mobile_ed"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp" />
-         <EditView
+         <EditText
             android:id="@+id/email_ed"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp" />
-         <EditView
+         <EditText
             android:id="@+id/address_ed"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp" />
-         <EditView
+         <EditText
             android:id="@+id/personaldesc_ed"
             android:layout_width="match_parent"
             android:layout_height="40dp"

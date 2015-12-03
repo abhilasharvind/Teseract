@@ -71,8 +71,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 
 	@Override
 	public String onSuccess(JSONObject result) {
-		//Toast.makeText(this, "Login Success!", 1000).show();
-		try {
+		try {loddingIndicator(View.GONE);
 			if (result!=null && result.has("data")) {
 				JSONObject data = result.getJSONObject("data");
 				String isAdvacedUser=data.getString("is_advaced_user");
@@ -83,37 +82,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 				Log.d("abx", user_advaced_id+" "+survey_perform_only+" "+user_id);
 				if(isAdvacedUser.equals("true") && survey_perform_only.equals("1")){
 					Utility.startActivity(LoginActivity.this, StartSurveyActivity.class);
-					/*SurveyRequestCreator requestCreator = new SurveyRequestCreator(getApplicationContext());
-					new ApiRequester(LoginActivity.this,requestCreator.surveyQuesFetch("1"), new ApiRequestListner() {
-						
-						@Override
-						public String onSuccess(JSONObject result) {
-							SQLiteHelper db = 	SQLiteHelper.getInstance(getApplicationContext());
-							db.insertSurveyQuestions(result.toString());
-							String d=db.getSurveyQuestions();
-							Log.d("abx", d);
-							Utility.startActivity(LoginActivity.this, QuestionsDisplayActivity.class);
 				
-							return null;
-						}
-						
-						@Override
-						public String onStarted() {
-							// TODO Auto-generated method stub
-							return null;
-						}
-						
-						@Override
-						public String onFailed() {
-							// TODO Auto-generated method stub
-							return null;
-						}
-					}).execute("");*/
-					
-					
-					
-					
-					
 				}
 				else{
 				Utility.startActivity(LoginActivity.this, HomeActivity.class);
@@ -136,7 +105,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 	public String onFailed() {
 		
 		Toast.makeText(this, "Login Failed!", 1000).show();
-		//Utility.startActivity(LoginActivity.this, HomeActivity.class);
+		loddingIndicator(View.GONE);
 		return null;
 	}
 
@@ -146,5 +115,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 		return null;
 	}
 
-
+	private void loddingIndicator(int visibility) {
+		findViewById(R.id.home_pg_rl).setVisibility(visibility);;
+	}
 }

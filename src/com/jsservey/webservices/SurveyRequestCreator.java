@@ -1,9 +1,8 @@
-package com.jsservey.view.home.survey;
+package com.jsservey.webservices;
 
 import com.jsservey.utils.AppPref;
 import com.jsservey.utils.PrefConstant;
 import com.jsservey.utils.Utility;
-import com.jsservey.webservices.URLConstants;
 
 import android.content.Context;
 import android.util.Log;
