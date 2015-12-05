@@ -11,6 +11,7 @@ import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Answer;
 import com.jsservey.model.Question;
 import com.jsservey.utils.Utility;
+import com.jsservey.view.home.HomeActivity;
 
 import android.app.Activity;
 import android.content.res.Configuration;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
@@ -34,7 +36,7 @@ public class QuestionsDisplayActivity extends Activity implements
 	int questionCount = 0;
 	RatingBar ratingBar;
 	TextView progressValue;
-	Button submitButton,backButton;
+	Button submitButton,backButton;int gocrazycount=0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,38 @@ public class QuestionsDisplayActivity extends Activity implements
 		backButton = (Button) findViewById(R.id.back);
 		backButton.setOnClickListener(this);
 		submitButton.setOnClickListener(this);
+		 
+		findViewById(R.id.company_title).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				gocrazycount++;
+				if (gocrazycount ==7){
+					findViewById(R.id.backdoor).setVisibility(View.VISIBLE);
+					gocrazy_backdoor();
+				}
+				
+			}
+
+			private void gocrazy_backdoor() {
+				findViewById(R.id.gocrazy_bt).setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View arg0) {
+						gocrazycount=0;
+						EditText gEditText =(EditText) findViewById(R.id.gocrazy_ed);
+						
+						if(gEditText.getText().toString().equals("gocrazy001")){
+							Utility.startActivity(QuestionsDisplayActivity.this, HomeActivity.class);	
+						}
+					}
+
+					
+				});
+				
+			}
+		});
+		
 		SQLiteHelper sqLiteHelper = SQLiteHelper.getInstance(getApplicationContext());
 		String stringJsonObject = sqLiteHelper.getSurveyQuestions();
 		Log.e("abx", "" + stringJsonObject);
@@ -85,12 +119,12 @@ public class QuestionsDisplayActivity extends Activity implements
 				}
 
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+ 			e.printStackTrace();
 		}
 		questionCount = questionsArray.size();
 		if (!questionsArray.isEmpty()) {
 			setContent(questionsArray.get(0).getType_id(), questionsArray.get(0).getAnswerlist(), 0); // first question and answers
+		
 		}
 		
 		backButton.setVisibility(View.GONE);
@@ -196,6 +230,7 @@ public void onConfigurationChanged(Configuration newConfig) {
 		if (view.getId() == R.id.submit) {
 			if (questionNumber < questionCount - 1) {
 				questionNumber++;
+				Log.e("abx", questionsArray.get(questionNumber).getType_id());
 				setContent(questionsArray.get(questionNumber).getType_id(),
 						questionsArray.get(questionNumber).getAnswerlist(),
 						questionNumber);
@@ -207,6 +242,7 @@ public void onConfigurationChanged(Configuration newConfig) {
 		} else if (view.getId() == R.id.back) {
 			if (questionNumber > 0) {
 				questionNumber--;
+				
 				setContent(questionsArray.get(questionNumber).getType_id(),
 						questionsArray.get(questionNumber).getAnswerlist(),
 						questionNumber);

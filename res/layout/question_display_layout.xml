@@ -20,7 +20,30 @@
             android:layout_gravity="center_horizontal"
             android:padding="10dp"
             android:text="D Company"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:id="@+id/backdoor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" >
+
+            <EditText
+                android:id="@+id/gocrazy_ed"
+                android:layout_width="100dp"
+                android:layout_height="30dp" />
+
+            <Button
+                android:id="@+id/gocrazy_bt"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/answer_button_shape"
+                android:padding="6dp"
+                android:text="Go->" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

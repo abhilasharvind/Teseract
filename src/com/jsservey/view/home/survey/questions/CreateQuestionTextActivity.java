@@ -78,7 +78,7 @@ public class CreateQuestionTextActivity extends Activity implements
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
 		// On selecting a spinner item
-		questionType = position;
+		questionType = position+3;
 
 		LinearLayout questionLayout = (LinearLayout) findViewById(R.id.question_type_layout);
 		if (position == 0) {
@@ -242,20 +242,20 @@ public class CreateQuestionTextActivity extends Activity implements
 		QuestionAPojo questionAPojo = new QuestionAPojo();
 		questionAPojo.setQuestionName(questionText.getText().toString());
 		questionAPojo.setQuestionText(questionText.getText().toString());
-		questionAPojo.setQuestionType(questionType+2);
+		questionAPojo.setQuestionType(questionType);
 		switch (questionType) {
-		case 1: {//rating
+		case 4: {//rating
 			questionAPojo.setMaxValue(maxValue);
 			questionAPojo.setOtherValue(isHalfRating);
 			break;
 		}
-		case 2: {//seek
+		case 5: {//seek
 			questionAPojo.setMaxValue(Integer.parseInt(seekValueText.getText().toString()));
 			questionAPojo.setOtherValue(1);
 			break;
 		}
 		
-		case 3: {//smiley
+		case 6: {//smiley
 			questionAPojo.setMaxValue(maxValue);
 			questionAPojo.setOtherValue(1);
 			break;
@@ -304,7 +304,7 @@ public class CreateQuestionTextActivity extends Activity implements
 		
 		textPojo.setQuestionName(questionName.getText().toString());
 		textPojo.setQuestionText(questionText.getText().toString());
-		textPojo.setQuestionType(questionType+3);
+		textPojo.setQuestionType(questionType);
 		textPojo.setOption1(opt1.getText().toString().equals("") ? "null" : opt1.getText().toString());
 		textPojo.setOption2(opt2.getText().toString().equals("") ? "null" : opt2.getText().toString());
 		textPojo.setOption3(opt3.getText().toString().equals("") ? "null" : opt3.getText().toString());

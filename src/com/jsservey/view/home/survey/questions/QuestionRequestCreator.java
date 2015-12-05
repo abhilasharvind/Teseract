@@ -1,4 +1,4 @@
-package com.jsservey.view.home.survey.questions;
+  package com.jsservey.view.home.survey.questions;
 
 import com.jsservey.utils.AppPref;
 import com.jsservey.utils.PrefConstant;
