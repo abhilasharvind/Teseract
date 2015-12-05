@@ -32,6 +32,7 @@
             android:ems="10"
             android:hint="Question name" >
         </EditText>
+        <requestFocus />
     </LinearLayout>
 
     <EditText

@@ -33,7 +33,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:progressDrawable="@drawable/seek_bar_style"
-            android:thumb="@drawable/seek_image"
+            android:thumb="@drawable/thumb_image"
             android:layout_centerInParent="true" />
         
         <TextView 

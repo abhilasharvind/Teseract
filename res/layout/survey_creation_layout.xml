@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -8,7 +8,8 @@
     <RelativeLayout
         android:id="@+id/home_pg_rl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:visibility="gone" >
 
         <ProgressBar
             android:id="@+id/home_pg"
@@ -32,17 +33,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/gradient_background"
             android:orientation="vertical" >
 
             <EditText
                 android:id="@+id/survey_name_ed"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
                 android:hint="Survey Name"
                 android:inputType="textPersonName"
-                android:textSize="25dp" >
+                android:textSize="25sp" >
 
                 <requestFocus />
             </EditText>
@@ -54,7 +55,7 @@
                 android:layout_marginLeft="10dp"
                 android:padding="10dp"
                 android:text="Valid Upto"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <LinearLayout
                 android:id="@+id/date_picker_layout"
@@ -69,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Valid Upto Date"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <Button
                     android:id="@+id/set_date"
@@ -97,7 +98,7 @@
                 android:layout_marginLeft="10dp"
                 android:padding="10dp"
                 android:text="Schedule Survey"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <LinearLayout
                 android:id="@+id/schedule_survey_layout"
@@ -120,7 +121,7 @@
                         android:layout_gravity="left|center_vertical"
                         android:layout_marginLeft="15dp"
                         android:text="Schedule From"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/black" />
 
                     <Button
                         android:id="@+id/schedule_set"
@@ -135,7 +136,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:text="27/10/2015"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:visibility="gone" />
                 </LinearLayout>
 
@@ -152,7 +153,7 @@
                         android:layout_gravity="left|center_vertical"
                         android:layout_marginLeft="15dp"
                         android:text="Schedule To"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/black" />
 
                     <Button
                         android:id="@+id/schedule_to_set"
@@ -167,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:text="27/10/2015"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:visibility="gone" />
                 </LinearLayout>
 
@@ -178,8 +179,8 @@
                     android:layout_marginBottom="20dp"
                     android:layout_marginLeft="20dp"
                     android:text="Schedule Days"
-                    android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -195,7 +196,7 @@
                         android:layout_marginLeft="10dp"
                         android:background="@color/grey_light"
                         android:padding="15dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textOff="Mon"
                         android:textOn="Don" />
 
@@ -206,7 +207,7 @@
                         android:layout_marginLeft="5dp"
                         android:background="@color/grey_light"
                         android:padding="15dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textOff="Tue"
                         android:textOn="Don" />
 
@@ -228,7 +229,7 @@
                         android:layout_marginLeft="5dp"
                         android:background="@color/grey_light"
                         android:padding="15dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textOff="Thu"
                         android:textOn="Don" />
 
@@ -239,7 +240,7 @@
                         android:layout_marginLeft="5dp"
                         android:background="@color/grey_light"
                         android:padding="15dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textOff="Fri"
                         android:textOn="Don" />
 
@@ -250,7 +251,7 @@
                         android:layout_marginLeft="5dp"
                         android:background="@color/grey_light"
                         android:padding="15dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textOff="Sat"
                         android:textOn="Don" />
 
@@ -261,7 +262,7 @@
                         android:layout_marginLeft="5dp"
                         android:background="@color/grey_light"
                         android:padding="15dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textOff="Sun"
                         android:textOn="Don" />
                 </LinearLayout>
@@ -274,7 +275,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
                 android:text="Permissions"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="23dp" />
 
             <CheckBox
@@ -284,7 +285,7 @@
                 android:layout_marginLeft="10dp"
                 android:padding="10dp"
                 android:text="Visible Survey"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <CheckBox
                 android:id="@+id/selection_possible"
@@ -293,21 +294,20 @@
                 android:layout_marginLeft="10dp"
                 android:padding="10dp"
                 android:text="Selection Possible"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/create_survey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/round_corner"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="Create Survey"
-                android:textSize="25dp" />
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/create_survey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/answer_button_shape"
+        android:text="Create Survey"
+        android:textSize="25sp" />
+
+</RelativeLayout>

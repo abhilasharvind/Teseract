@@ -136,7 +136,7 @@ public void onConfigurationChanged(Configuration newConfig) {
 				questionLayout.removeAllViews();
 				questionLayout.addView(answerView);
 				ratingBar.setOnRatingBarChangeListener(this);	
-			} else if (value.equalsIgnoreCase("5")) {
+			} else{
 				ratingBar = (RatingBar) answerView.findViewById(R.id.ratingBar1);
 				answerView.findViewById(R.id.ratingBar2).setVisibility(View.GONE);
 				ratingBar.setVisibility(View.VISIBLE);

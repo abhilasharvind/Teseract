@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp" >
+
+        <LinearLayout
+            android:id="@+id/text_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/answer1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/answer_button_shape"
+                android:paddingLeft="10dp"
+                android:text=""/>
+              
+
+            <EditText
+                android:id="@+id/answer2"
+                 android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/answer_button_shape"
+                android:paddingLeft="10dp"
+                android:visibility="gone"
+                android:text=""/>
+
+            <EditText
+                android:id="@+id/answer3"
+                 android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/answer_button_shape"
+                android:paddingLeft="10dp"
+                 android:visibility="gone"
+                android:text=""/>
+
+            <EditText
+                android:id="@+id/answer4"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/answer_button_shape"
+                android:paddingLeft="10dp"
+                 android:visibility="gone"
+                android:text=""/>
+
+            <EditText
+                android:id="@+id/answer5"
+                  android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/answer_button_shape"
+                android:paddingLeft="10dp"
+                 android:visibility="gone"
+                android:text=""/>
+
+            <EditText
+                android:id="@+id/answer6"
+                 android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/answer_button_shape"
+                android:paddingLeft="10dp"
+                 android:visibility="gone"
+                android:text=""/>
+
+            <EditText
+                android:id="@+id/answer7"
+                  android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/answer_button_shape"
+                android:paddingLeft="10dp"
+                 android:visibility="gone"
+                android:text=""/>
+
+            <EditText
+                android:id="@+id/answer8"
+                  android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/answer_button_shape"
+                android:paddingLeft="10dp"
+                 android:visibility="gone"
+                android:text=""/>
+
+            <EditText
+                android:id="@+id/answer9"
+                 android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/answer_button_shape"
+                android:paddingLeft="10dp"
+                 android:visibility="gone"
+                android:text=""/>
+
+            <EditText
+                android:id="@+id/answer10"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/answer_button_shape"
+                android:paddingLeft="10dp"
+                 android:visibility="gone"
+                android:text=""/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/add_text_answer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="100dp"
+            android:layout_marginRight="25dp"
+            android:src="@drawable/add_new1" />
+    </RelativeLayout>
+
+</LinearLayout>

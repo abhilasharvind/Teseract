@@ -71,7 +71,7 @@
             android:layout_marginRight="15dp"
             android:background="@drawable/answer_button_shape"
             android:padding="6dp"
-            android:text="Submit" />
+            android:text="Next" />
     </RelativeLayout>
 
     <LinearLayout

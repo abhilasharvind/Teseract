@@ -83,7 +83,7 @@ public class CreateQuestionTextActivity extends Activity implements
 		LinearLayout questionLayout = (LinearLayout) findViewById(R.id.question_type_layout);
 		if (position == 0) {
 			answerView = getLayoutInflater()
-					.inflate(R.layout.create_question_text_layout,
+					.inflate(R.layout.create_question_text_new_layout,
 							questionLayout, false);
 			questionLayout.removeAllViews();
 			questionLayout.addView(answerView);
@@ -182,16 +182,16 @@ public class CreateQuestionTextActivity extends Activity implements
 
 		if (view.getId() == R.id.add_text_answer) {
 
-			RelativeLayout textLayout1 = (RelativeLayout) answerView.findViewById(R.id.text_layout1);
-			RelativeLayout textLayout2 = (RelativeLayout) answerView.findViewById(R.id.text_layout2);
-			RelativeLayout textLayout3 = (RelativeLayout) answerView.findViewById(R.id.text_layout3);
-			RelativeLayout textLayout4 = (RelativeLayout) answerView.findViewById(R.id.text_layout4);
-			RelativeLayout textLayout5 = (RelativeLayout) answerView.findViewById(R.id.text_layout5);
-			RelativeLayout textLayout6 = (RelativeLayout) answerView.findViewById(R.id.text_layout6);
-			RelativeLayout textLayout7 = (RelativeLayout) answerView.findViewById(R.id.text_layout7);
-			RelativeLayout textLayout8 = (RelativeLayout) answerView.findViewById(R.id.text_layout8);
-			RelativeLayout textLayout9 = (RelativeLayout) answerView.findViewById(R.id.text_layout9);
-			RelativeLayout textLayout10 = (RelativeLayout) answerView.findViewById(R.id.text_layout10);
+			EditText textLayout1 = (EditText) answerView.findViewById(R.id.answer1);
+			EditText textLayout2 = (EditText) answerView.findViewById(R.id.answer2);
+			EditText textLayout3 = (EditText) answerView.findViewById(R.id.answer3);
+			EditText textLayout4 = (EditText) answerView.findViewById(R.id.answer4);
+			EditText textLayout5 = (EditText) answerView.findViewById(R.id.answer5);
+			EditText textLayout6 = (EditText) answerView.findViewById(R.id.answer6);
+			EditText textLayout7 = (EditText) answerView.findViewById(R.id.answer7);
+			EditText textLayout8 = (EditText) answerView.findViewById(R.id.answer8);
+			EditText textLayout9 = (EditText) answerView.findViewById(R.id.answer9);
+			EditText textLayout10 = (EditText) answerView.findViewById(R.id.answer10);
 			textAnserCount++;
 			if (textAnserCount < 11) {
 				if (textAnserCount == 2) {

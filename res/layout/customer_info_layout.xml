@@ -3,9 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    
+    <LinearLayout
+        android:id="@+id/customer_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/theme_title_color"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/customer_info_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Customer Information"
+            android:textSize="24dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/survey_layout"
+        android:layout_below="@id/customer_info_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -15,47 +34,66 @@
             android:id="@+id/name_ed"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:hint="customer name"
             android:layout_marginBottom="10dp" />
 
         <EditText
             android:id="@+id/mobile_ed"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:hint="mobile number"
             android:layout_marginBottom="10dp" />
          <EditText
             android:id="@+id/email_ed"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:hint="email id"
             android:layout_marginBottom="10dp" />
          <EditText
             android:id="@+id/address_ed"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:hint="address"
             android:layout_marginBottom="10dp" />
          <EditText
             android:id="@+id/personaldesc_ed"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:hint="personal description"
             android:layout_marginBottom="10dp" />
     </LinearLayout>
 
-    <LinearLayout
+  
+    
+      <RelativeLayout
+        android:id="@+id/submit_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:layout_below="@id/survey_layout"
+        android:layout_marginTop="20dp"
+        android:padding="10dp" >
 
         <Button
             android:id="@+id/Done_bt"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/answer_button_shape"
+            android:padding="6dp"
             android:text="Done" />
 
         <Button
             android:id="@+id/skip_bt"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/answer_button_shape"
+            android:padding="6dp"
             android:text="Skip" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

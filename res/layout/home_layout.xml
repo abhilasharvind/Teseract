@@ -1,74 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical" >
-  <include layout="@layout/header_layout" />
-    <ImageView
-        android:id="@+id/center"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_centerInParent="true"
-        android:background="#FFFF0000" />
->
-    <ImageView
-        android:id="@+id/about_bt"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/center"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="25dp"
-        android:layout_toRightOf="@id/center"
-        android:background="@drawable/settings" />
 
-    <ImageView
-        android:id="@+id/start_srvey_bt"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_above="@+id/profile_bt"
-        android:layout_centerInParent="true"
-        android:background="@drawable/survey_image" />
+    <include layout="@layout/header_layout" />
 
-    <ImageView
-        android:id="@+id/profile_bt"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/about_bt"
-        android:layout_marginLeft="21dp"
-        android:background="@drawable/profiles" />
+    <RelativeLayout
+        android:id="@+id/home_pg_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-    <ImageView
-        android:id="@+id/settings_bt"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/start_srvey_bt"
-        android:layout_alignLeft="@+id/profile_bt"
-        android:layout_marginBottom="22dp"
-        android:background="@drawable/settings" />
+        <ProgressBar
+            android:id="@+id/home_pg"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading..."
+             android:layout_centerHorizontal="true"
+            android:layout_below="@id/home_pg"/>
+    </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/help_bt"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignLeft="@+id/about_bt"
-        android:layout_alignTop="@+id/settings_bt"
-        android:background="@drawable/help" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-    <ImageView
-        android:id="@+id/report_bt"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignRight="@+id/start_srvey_bt"
-        android:layout_below="@+id/profile_bt"
-        android:background="@drawable/settings" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-    <ImageView
-        android:id="@+id/user_bt"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/settings_bt"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/users" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3" >
 
-</RelativeLayout>
+                <Button
+                    android:id="@+id/report_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_green_dark"
+                    android:gravity="left|bottom"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="@string/report_text"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/settings_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="2"
+                    android:background="@android:color/holo_purple"
+                    android:gravity="left|bottom"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="@string/settings_text"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3" >
+
+                <Button
+                    android:id="@+id/user_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_red_light"
+                    android:gravity="left|bottom"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="@string/user_text"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/help_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="2"
+                    android:background="@android:color/holo_orange_light"
+                    android:gravity="left|bottom"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="@string/help_text"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3" >
+
+                <Button
+                    android:id="@+id/profile_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_red_dark"
+                    android:gravity="left|bottom"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="@string/profile_text"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/about_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="2"
+                    android:background="@android:color/holo_green_light"
+                    android:gravity="left|bottom"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="@string/about_text"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <Button
+                    android:id="@+id/start_srvey_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="2"
+                    android:background="@android:color/holo_green_light"
+                    android:gravity="left|bottom"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="Start Survey"
+                    android:textSize="15sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
