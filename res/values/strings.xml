@@ -21,7 +21,7 @@
     <string name="advanced">advanced</string>
     <string name="create_user">create account</string>
     <string name="advanced_account"><u>advanced account</u></string> 
-    <string name="company_textview">Enter company key</string> 
+    <string name="company_textview">Company Details</string> 
     <string name="company_name_edittext">Device name</string> 
     <string name="company_key">Company key</string> 
     <string name="register_account"><u>Register a new account</u></string>

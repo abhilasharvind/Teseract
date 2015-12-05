@@ -12,6 +12,7 @@ import com.jsservey.webservices.RequestCreator;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,13 +24,15 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class SurveyCreationActivity extends Activity implements OnClickListener,ApiRequestListner {
 	private Calendar calendar;
 	private TextView dateView;
-	private int year, month, day;
+	private int year, month, day , hour,minute;
+	private boolean is24HourView = false;
 	private int dateViewId;
 	private TextView selectedDate;
 	private TextView selectedFromDate;
@@ -46,6 +49,8 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 		year = calendar.get(Calendar.YEAR);
 		month = calendar.get(Calendar.MONTH);
 		day = calendar.get(Calendar.DAY_OF_MONTH);
+		hour = calendar.get(Calendar.HOUR_OF_DAY);
+		minute = calendar.get(Calendar.MINUTE);
 		Bundle bundle= getIntent().getExtras();
 		final String pf_id=bundle.getString("pf_id");
 		initView();
@@ -127,9 +132,11 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		// TODO Auto-generated method stub
-		//if (id == R.id.set_date) {
+		if (id == R.id.set_date) {
 			return new DatePickerDialog(this, myDateListener, year, month, day);
-		//}
+		}else {
+			return new TimePickerDialog(this, timePickerListener, hour, minute, is24HourView);
+		}
 		//return null;
 	}
 
@@ -138,6 +145,15 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 		public void onDateSet(DatePicker datePicker, int year, int month,
 				int date) {
 			showDate(year, month + 1, date);
+		}
+	};
+	
+	private TimePickerDialog.OnTimeSetListener timePickerListener = new TimePickerDialog.OnTimeSetListener() {
+		
+		@Override
+		public void onTimeSet(TimePicker view, int hour, int minute) {
+			showDate(hour,minute, 0);
+			
 		}
 	};
 

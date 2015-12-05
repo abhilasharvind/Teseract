@@ -29,4 +29,6 @@
     <color name="usage_color2">#454545</color>
     <color name="usage_color3">#d1a67c</color>
 
+    <color name="theme_background">#E5E5E5</color>
+
 </resources>

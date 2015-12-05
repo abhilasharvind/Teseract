@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/theme_background"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -28,11 +28,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <EditText
@@ -40,20 +40,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
                 android:hint="Survey Name"
                 android:inputType="textPersonName"
-                android:textSize="25sp" >
+                android:padding="5dp"
+                android:textSize="20sp" >
 
                 <requestFocus />
             </EditText>
 
             <CheckBox
                 android:id="@+id/valid_upto"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="10dp"
+                android:layout_marginLeft="20dp"
                 android:text="Valid Upto"
                 android:textColor="@color/black" />
 
@@ -61,7 +64,8 @@
                 android:id="@+id/date_picker_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:visibility="gone" >
 
@@ -69,25 +73,28 @@
                     android:id="@+id/valid_upto_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="6dp"
                     android:text="Valid Upto Date"
                     android:textColor="@color/black" />
 
                 <Button
                     android:id="@+id/set_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/calender_icon2"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="set" />
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/selected_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="28/10/2015"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:visibility="gone" />
             </LinearLayout>
 
@@ -95,8 +102,8 @@
                 android:id="@+id/schedule_survey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Schedule Survey"
                 android:textColor="@color/black" />
 
@@ -110,6 +117,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="15dp"
                     android:gravity="center_vertical"
                     android:padding="8dp" >
@@ -119,23 +127,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="5dp"
                         android:text="Schedule From"
                         android:textColor="@color/black" />
 
                     <Button
                         android:id="@+id/schedule_set"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:text="set" />
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="6dp"
+                        android:background="@drawable/timer"
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/scheduled_from_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="27/10/2015"
+                        android:text=""
                         android:textColor="@color/black"
                         android:visibility="gone" />
                 </LinearLayout>
@@ -143,6 +152,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:gravity="center_vertical"
                     android:padding="8dp" >
 
@@ -151,36 +161,49 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="5dp"
                         android:text="Schedule To"
                         android:textColor="@color/black" />
 
                     <Button
                         android:id="@+id/schedule_to_set"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="58dp"
-                        android:text="set" />
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="24dp"
+                        android:background="@drawable/timer"
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/scheduled_to_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="27/10/2015"
+                        android:text=""
                         android:textColor="@color/black"
                         android:visibility="gone" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/scheduled_days"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/schedule_days_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="Schedule Days"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/layout_round_corner"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="8dp" >
+
+                    <TextView
+                        android:id="@+id/scheduled_days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Schedule Days"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -268,21 +291,35 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:id="@+id/permission"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:text="Permissions"
-                android:textColor="@color/black"
-                android:textSize="23dp" />
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/layout_round_corner"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="8dp" >
+
+                <TextView
+                    android:id="@+id/permission_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/permission_for_child"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+            </LinearLayout>
 
             <CheckBox
                 android:id="@+id/visible_survey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:padding="10dp"
                 android:text="Visible Survey"
                 android:textColor="@color/black" />
@@ -291,7 +328,7 @@
                 android:id="@+id/selection_possible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:padding="10dp"
                 android:text="Selection Possible"
                 android:textColor="@color/black"
@@ -303,11 +340,12 @@
         android:id="@+id/create_survey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:background="@drawable/answer_button_shape"
+        android:padding="6dp"
         android:text="Create Survey"
         android:textSize="25sp" />
 
-</RelativeLayout>
+</LinearLayout>
