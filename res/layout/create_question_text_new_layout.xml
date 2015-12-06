@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/theme_background"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -23,7 +24,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/answer_button_shape"
+                android:background="@drawable/text_answer_shape"
                 android:paddingLeft="10dp"
                 android:text=""/>
               
@@ -35,7 +36,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/answer_button_shape"
+                android:background="@drawable/text_answer_shape"
                 android:paddingLeft="10dp"
                 android:visibility="gone"
                 android:text=""/>

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/theme_background"
     android:padding="10dp" >
 
     <RelativeLayout
@@ -118,6 +118,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:background="@drawable/answer_button_shape"
         android:text="@string/create_user" />
 
 </RelativeLayout>
