@@ -224,7 +224,7 @@ public class CreateQuestionTextActivity extends Activity implements
 	private void createQuestions() {
 		EditText questionText = (EditText) findViewById(R.id.create_question);
 		
-		if (questionType == 0 && null != questionText) {
+		if (questionType == 3 && null != questionText) {
 			EditText questionName = (EditText) findViewById(R.id.question_name_ed);
 			LinearLayout questionLayout = (LinearLayout) findViewById(R.id.question_type_layout);
 			createTextTypeQuestions(questionText, questionName, questionLayout);
@@ -264,7 +264,7 @@ public class CreateQuestionTextActivity extends Activity implements
 			break;
 		}
 		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-		new ApiRequester(getApplicationContext(), requestCreator.createQuestionA(survey_id, questionAPojo.getQuestionName(), ""+questionAPojo.getQuestionText(), ""+questionAPojo.getQuestionType(), ""+questionAPojo.getOtherValue(), ""+questionAPojo.getMaxValue()), new ApiRequestListner() {
+		new ApiRequester(getApplicationContext(), requestCreator.createQuesOther(survey_id, questionAPojo.getQuestionName(), ""+questionAPojo.getQuestionText(), ""+questionAPojo.getQuestionType(), ""+questionAPojo.getOtherValue(), ""+questionAPojo.getMaxValue()), new ApiRequestListner() {
 			
 			@Override
 			public String onSuccess(JSONObject result) {
@@ -304,7 +304,7 @@ public class CreateQuestionTextActivity extends Activity implements
 		
 		textPojo.setQuestionName(questionName.getText().toString());
 		textPojo.setQuestionText(questionText.getText().toString());
-		textPojo.setQuestionType(questionType);
+		textPojo.setQuestionType(""+questionType);
 		textPojo.setOption1(opt1.getText().toString().equals("") ? "null" : opt1.getText().toString());
 		textPojo.setOption2(opt2.getText().toString().equals("") ? "null" : opt2.getText().toString());
 		textPojo.setOption3(opt3.getText().toString().equals("") ? "null" : opt3.getText().toString());
@@ -316,7 +316,7 @@ public class CreateQuestionTextActivity extends Activity implements
 		textPojo.setOption9(opt9.getText().toString().equals("") ? "null" : opt9.getText().toString());
 		textPojo.setOption10(opt10.getText().toString().equals("")  ? "null" : opt10.getText().toString());
 		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-		new ApiRequester(getApplicationContext(), requestCreator.createQuestionB(textPojo,survey_id, textPojo.getQuestionName(), ""+textPojo.getQuestionText(), ""+textPojo.getQuestionType()), new ApiRequestListner() {
+		new ApiRequester(getApplicationContext(), requestCreator.createQuesText(textPojo,survey_id, textPojo.getQuestionName(), textPojo.getQuestionText(), textPojo.getQuestionType()), new ApiRequestListner() {
 			
 			@Override
 			public String onSuccess(JSONObject result) {
