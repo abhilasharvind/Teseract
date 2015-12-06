@@ -4,7 +4,7 @@ public class QuestionBPojo {
 
 	private String questionName;
 	private String questionText;
-	private int questionType;
+	private String questionType;
 	private String option1;
 	private String option2;
 	private String option3;
@@ -112,11 +112,11 @@ public class QuestionBPojo {
 		this.questionText = questionText;
 	}
 
-	public int getQuestionType() {
+	public String getQuestionType() {
 		return questionType;
 	}
 
-	public void setQuestionType(int questionType) {
+	public void setQuestionType(String questionType) {
 		this.questionType = questionType;
 	}
 

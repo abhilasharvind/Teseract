@@ -6,6 +6,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.ListView;
+import android.widget.Toast;
+
 import com.abx.jsservey.R;
 import com.adapters.QuestionListAdapter;
 import com.interfaces.QuestionPopUpListner;
@@ -16,19 +27,6 @@ import com.jsservey.view.home.EditUpdateDelete;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-import android.widget.Toast;
 
 public class QuestionListActivity extends Activity implements OnClickListener,ApiRequestListner,QuestionPopUpListner {
 	String survey_id="";

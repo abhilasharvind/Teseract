@@ -3,14 +3,14 @@ package com.jsservey.webservices;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.jsservey.model.NewUser;
 import com.jsservey.model.QuestionBPojo;
 import com.jsservey.utils.AppPref;
 import com.jsservey.utils.PrefConstant;
 import com.jsservey.utils.Utility;
-
-import android.content.Context;
-import android.util.Log;
 
 public class RequestCreator implements URLConstants{
 	private Context context;
@@ -117,7 +117,7 @@ public class RequestCreator implements URLConstants{
 		return url;
 	}
 	
-	public String createQuestionA(String srv_id,String questionName,String questiontext,String surveyTypeid,String halfRating,String value){
+	public String createQuesOther(String srv_id,String questionName,String questiontext,String surveyTypeid,String halfRating,String value){
 		String url=BASE_URL;	
 		//LoginServlet?questioncreation=true&dbName=csfeedback&deviceId=123456&questionName=ithuname&profileSurveyid=1&question=ithu%20queston&isVisisble=1&surveyTypeid=3&halfRating=1&Value=10
 		try {
@@ -128,11 +128,12 @@ public class RequestCreator implements URLConstants{
 		}
 		return url;
 	}
-	public String createQuestionB(QuestionBPojo questionBPojo,String srv_id,String questionName,String questiontext,String surveyTypeid){
+	public String createQuesText(QuestionBPojo questionBPojo,String srv_id,String questionName,String questiontext,String surveyTypeid){
 		String url=BASE_URL;	
 		//LoginServlet?questioncreation=true&dbName=csfeedback&deviceId=123456&questionName=ithuname&profileSurveyid=1&question=ithu%20queston&isVisisble=1&surveyTypeid=3&halfRating=1&Value=10
 		try {
-			url=url+"SurveyAPI/LoginServlet?questioncreationtext=true&dbName=csfeedback&deviceId="+deviceId+"&questionName="+URLEncoder.encode(questionName, "UTF-8")+"&profileSurveyid="+srv_id+"&question="+URLEncoder.encode(questiontext, "UTF-8")+"&isVisisble=1&surveyTypeid="+surveyTypeid+"&answer1="+questionBPojo.getOption1()+"&answer2="+questionBPojo.getOption2()+"&answer3="+questionBPojo.getOption3()+"&answer4="+questionBPojo.getOption4()+"&answer5="+questionBPojo.getOption5()+"&answer6="+questionBPojo.getOption6()+"&answer7="+questionBPojo.getOption7()+"&answer8="+questionBPojo.getOption8()+"&answer9="+questionBPojo.getOption9()+"&answer10="+questionBPojo.getOption10();
+			url=url+"SurveyAPI/LoginServlet?questioncreationtext=true&dbName="+dbname+"&deviceId="+deviceId+"&questionName="+URLEncoder.encode(questionName, "UTF-8")+"&profileSurveyid="+srv_id+"&question="+URLEncoder.encode(questiontext, "UTF-8")+"&isVisisble=1&surveyTypeid="+surveyTypeid+"&answer1="+questionBPojo.getOption1()+"&answer2="+questionBPojo.getOption2()+"&answer3="+questionBPojo.getOption3()+"&answer4="+questionBPojo.getOption4()+"&answer5="+questionBPojo.getOption5()+"&answer6="+questionBPojo.getOption6()+"&answer7="+questionBPojo.getOption7()+"&answer8="+questionBPojo.getOption8()+"&answer9="+questionBPojo.getOption9()+"&answer10="+questionBPojo.getOption10();
+		Log.e("p",">>>"+ url);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -143,7 +144,7 @@ public class RequestCreator implements URLConstants{
 		String url=BASE_URL;	
 		//LoginServlet?questioncreation=true&dbName=csfeedback&deviceId=123456&questionName=ithuname&profileSurveyid=1&question=ithu%20queston&isVisisble=1&surveyTypeid=3&halfRating=1&Value=10
 		try {
-			url=url+"SurveyAPI/LoginServlet?customercreation=true&dbName=csfeedback&deviceId="+deviceId+"&customerName="+URLEncoder.encode(customerName, "UTF-8")+"&phoneNo="+URLEncoder.encode(phoneNo, "UTF-8")+"&emailId="+URLEncoder.encode(emailId, "UTF-8")+"&Address="+URLEncoder.encode(address, "UTF-8")+"&personalDesc="+URLEncoder.encode(personalDesc, "UTF-8");
+			url=url+"SurveyAPI/LoginServlet?customercreation=true&dbName="+dbname+"&deviceId="+deviceId+"&customerName="+URLEncoder.encode(customerName, "UTF-8")+"&phoneNo="+URLEncoder.encode(phoneNo, "UTF-8")+"&emailId="+URLEncoder.encode(emailId, "UTF-8")+"&Address="+URLEncoder.encode(address, "UTF-8")+"&personalDesc="+URLEncoder.encode(personalDesc, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

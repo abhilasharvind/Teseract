@@ -2,6 +2,11 @@ package com.jsservey.view.home;
 
 
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+
 import com.abx.jsservey.R;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.BaseActivity;
@@ -9,11 +14,6 @@ import com.jsservey.view.home.profile.ProfileListMainActivity;
 import com.jsservey.view.home.survey.StartSurveyActivity;
 import com.jsservey.view.reportandabout.AboutActivity;
 import com.jsservey.view.reportandabout.ReportActivity;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 
 public class HomeActivity extends BaseActivity implements OnClickListener{
 	@Override

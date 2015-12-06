@@ -6,13 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.abx.jsservey.R;
-import com.jsservey.database.SQLiteHelper;
-import com.jsservey.model.Answer;
-import com.jsservey.model.Question;
-import com.jsservey.utils.Utility;
-import com.jsservey.view.home.HomeActivity;
-
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -27,16 +20,31 @@ import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 
+import com.abx.jsservey.R;
+import com.jsservey.database.SQLiteHelper;
+import com.jsservey.model.Answer;
+import com.jsservey.model.Question;
+import com.jsservey.model.SurveySubmitData;
+import com.jsservey.utils.Utility;
+import com.jsservey.view.home.HomeActivity;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.QuestionRequestCreator;
+
 public class QuestionsDisplayActivity extends Activity implements
 		OnClickListener,OnRatingBarChangeListener {
 	LinearLayout questionLayout;
 	ArrayList<Answer> answerlist;
 	ArrayList<Question> questionsArray;
+	ArrayList<SurveySubmitData> submitanswerArr = new ArrayList<SurveySubmitData>();
 	int questionNumber = 0;
 	int questionCount = 0;
 	RatingBar ratingBar;
 	TextView progressValue;
-	Button submitButton,backButton;int gocrazycount=0;
+	
+	Button backButton;int gocrazycount=0;
+	String ratingValue="";
+	String selectedAnsId="";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,41 +53,10 @@ public class QuestionsDisplayActivity extends Activity implements
 		setContentView(R.layout.question_display_layout);
 		
 		questionLayout = (LinearLayout) findViewById(R.id.answer_type_layout);
-		submitButton = (Button) findViewById(R.id.submit);
+		findViewById(R.id.submit).setOnClickListener(this);;
 		backButton = (Button) findViewById(R.id.back);
-		backButton.setOnClickListener(this);
-		submitButton.setOnClickListener(this);
-		 
-		findViewById(R.id.company_title).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				gocrazycount++;
-				if (gocrazycount ==7){
-					findViewById(R.id.backdoor).setVisibility(View.VISIBLE);
-					gocrazy_backdoor();
-				}
-				
-			}
-
-			private void gocrazy_backdoor() {
-				findViewById(R.id.gocrazy_bt).setOnClickListener(new OnClickListener() {
-					
-					@Override
-					public void onClick(View arg0) {
-						gocrazycount=0;
-						EditText gEditText =(EditText) findViewById(R.id.gocrazy_ed);
-						
-						if(gEditText.getText().toString().equals("gocrazy001")){
-							Utility.startActivity(QuestionsDisplayActivity.this, HomeActivity.class);	
-						}
-					}
-
-					
-				});
-				
-			}
-		});
+		backButton.setOnClickListener(this);		 
+		findViewById(R.id.company_title).setOnClickListener(this);
 		
 		SQLiteHelper sqLiteHelper = SQLiteHelper.getInstance(getApplicationContext());
 		String stringJsonObject = sqLiteHelper.getSurveyQuestions();
@@ -138,8 +115,6 @@ public void onConfigurationChanged(Configuration newConfig) {
 }
 	private void setContent(String type, ArrayList<Answer> answerlist,
 			int questionNumber) {
-		// RelativeLayout mainLayout = (RelativeLayout)
-		// findViewById(R.layout.question_display_layout);
 		TextView questionText = (TextView) findViewById(R.id.question_text);
 		String value = questionsArray.get(questionNumber).getValue();
 		String halfRating = questionsArray.get(questionNumber).getHalf_rating();
@@ -152,7 +127,7 @@ public void onConfigurationChanged(Configuration newConfig) {
 			questionLayout.addView(answerView);
 			enableAnswerTextList(answerView, answerlist);
 
-		} else if (type.equalsIgnoreCase("4")) {
+		} else if (type.equalsIgnoreCase("4")) {//rating
 			questionText.setText(questionsArray.get(questionNumber)	.getQuestion());
 			View answerView = getLayoutInflater().inflate(R.layout.question_type_progess_layout, questionLayout,
 					false);
@@ -184,25 +159,24 @@ public void onConfigurationChanged(Configuration newConfig) {
 				ratingBar.setOnRatingBarChangeListener(this);
 			}
 			
-		} else if (type.equalsIgnoreCase("5")) {
+		} else if (type.equalsIgnoreCase("5")) {//seek
 			questionText.setText(questionsArray.get(questionNumber)
 					.getQuestion());
 			View answerView = getLayoutInflater().inflate(R.layout.question_type_seek_layout, questionLayout, false);
 			questionLayout.removeAllViews();
 			questionLayout.addView(answerView);
-		} else if (type.equalsIgnoreCase("6")) {
+		} else if (type.equalsIgnoreCase("6")) {//smiley
 			questionText.setText(questionsArray.get(questionNumber)
 					.getQuestion());
 			View answerView = getLayoutInflater()
-					.inflate(R.layout.question_type_smiley_layout,
-							questionLayout, false);
+					.inflate(R.layout.question_type_smiley_layout,questionLayout, false);
 			questionLayout.removeAllViews();
 			questionLayout.addView(answerView);
 		}
 	}
 
 	private void enableAnswerTextList(View answerView,
-			ArrayList<Answer> answerlist) {
+			final ArrayList<Answer> answerlist) {
 		int[] textViewIds = new int[] { R.id.answer1, R.id.answer2,
 				R.id.answer3, R.id.answer4, R.id.answer5, R.id.answer6,
 				R.id.answer7, R.id.answer8, R.id.answer9, R.id.answer10 };
@@ -213,46 +187,151 @@ public void onConfigurationChanged(Configuration newConfig) {
 		for (int i = 0; i < answerlist.size(); i++) {
 			((View) findViewById(layoutIds[i]))
 					.setVisibility(View.VISIBLE);
-			((TextView) findViewById(textViewIds[i]))
-			.setVisibility(View.VISIBLE);
-			((TextView) findViewById(textViewIds[i])).setText(answerlist.get(i)
-					.getAnswer_name());
+			( findViewById(textViewIds[i])).setVisibility(View.VISIBLE);
+			((TextView) findViewById(textViewIds[i])).setText(answerlist.get(i).getAnswer_name());
+			final String ansid=answerlist.get(i).getId();
+			 findViewById(textViewIds[i]).setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stubs
+					selectedAnsId=ansid;
+					Log.e("a", selectedAnsId);
+				}
+			});
 		}
 	}
 
 	@Override
 	public void onClick(View view) {
-		if(questionNumber < 0){
+		if (questionNumber < 0) {
 			backButton.setVisibility(View.GONE);
-		}else{
+		} else {
 			backButton.setVisibility(View.VISIBLE);
 		}
-		if (view.getId() == R.id.submit) {
+
+		int id = view.getId();
+		switch (id) {
+		case R.id.submit:
 			if (questionNumber < questionCount - 1) {
 				questionNumber++;
+				//add to surveydata array
+				
 				Log.e("abx", questionsArray.get(questionNumber).getType_id());
+				
+				String type=questionsArray.get(questionNumber).getType_id();
+				setSurveyData(type);
+				
 				setContent(questionsArray.get(questionNumber).getType_id(),
 						questionsArray.get(questionNumber).getAnswerlist(),
 						questionNumber);
 				
-			}else{
-				Utility.startActivity(QuestionsDisplayActivity.this, CustomerInfoActivity.class);
-				//load thank you page
+				
+				
+				
+
+			} else {
+				Utility.startActivity(QuestionsDisplayActivity.this,
+						CustomerInfoActivity.class);
+				// load thank you page
+				//
+				QuestionRequestCreator questionRequestCreator = new QuestionRequestCreator(getApplicationContext());
+				for (SurveySubmitData data : submitanswerArr) {
+					new ApiRequester(getApplicationContext(), questionRequestCreator.surveyData(data, "123"), new ApiRequestListner() {
+						
+						@Override
+						public String onSuccess(JSONObject result) {
+							// TODO Auto-generated method stub
+							return null;
+						}
+						
+						@Override
+						public String onStarted() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+						
+						@Override
+						public String onFailed() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+					}).execute("");
+					
+				}
 			}
-		} else if (view.getId() == R.id.back) {
+
+			break;
+		case R.id.back:
 			if (questionNumber > 0) {
 				questionNumber--;
-				
+
 				setContent(questionsArray.get(questionNumber).getType_id(),
 						questionsArray.get(questionNumber).getAnswerlist(),
 						questionNumber);
+				questionsArray.remove(questionNumber);
 			}
+
+			break;
+		case R.id.company_title:
+		gocrazycount++;
+		if (gocrazycount ==7){
+			findViewById(R.id.backdoor).setVisibility(View.VISIBLE);
+			gocrazy_backdoor();
 		}
+
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	private void setSurveyData(String type) {
+		SurveySubmitData data = new SurveySubmitData();
+		data.setQues_id(questionsArray.get(questionNumber).getQuestion_id());
+		if (type.equals("3")) {//text
+			data.setAns_id(selectedAnsId);
+			data.setAns_value("");
+
+		} else if (type.equals("4")) {//rating
+			data.setAns_id("");
+			data.setAns_value(ratingValue);
+
+		} else if (type.equals("5")) {//seek
+			data.setAns_id("");
+			
+			//progressValue.gett
+
+		} else if (type.equals("6")) {//smiley
+			data.setAns_id("");
+
+		}
+		submitanswerArr.add(data);
 	}
 
 	@Override
 	public void onRatingChanged(RatingBar ratingBar, float rating, boolean from) {
 		progressValue.setText(String.valueOf(rating));
+		ratingValue=String.valueOf(rating);
 		
 	}
+	private void gocrazy_backdoor() {
+		findViewById(R.id.gocrazy_bt).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				gocrazycount=0;
+				EditText gEditText =(EditText) findViewById(R.id.gocrazy_ed);
+				
+				if(gEditText.getText().toString().equals("gocrazy001")){
+					Utility.startActivity(QuestionsDisplayActivity.this, HomeActivity.class);	
+				}
+			}
+
+			
+		});
+		
+	}
+	
 }

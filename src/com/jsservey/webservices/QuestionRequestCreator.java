@@ -1,12 +1,12 @@
-  package com.jsservey.view.home.survey.questions;
-
-import com.jsservey.utils.AppPref;
-import com.jsservey.utils.PrefConstant;
-import com.jsservey.utils.Utility;
-import com.jsservey.webservices.URLConstants;
+  package com.jsservey.webservices;
 
 import android.content.Context;
 import android.util.Log;
+
+import com.jsservey.model.SurveySubmitData;
+import com.jsservey.utils.AppPref;
+import com.jsservey.utils.PrefConstant;
+import com.jsservey.utils.Utility;
 
 public class QuestionRequestCreator implements URLConstants{
 	private Context context;
@@ -21,9 +21,19 @@ public class QuestionRequestCreator implements URLConstants{
 	}
 	public String questionActivate(String questionId){
 		String url=BASE_URL;	
-		//http://106.51.126.62:8080/SurveyAPI/LoginServlet?questionanswers=true&dbName=csfeedback&deviceId=123456&surveyId=1&profileId=1
 		url=url+"SurveyAPI/LoginServlet?questionvisible=true&dbName="+dbname+"&deviceId="+deviceId+"&questionId="+questionId+"&visibleQuestion=1";
 		Log.d("abx", url);
 		return url;
 	}
+	public String surveyData(SurveySubmitData surveySubmitData,String customerinfoId){
+		String url=BASE_URL;	
+		url=url+"SurveyAPI/LoginServlet?detailcreation=true&dbName="+dbname+"&deviceId="+deviceId+"&surveyanswerId="+surveySubmitData.getAns_id()+"&surveyquestionId="+surveySubmitData.getQues_id()+"&profilesurveyId=6&userprofileId=4&userId=3&customerinfoId="+customerinfoId+"&billinfoId=1&deviceinfoId=1&answerValue="+surveySubmitData.getAns_value();
+		Log.d("abx",">>"+ url);
+		return url;
+	}	
+	
+
+			
+	
+	
 }

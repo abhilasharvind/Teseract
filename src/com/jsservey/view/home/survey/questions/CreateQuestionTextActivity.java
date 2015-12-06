@@ -2,13 +2,6 @@ package com.jsservey.view.home.survey.questions;
 
 import org.json.JSONObject;
 
-import com.abx.jsservey.R;
-import com.jsservey.model.QuestionAPojo;
-import com.jsservey.model.QuestionBPojo;
-import com.jsservey.webservices.ApiRequestListner;
-import com.jsservey.webservices.ApiRequester;
-import com.jsservey.webservices.RequestCreator;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +9,6 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,12 +18,18 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.abx.jsservey.R;
+import com.jsservey.model.QuestionAPojo;
+import com.jsservey.model.QuestionBPojo;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.RequestCreator;
 
 public class CreateQuestionTextActivity extends Activity implements
 		OnItemSelectedListener, OnClickListener, OnRatingBarChangeListener,
@@ -224,12 +222,12 @@ public class CreateQuestionTextActivity extends Activity implements
 	private void createQuestions() {
 		EditText questionText = (EditText) findViewById(R.id.create_question);
 		
-		if (questionType == 0 && null != questionText) {
+		if (questionType == 3 && null != questionText) {
 			EditText questionName = (EditText) findViewById(R.id.question_name_ed);
 			LinearLayout questionLayout = (LinearLayout) findViewById(R.id.question_type_layout);
 			createTextTypeQuestions(questionText, questionName, questionLayout);
 		
-		}
+		} 
 			else if (questionType != 0 && null != questionText) {
 			createOtherTypeQuestions(questionText);
 			
@@ -264,7 +262,7 @@ public class CreateQuestionTextActivity extends Activity implements
 			break;
 		}
 		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-		new ApiRequester(getApplicationContext(), requestCreator.createQuestionA(survey_id, questionAPojo.getQuestionName(), ""+questionAPojo.getQuestionText(), ""+questionAPojo.getQuestionType(), ""+questionAPojo.getOtherValue(), ""+questionAPojo.getMaxValue()), new ApiRequestListner() {
+		new ApiRequester(getApplicationContext(), requestCreator.createQuesOther(survey_id, questionAPojo.getQuestionName(), ""+questionAPojo.getQuestionText(), ""+questionAPojo.getQuestionType(), ""+questionAPojo.getOtherValue(), ""+questionAPojo.getMaxValue()), new ApiRequestListner() {
 			
 			@Override
 			public String onSuccess(JSONObject result) {
@@ -304,7 +302,7 @@ public class CreateQuestionTextActivity extends Activity implements
 		
 		textPojo.setQuestionName(questionName.getText().toString());
 		textPojo.setQuestionText(questionText.getText().toString());
-		textPojo.setQuestionType(questionType);
+		textPojo.setQuestionType(""+questionType);
 		textPojo.setOption1(opt1.getText().toString().equals("") ? "null" : opt1.getText().toString());
 		textPojo.setOption2(opt2.getText().toString().equals("") ? "null" : opt2.getText().toString());
 		textPojo.setOption3(opt3.getText().toString().equals("") ? "null" : opt3.getText().toString());
@@ -316,7 +314,7 @@ public class CreateQuestionTextActivity extends Activity implements
 		textPojo.setOption9(opt9.getText().toString().equals("") ? "null" : opt9.getText().toString());
 		textPojo.setOption10(opt10.getText().toString().equals("")  ? "null" : opt10.getText().toString());
 		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-		new ApiRequester(getApplicationContext(), requestCreator.createQuestionB(textPojo,survey_id, textPojo.getQuestionName(), ""+textPojo.getQuestionText(), ""+textPojo.getQuestionType()), new ApiRequestListner() {
+		new ApiRequester(getApplicationContext(), requestCreator.createQuesText(textPojo,survey_id, textPojo.getQuestionName(), textPojo.getQuestionText(), textPojo.getQuestionType()), new ApiRequestListner() {
 			
 			@Override
 			public String onSuccess(JSONObject result) {

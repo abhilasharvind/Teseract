@@ -2,14 +2,6 @@ package com.jsservey.view.home.survey;
 
 import org.json.JSONObject;
 
-import com.abx.jsservey.R;
-import com.jsservey.database.SQLiteHelper;
-import com.jsservey.utils.Utility;
-import com.jsservey.view.home.survey.questions.QuestionsDisplayActivity;
-import com.jsservey.webservices.ApiRequestListner;
-import com.jsservey.webservices.ApiRequester;
-import com.jsservey.webservices.SurveyRequestCreator;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +10,14 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.abx.jsservey.R;
+import com.jsservey.database.SQLiteHelper;
+import com.jsservey.utils.Utility;
+import com.jsservey.view.home.survey.questions.QuestionsDisplayActivity;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.SurveyRequestCreator;
 
 public class StartSurveyActivity extends Activity{
 	@Override

@@ -1,13 +1,13 @@
 package com.jsservey.view.home.survey.questions;
 
-import com.abx.jsservey.R;
-import com.jsservey.utils.Utility;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+
+import com.abx.jsservey.R;
+import com.jsservey.utils.Utility;
 
 public class ThankyouActivity  extends Activity {
 

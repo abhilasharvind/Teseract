@@ -1,7 +1,5 @@
 package com.jsservey.view.reportandabout;
 
-import com.abx.jsservey.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -13,6 +11,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import com.abx.jsservey.R;
 
 public class ReportActivity extends Activity {private WebView webview;
 private static final String TAG = "Main";

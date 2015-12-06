@@ -2,10 +2,6 @@ package com.adapters;
 
 import java.util.ArrayList;
 
-import com.abx.jsservey.R;
-import com.interfaces.QuestionPopUpListner;
-import com.jsservey.model.Question;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
+
+import com.abx.jsservey.R;
+import com.interfaces.QuestionPopUpListner;
+import com.jsservey.model.Question;
 
 public class QuestionListAdapter  extends BaseAdapter implements OnClickListener{
 

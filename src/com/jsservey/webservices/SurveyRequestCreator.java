@@ -1,11 +1,11 @@
 package com.jsservey.webservices;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.jsservey.utils.AppPref;
 import com.jsservey.utils.PrefConstant;
 import com.jsservey.utils.Utility;
-
-import android.content.Context;
-import android.util.Log;
 
 public class SurveyRequestCreator implements URLConstants{
 	private Context context;
