@@ -1,9 +1,9 @@
 package com.jsservey.view.home.survey.questions;
 
-import com.abx.jsservey.R;
-
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.abx.jsservey.R;
 
 
 public class QuestionProgressActivity extends Activity{

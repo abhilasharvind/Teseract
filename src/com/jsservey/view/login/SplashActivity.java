@@ -3,6 +3,10 @@ package com.jsservey.view.login;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Window;
+
 import com.abx.jsservey.R;
 import com.jsservey.database.SQLiteHelper;
 import com.jsservey.utils.AppPref;
@@ -15,10 +19,6 @@ import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
 import com.jsservey.webservices.SurveyRequestCreator;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Window;
 
 public class SplashActivity extends BaseActivity implements ApiRequestListner{	
 	

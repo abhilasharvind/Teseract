@@ -6,14 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.abx.jsservey.R;
-import com.jsservey.database.SQLiteHelper;
-import com.jsservey.model.Answer;
-import com.jsservey.model.Question;
-import com.jsservey.model.SurveySubmitData;
-import com.jsservey.utils.Utility;
-import com.jsservey.view.home.HomeActivity;
-
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -27,6 +19,17 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
+
+import com.abx.jsservey.R;
+import com.jsservey.database.SQLiteHelper;
+import com.jsservey.model.Answer;
+import com.jsservey.model.Question;
+import com.jsservey.model.SurveySubmitData;
+import com.jsservey.utils.Utility;
+import com.jsservey.view.home.HomeActivity;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.QuestionRequestCreator;
 
 public class QuestionsDisplayActivity extends Activity implements
 		OnClickListener,OnRatingBarChangeListener {
@@ -231,6 +234,31 @@ public void onConfigurationChanged(Configuration newConfig) {
 				Utility.startActivity(QuestionsDisplayActivity.this,
 						CustomerInfoActivity.class);
 				// load thank you page
+				//
+				QuestionRequestCreator questionRequestCreator = new QuestionRequestCreator(getApplicationContext());
+				for (SurveySubmitData data : submitanswerArr) {
+					new ApiRequester(getApplicationContext(), questionRequestCreator.surveyData(data, "123"), new ApiRequestListner() {
+						
+						@Override
+						public String onSuccess(JSONObject result) {
+							// TODO Auto-generated method stub
+							return null;
+						}
+						
+						@Override
+						public String onStarted() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+						
+						@Override
+						public String onFailed() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+					}).execute("");
+					
+				}
 			}
 
 			break;
@@ -241,6 +269,7 @@ public void onConfigurationChanged(Configuration newConfig) {
 				setContent(questionsArray.get(questionNumber).getType_id(),
 						questionsArray.get(questionNumber).getAnswerlist(),
 						questionNumber);
+				questionsArray.remove(questionNumber);
 			}
 
 			break;
@@ -262,6 +291,8 @@ public void onConfigurationChanged(Configuration newConfig) {
 		SurveySubmitData data = new SurveySubmitData();
 		data.setQues_id(questionsArray.get(questionNumber).getQuestion_id());
 		if (type.equals("3")) {//text
+			data.setAns_id(selectedAnsId);
+			data.setAns_value("");
 
 		} else if (type.equals("4")) {//rating
 			data.setAns_id("");
@@ -276,6 +307,7 @@ public void onConfigurationChanged(Configuration newConfig) {
 			data.setAns_id("");
 
 		}
+		submitanswerArr.add(data);
 	}
 
 	@Override

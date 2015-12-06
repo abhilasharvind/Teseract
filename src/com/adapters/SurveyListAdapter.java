@@ -2,10 +2,6 @@ package com.adapters;
 
 import java.util.ArrayList;
 
-import com.abx.jsservey.R;
-import com.interfaces.EditDeleteUpdate_listner;
-import com.jsservey.model.Survey;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +15,10 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
+
+import com.abx.jsservey.R;
+import com.interfaces.EditDeleteUpdate_listner;
+import com.jsservey.model.Survey;
 
 public class SurveyListAdapter extends BaseAdapter implements OnClickListener{
 

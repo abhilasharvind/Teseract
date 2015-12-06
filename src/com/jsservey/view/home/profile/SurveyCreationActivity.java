@@ -4,11 +4,6 @@ import java.util.Calendar;
 
 import org.json.JSONObject;
 
-import com.abx.jsservey.R;
-import com.jsservey.webservices.ApiRequestListner;
-import com.jsservey.webservices.ApiRequester;
-import com.jsservey.webservices.RequestCreator;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -27,6 +22,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.abx.jsservey.R;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.RequestCreator;
 
 public class SurveyCreationActivity extends Activity implements OnClickListener,ApiRequestListner {
 	private Calendar calendar;

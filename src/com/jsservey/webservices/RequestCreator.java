@@ -3,14 +3,14 @@ package com.jsservey.webservices;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.jsservey.model.NewUser;
 import com.jsservey.model.QuestionBPojo;
 import com.jsservey.utils.AppPref;
 import com.jsservey.utils.PrefConstant;
 import com.jsservey.utils.Utility;
-
-import android.content.Context;
-import android.util.Log;
 
 public class RequestCreator implements URLConstants{
 	private Context context;

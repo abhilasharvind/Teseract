@@ -4,13 +4,6 @@ import java.util.Calendar;
 
 import org.json.JSONObject;
 
-import com.abx.jsservey.R;
-import com.jsservey.database.SQLiteHelper;
-import com.jsservey.model.Profile;
-import com.jsservey.webservices.ApiRequestListner;
-import com.jsservey.webservices.ApiRequester;
-import com.jsservey.webservices.RequestCreator;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -27,6 +20,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.abx.jsservey.R;
+import com.jsservey.database.SQLiteHelper;
+import com.jsservey.model.Profile;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.RequestCreator;
 
 public class ProfileCreationActivity extends Activity implements OnClickListener,ApiRequestListner{
 	private DatePicker datePicker;

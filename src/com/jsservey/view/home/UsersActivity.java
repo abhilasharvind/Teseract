@@ -1,8 +1,8 @@
 package com.jsservey.view.home;
 
-import com.jsservey.view.BaseActivity;
-
 import android.os.Bundle;
+
+import com.jsservey.view.BaseActivity;
 
 public class UsersActivity extends BaseActivity{
 	@Override

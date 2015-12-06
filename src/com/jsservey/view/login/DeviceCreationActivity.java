@@ -3,12 +3,6 @@ package com.jsservey.view.login;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.abx.jsservey.R;
-import com.jsservey.utils.Utility;
-import com.jsservey.webservices.ApiRequestListner;
-import com.jsservey.webservices.ApiRequester;
-import com.jsservey.webservices.RequestCreator;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +11,12 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.abx.jsservey.R;
+import com.jsservey.utils.Utility;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.RequestCreator;
 
 public class DeviceCreationActivity extends Activity {
 	@Override

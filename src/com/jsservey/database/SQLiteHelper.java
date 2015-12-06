@@ -5,17 +5,17 @@ package com.jsservey.database;
 
 import java.util.ArrayList;
 
-import com.jsservey.model.Profile;
-import com.jsservey.model.ProfileHugePojo;
-import com.jsservey.model.RegistrationDetailsBean;
-import com.jsservey.model.Survey;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.jsservey.model.Profile;
+import com.jsservey.model.ProfileHugePojo;
+import com.jsservey.model.RegistrationDetailsBean;
+import com.jsservey.model.Survey;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
 

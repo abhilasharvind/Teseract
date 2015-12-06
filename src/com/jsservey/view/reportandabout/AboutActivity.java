@@ -1,10 +1,10 @@
 package com.jsservey.view.reportandabout;
 
-import com.abx.jsservey.R;
-import com.jsservey.view.BaseActivity;
-
 import android.os.Bundle;
 import android.util.Log;
+
+import com.abx.jsservey.R;
+import com.jsservey.view.BaseActivity;
 
 public class AboutActivity extends BaseActivity {
 	@Override

@@ -2,17 +2,17 @@ package com.jsservey.view.home.survey.questions;
 
 import org.json.JSONObject;
 
-import com.abx.jsservey.R;
-import com.jsservey.utils.Utility;
-import com.jsservey.webservices.ApiRequestListner;
-import com.jsservey.webservices.ApiRequester;
-import com.jsservey.webservices.RequestCreator;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+
+import com.abx.jsservey.R;
+import com.jsservey.utils.Utility;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.RequestCreator;
 
 public class CustomerInfoActivity extends Activity implements ApiRequestListner{
 

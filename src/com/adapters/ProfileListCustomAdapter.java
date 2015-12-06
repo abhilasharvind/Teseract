@@ -2,12 +2,6 @@ package com.adapters;
 
 import java.util.ArrayList;
 
-import com.abx.jsservey.R;
-import com.interfaces.EditDeleteUpdate_listner;
-import com.jsservey.model.Profile;
-import com.jsservey.utils.AppPref;
-import com.jsservey.utils.PrefConstant;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +14,12 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
+
+import com.abx.jsservey.R;
+import com.interfaces.EditDeleteUpdate_listner;
+import com.jsservey.model.Profile;
+import com.jsservey.utils.AppPref;
+import com.jsservey.utils.PrefConstant;
 
 public class ProfileListCustomAdapter extends BaseAdapter implements OnClickListener{
 

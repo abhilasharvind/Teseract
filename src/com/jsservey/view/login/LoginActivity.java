@@ -5,6 +5,14 @@ package com.jsservey.view.login;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import com.abx.jsservey.R;
 import com.jsservey.utils.Utility;
 import com.jsservey.view.BaseActivity;
@@ -13,14 +21,6 @@ import com.jsservey.view.home.survey.StartSurveyActivity;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Toast;
 
 public class LoginActivity extends BaseActivity implements ApiRequestListner{
 	

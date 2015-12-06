@@ -3,14 +3,6 @@ package com.jsservey.view;
 
 import org.json.JSONObject;
 
-import com.abx.jsservey.R;
-import com.jsservey.utils.Utility;
-import com.jsservey.view.home.HomeActivity;
-import com.jsservey.view.login.LoginActivity;
-import com.jsservey.webservices.ApiRequestListner;
-import com.jsservey.webservices.ApiRequester;
-import com.jsservey.webservices.RequestCreator;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -20,6 +12,14 @@ import android.view.Window;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.Toast;
+
+import com.abx.jsservey.R;
+import com.jsservey.utils.Utility;
+import com.jsservey.view.home.HomeActivity;
+import com.jsservey.view.login.LoginActivity;
+import com.jsservey.webservices.ApiRequestListner;
+import com.jsservey.webservices.ApiRequester;
+import com.jsservey.webservices.RequestCreator;
 
 public class BaseActivity extends Activity{
 	@Override
