@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.abx.jsservey.R;
@@ -32,7 +34,7 @@ import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.QuestionRequestCreator;
 
 public class QuestionsDisplayActivity extends Activity implements
-		OnClickListener,OnRatingBarChangeListener {
+		OnClickListener,OnRatingBarChangeListener,OnSeekBarChangeListener {
 	LinearLayout questionLayout;
 	ArrayList<Answer> answerlist;
 	ArrayList<Question> questionsArray;
@@ -45,6 +47,7 @@ public class QuestionsDisplayActivity extends Activity implements
 	Button backButton;int gocrazycount=0;
 	String ratingValue="";
 	String selectedAnsId="";
+	private TextView seekValueText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -165,6 +168,10 @@ public void onConfigurationChanged(Configuration newConfig) {
 			View answerView = getLayoutInflater().inflate(R.layout.question_type_seek_layout, questionLayout, false);
 			questionLayout.removeAllViews();
 			questionLayout.addView(answerView);
+			seekValueText = (TextView) findViewById(R.id.seek_max);
+			SeekBar answerSeek = (SeekBar) answerView
+					.findViewById(R.id.answer_seek);
+			answerSeek.setOnSeekBarChangeListener(this);
 		} else if (type.equalsIgnoreCase("6")) {//smiley
 			questionText.setText(questionsArray.get(questionNumber)
 					.getQuestion());
@@ -332,6 +339,21 @@ public void onConfigurationChanged(Configuration newConfig) {
 			
 		});
 		
+	}
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress,
+			boolean fromUser) {
+		
+	}
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		int progessValue = seekBar.getProgress();
+		seekValueText.setText(progessValue + "");
 	}
 	
 }

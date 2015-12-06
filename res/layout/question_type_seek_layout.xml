@@ -29,7 +29,7 @@
         android:layout_gravity="center_vertical" >
 
         <SeekBar
-            android:id="@+id/seekBar1"
+            android:id="@+id/answer_seek"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:progressDrawable="@drawable/seek_bar_style"
@@ -40,16 +40,16 @@
             android:id="@+id/seek_min"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/seekBar1"
-            android:text="1"
-            android:layout_alignLeft="@id/seekBar1"/>
+            android:layout_below="@id/answer_seek"
+            android:text="0"
+            android:layout_alignLeft="@id/answer_seek"/>
          <TextView 
              android:id="@+id/seek_max"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/seekBar1"
-            android:text="100"
-            android:layout_alignRight="@id/seekBar1"/>
+            android:layout_below="@id/answer_seek"
+            android:text=""
+            android:layout_alignRight="@id/answer_seek"/>
 
         
     </RelativeLayout>
