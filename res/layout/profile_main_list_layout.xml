@@ -27,7 +27,8 @@
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        android:background="@drawable/theme_background" >
 
         <ListView
             android:id="@+id/listView"

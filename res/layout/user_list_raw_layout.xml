@@ -21,22 +21,22 @@
 
         <ImageView
             android:id="@+id/profile_tick"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
             android:src="@drawable/selcted" />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/profile_tick"
             android:padding="5dp"
             android:text="TextView"
             android:textColor="@color/black"
-            android:textSize="25dp" />
+            android:textSize="20dp" />
 
     </RelativeLayout>
 
