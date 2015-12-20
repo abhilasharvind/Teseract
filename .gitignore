@@ -7,3 +7,4 @@ bin/classes.dex
 *.class
 
 *.dex
+gen/com/abx/jsservey/R.java

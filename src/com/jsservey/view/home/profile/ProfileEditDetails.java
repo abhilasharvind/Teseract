@@ -1,4 +1,5 @@
 package com.jsservey.view.home.profile;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -14,12 +15,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.abx.jsservey.R;
 import com.jsservey.database.SQLiteHelper;
@@ -29,7 +30,7 @@ import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
 
-public class ProfileCreationActivity extends Activity implements OnClickListener,ApiRequestListner{
+public class ProfileEditDetails extends Activity implements OnClickListener,ApiRequestListner{
 	private DatePicker datePicker;
 	private Calendar calendar;
 	private TextView dateView;
@@ -37,6 +38,9 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 	CheckBox childVisibleCheckbox;
 	CheckBox validUpto;
 	StringBuilder selectedDate;
+	ProfileDetails profileDetails;
+	EditText profile_name_ed;
+	CheckBox childSelectionCheckbox;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,7 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 		year = calendar.get(Calendar.YEAR);
 		month = calendar.get(Calendar.MONTH);
 		day = calendar.get(Calendar.DAY_OF_MONTH);
-		initView();
+		initView();  
 	}
 
 
@@ -56,11 +60,12 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 		Button setDate = (Button) findViewById(R.id.set_date);
 		 validUpto = (CheckBox) findViewById(R.id.valid_upto_checkbox);
 		 childVisibleCheckbox = (CheckBox) findViewById(R.id.child_visible_checkBox);
-		final CheckBox childSelectionCheckbox = (CheckBox) findViewById(R.id.child_selection_checkBox);
+		  childSelectionCheckbox = (CheckBox) findViewById(R.id.child_selection_checkBox);
 		final LinearLayout datePickerLayout = (LinearLayout) findViewById(R.id.date_picker_layout);
 		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		datePickerLayout.setVisibility(View.GONE);
 		setDate.setOnClickListener(this);
+		populateDetails(profileDetails);
 		validUpto.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -83,7 +88,9 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 				}
 			}
 		});
-		final EditText profile_name_ed =(EditText)findViewById(R.id.profile_name);
+		  profile_name_ed =(EditText)findViewById(R.id.profile_name);
+		
+		
 		findViewById(R.id.create_profile_bt).setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -96,10 +103,20 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 				profileDetails.setChildVisible(childVisibleCheckbox.isChecked());
 				profileDetails.setChildSelection(childSelectionCheckbox.isChecked());
 				profileDetails.setSelectedDate(selectedDate.toString());
-				new ApiRequester(ProfileCreationActivity.this, requestCreator.createProfile(pf_name), ProfileCreationActivity.this).execute("");
+				new ApiRequester(ProfileEditDetails.this, requestCreator.createProfile(pf_name), ProfileEditDetails.this).execute("");
 				//new DbInsertDbop(pf_name).execute("");
 			}
 		});
+	}
+
+
+	private void populateDetails(ProfileDetails profileDetails) {
+		profile_name_ed.setText(profileDetails.getProfileName());
+		validUpto.setChecked(profileDetails.isValidUpto());
+		childVisibleCheckbox.setChecked(profileDetails.isChildVisible());
+		childSelectionCheckbox.setChecked(profileDetails.isChildSelection());
+		dateView.setText(profileDetails.getSelectedDate());
+		
 	}
 
 
