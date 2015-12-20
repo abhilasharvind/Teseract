@@ -190,7 +190,7 @@ EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext())
 		public String onSuccess(JSONObject result) {
 			fetchANDreload();	
 			loddingIndicator(0);
-			Toast.makeText(QuestionListActivity.this, "Question has been Deleted", 1500).show();
+			Toast.makeText(QuestionListActivity.this, "Question has been Deleted", Toast.LENGTH_LONG).show();
 			return null;
 		}
 		
@@ -219,7 +219,7 @@ new ApiRequester(this, editUpdateDelete.questionVisibility(id, 1), new ApiReques
 		public String onSuccess(JSONObject result) {
 			
 			loddingIndicator(View.GONE);
-			Toast.makeText(QuestionListActivity.this, "Question has been Deleted", 1500).show();
+			Toast.makeText(QuestionListActivity.this, "Question has been Deleted", Toast.LENGTH_LONG).show();
 			return null;
 		}
 		
@@ -247,7 +247,7 @@ public void onInVisible(int type, String id) {
 			@Override
 			public String onSuccess(JSONObject result) {
 				loddingIndicator(0);
-				Toast.makeText(QuestionListActivity.this, "Question has been Deleted", 1500).show();
+				Toast.makeText(QuestionListActivity.this, "Question has been Deleted", Toast.LENGTH_LONG).show();
 				return null;
 			}
 			

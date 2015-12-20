@@ -30,7 +30,7 @@ import com.jsservey.webservices.RequestCreator;
 
 public class SurveyCreationActivity extends Activity implements OnClickListener,ApiRequestListner {
 	private Calendar calendar;
-	private TextView dateView;
+	//private TextView dateView;
 	private int year, month, day , hour,minute;
 	private boolean is24HourView = false;
 	private int dateViewId;
@@ -38,7 +38,7 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 	private TextView selectedFromDate;
 	private TextView selectedToDate;
 	private Button setDateBtn, fromDateBtn, toDateBtn;
-	private ToggleButton toggleButton1;
+	//private ToggleButton toggleButton1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class SurveyCreationActivity extends Activity implements OnClickListener,
 		Bundle bundle= getIntent().getExtras();
 		final String pf_id=bundle.getString("pf_id");
 		initView();
-		LinearLayout scheduleSurveyLayout = (LinearLayout) findViewById(R.id.schedule_survey_layout);
+		//LinearLayout scheduleSurveyLayout = (LinearLayout) findViewById(R.id.schedule_survey_layout);
 		final EditText survey_name_ed =(EditText)findViewById(R.id.survey_name_ed);
 		findViewById(R.id.create_survey).setOnClickListener(new View.OnClickListener() {
 			

@@ -9,12 +9,10 @@ import com.jsservey.utils.PrefConstant;
 import com.jsservey.utils.Utility;
 
 public class QuestionRequestCreator implements URLConstants{
-	private Context context;
 	String dbname;
 	String deviceId;
 	private QuestionRequestCreator(){}
 	public QuestionRequestCreator(Context context){
-		this.context=context;
 		AppPref appPref = new AppPref(context);
 		this.dbname= appPref.getString(PrefConstant.DB_NAME);
 		this.deviceId=Utility.getDeviceId(context);

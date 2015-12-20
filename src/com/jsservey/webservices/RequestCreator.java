@@ -13,12 +13,12 @@ import com.jsservey.utils.PrefConstant;
 import com.jsservey.utils.Utility;
 
 public class RequestCreator implements URLConstants{
-	private Context context;
+	//private Context context;
 	String dbname;
 	String deviceId;
 	private RequestCreator(){}
 	public RequestCreator(Context context){
-		this.context=context;
+		//this.context=context;
 		AppPref appPref = new AppPref(context);
 		this.dbname= appPref.getString(PrefConstant.DB_NAME);
 		this.deviceId=Utility.getDeviceId(context);

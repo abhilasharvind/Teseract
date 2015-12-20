@@ -29,7 +29,7 @@ import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
 
 public class ProfileCreationActivity extends Activity implements OnClickListener,ApiRequestListner{
-	private DatePicker datePicker;
+	//private DatePicker datePicker;
 	private Calendar calendar;
 	private TextView dateView;
 	private int year, month, day;

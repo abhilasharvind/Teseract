@@ -19,7 +19,7 @@
             android:padding="10dp"
             android:text="@string/question_answer"
             android:textColor="@android:color/holo_blue_dark"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/question_name_ed"

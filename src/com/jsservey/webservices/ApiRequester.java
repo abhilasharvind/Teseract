@@ -21,7 +21,7 @@ import android.util.Log;
 
 public class ApiRequester extends AsyncTask<String, Void, JSONObject> implements URLConstants {
 
-	private Context context;
+	//private Context context;
 	ApiRequestListner apiRequestListner;
 	private boolean timeOut = false;
 	private String url;
@@ -29,7 +29,7 @@ public class ApiRequester extends AsyncTask<String, Void, JSONObject> implements
 
 	public ApiRequester(Context context,String url,ApiRequestListner apiRequestListner) {
 
-		this.context = context;
+		//this.context = context;
 		this.apiRequestListner=apiRequestListner;
 		this.url=url;
 		
