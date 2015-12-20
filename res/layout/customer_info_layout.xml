@@ -19,7 +19,7 @@
             android:layout_gravity="center_horizontal"
             android:padding="10dp"
             android:text="Customer Information"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout

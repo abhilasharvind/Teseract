@@ -18,13 +18,13 @@
             android:layout_height="20dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
-        
-        <TextView 
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loading..."
-             android:layout_centerHorizontal="true"
-            android:layout_below="@id/home_pg"/>
+            android:layout_below="@id/home_pg"
+            android:layout_centerHorizontal="true"
+            android:text="Loading..." />
     </RelativeLayout>
 
     <ScrollView
@@ -143,19 +143,20 @@
                     android:text="@string/about_text"
                     android:textSize="15sp" />
             </LinearLayout>
+
             <Button
-                    android:id="@+id/start_srvey_bt"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_weight="2"
-                    android:background="@android:color/holo_green_light"
-                    android:gravity="left|bottom"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="Start Survey"
-                    android:textSize="15sp" />
+                android:id="@+id/start_srvey_bt"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="2"
+                android:background="@android:color/holo_green_light"
+                android:gravity="left|bottom"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:text="Start Survey"
+                android:textSize="15sp" />
         </LinearLayout>
     </ScrollView>
 

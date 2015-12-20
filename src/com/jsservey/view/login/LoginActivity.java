@@ -89,7 +89,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 				}				
 				finish();
 			}else{
-				Toast.makeText(this, "Login failed!", 1000).show();
+				Toast.makeText(this, "Login failed!", Toast.LENGTH_SHORT).show();
 			}
 			
 		} catch (JSONException e) {
@@ -104,14 +104,14 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 	@Override
 	public String onFailed() {
 		
-		Toast.makeText(this, "Login Failed!", 1000).show();
+		Toast.makeText(this, "Login Failed!", Toast.LENGTH_SHORT).show();
 		loddingIndicator(View.GONE);
 		return null;
 	}
 
 	@Override
 	public String onStarted() {
-		Toast.makeText(this, "Login Initiated!", 1000).show();
+		Toast.makeText(this, "Login Initiated!", Toast.LENGTH_SHORT).show();
 		return null;
 	}
 

@@ -186,7 +186,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	}
 	public String getSurveyQuestions() {
 		String query = "SELECT * FROM "+SURVEYQUESTIONS_TABLE;
-		Profile profile = new Profile();
+		//Profile profile = new Profile();
 		SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 		Cursor cursor = sqLiteDatabase.rawQuery(query, null);
 		cursor.moveToFirst();
@@ -459,8 +459,7 @@ public ArrayList<Survey>  getSurvey() {
 		String firstName = cursor.getString(cursor.getColumnIndex(USER_FIRST_NAME));
 		String lastName = cursor.getString(cursor.getColumnIndex(USER_LAST_NAME));
 		String password = cursor.getString(cursor.getColumnIndex(USER_PASSWORD));
-		String confirmPassword = cursor.getString(cursor
-				.getColumnIndex(USER_CONFIRM_PASSWORD));
+		//String confirmPassword = cursor.getString(cursor.getColumnIndex(USER_CONFIRM_PASSWORD));
 		RegistrationDetailsBean detailsBean = new RegistrationDetailsBean();
 		detailsBean.setUserName(userName);
 		detailsBean.setFirstName(firstName);

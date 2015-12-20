@@ -8,12 +8,12 @@ import com.jsservey.utils.PrefConstant;
 import com.jsservey.utils.Utility;
 
 public class SurveyRequestCreator implements URLConstants{
-	private Context context;
+	//private Context context;
 	String dbname;
 	String deviceId;
 	private SurveyRequestCreator(){}
 	public SurveyRequestCreator(Context context){
-		this.context=context;
+		//this.context=context;
 		AppPref appPref = new AppPref(context);
 		this.dbname= appPref.getString(PrefConstant.DB_NAME);
 		this.deviceId=Utility.getDeviceId(context);

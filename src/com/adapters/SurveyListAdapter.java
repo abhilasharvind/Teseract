@@ -24,9 +24,9 @@ public class SurveyListAdapter extends BaseAdapter implements OnClickListener{
 
 	//private String[] result;
 	private Context context;
-	private int[] imageId;
+	//private int[] imageId;
 	private ArrayList<Survey> surveyArray;
-	public static int[] prgmImages = { R.drawable.more_button_icon,R.drawable.more_button_icon,R.drawable.more_button_icon,R.drawable.more_button_icon };
+	//public static int[] prgmImages = { R.drawable.more_button_icon,R.drawable.more_button_icon,R.drawable.more_button_icon,R.drawable.more_button_icon };
 	//public static String[] prgmNameList = { "user 1", "user 2", "user 3",	"user 4" };
 	private static LayoutInflater inflater = null;
 	EditDeleteUpdate_listner editDeleteUpdate_listner;
@@ -34,7 +34,7 @@ public class SurveyListAdapter extends BaseAdapter implements OnClickListener{
 		// TODO Auto-generated constructor stub
 		//this.result = prgmNameList;
 		this.context = context;
-		this.imageId = prgmImages;
+		//this.imageId = prgmImages;
 		inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.surveyArray=surveyArray;

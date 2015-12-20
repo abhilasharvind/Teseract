@@ -55,9 +55,9 @@ public class EditUpdateDelete implements URLConstants{
 		return url;
 	}
 	public String questionDelete(String qu_id){
-		String url=BASE_URL;	
-		//http://106.51.126.62:8080/SurveyAPI/LoginServlet?questionanswers=true&dbName=csfeedback&deviceId=123456&surveyId=1&profileId=1
-		url=url+"SurveyAPI/LoginServlet?questiondeletion=true&dbName="+dbname+"&deviceId="+deviceId+"&questionId="+qu_id;
+		String url=BASE_URL;
+		url=url+"SurveyAPI/LoginServlet?surveydeletion=true&dbName="+dbname+"&deviceId="+deviceId+"&surveyId="+qu_id;
+
 		Log.d("abx", url);
 		return url;
 	}

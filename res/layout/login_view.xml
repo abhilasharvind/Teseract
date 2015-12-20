@@ -89,8 +89,8 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/round_corner"
             android:text="@string/login"
-            android:textSize="20dp" 
-            android:textColor="@color/BG_BLUE_HEADER"/>
+            android:textColor="@color/BG_BLUE_HEADER"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/signup_textview"
@@ -99,14 +99,14 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:text="@string/register_account"
-            
-            android:textSize="15dp" />
+            android:textSize="15sp" />
     </LinearLayout>
-<RelativeLayout
+
+    <RelativeLayout
         android:id="@+id/home_pg_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-      android:visibility="gone" >
+        android:visibility="gone" >
 
         <ProgressBar
             android:id="@+id/home_pg"
@@ -114,12 +114,13 @@
             android:layout_height="20dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
-        
-        <TextView 
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loading..."
-             android:layout_centerHorizontal="true"
-            android:layout_below="@id/home_pg"/>
+            android:layout_below="@id/home_pg"
+            android:layout_centerHorizontal="true"
+            android:text="Loading..." />
     </RelativeLayout>
+
 </RelativeLayout>
