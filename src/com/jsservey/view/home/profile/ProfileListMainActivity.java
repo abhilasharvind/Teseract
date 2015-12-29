@@ -169,7 +169,12 @@ public void onClick(View arg0) {
 
 @Override
 public void onEditTaskStart(int type, String id) {
-	Toast.makeText(this, "Unable to edit profile"+id, 1000).show();
+	Bundle bundle = new Bundle();
+	bundle.putString("pf_id", id);
+	Intent intent = new Intent(ProfileListMainActivity.this, ProfileEditDetails.class);
+	intent.putExtras(bundle);
+	startActivity(intent);
+	
 	
 }
 

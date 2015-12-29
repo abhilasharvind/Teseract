@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.abx.jsservey.R;
 import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Profile;
 import com.jsservey.model.ProfileDetails;
+import com.jsservey.utils.Utility;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
@@ -37,6 +39,7 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 	CheckBox childVisibleCheckbox;
 	CheckBox validUpto;
 	StringBuilder selectedDate;
+	ProfileDetails profileDetails;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,8 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 		final LinearLayout datePickerLayout = (LinearLayout) findViewById(R.id.date_picker_layout);
 		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		datePickerLayout.setVisibility(View.GONE);
+		Button profileEditButton = (Button) findViewById(R.id.profile_edit_button);
+		profileEditButton.setOnClickListener(this);
 		setDate.setOnClickListener(this);
 		validUpto.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
@@ -90,7 +95,7 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 			public void onClick(View arg0) {
 				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 				String pf_name=profile_name_ed.getText().toString();
-				ProfileDetails profileDetails = new ProfileDetails();
+				 profileDetails = new ProfileDetails();
 				profileDetails.setProfileName(profile_name_ed.getText().toString());
 				profileDetails.setValidUpto(validUpto.isChecked());
 				profileDetails.setChildVisible(childVisibleCheckbox.isChecked());
@@ -128,8 +133,15 @@ public class ProfileCreationActivity extends Activity implements OnClickListener
 
 	@Override
 	public void onClick(View view) {
-		if(view.getId() == R.id.set_date)
+		if(view.getId() == R.id.set_date){
 		showDialog(999);	
+		}else if(view.getId() == R.id.profile_edit_button){
+			Bundle bundle = new Bundle();
+			bundle.putSerializable("profileDetails", profileDetails);
+			Intent intent = new Intent(ProfileCreationActivity.this, ProfileEditDetails.class);
+			intent.putExtras(bundle);
+			startActivity(intent);
+		}
 	}
 	public class DbInsertDbop extends AsyncTask<String, Void, ArrayList<Profile>>{
 		String prof_name;

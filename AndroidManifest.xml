@@ -63,6 +63,8 @@
         </activity>
         <activity android:name="com.jsservey.view.home.survey.questions.CustomerInfoActivity" >
         </activity>
+        <activity android:name="com.jsservey.view.home.profile.ProfileEditDetails" >
+        </activity>
     </application>
 
 </manifest>

@@ -51,6 +51,8 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 		year = calendar.get(Calendar.YEAR);
 		month = calendar.get(Calendar.MONTH);
 		day = calendar.get(Calendar.DAY_OF_MONTH);
+		Bundle bundle= getIntent().getExtras();
+		final String profile_id=bundle.getString("pf_id");
 		initView();  
 	}
 
@@ -60,7 +62,7 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 		Button setDate = (Button) findViewById(R.id.set_date);
 		 validUpto = (CheckBox) findViewById(R.id.valid_upto_checkbox);
 		 childVisibleCheckbox = (CheckBox) findViewById(R.id.child_visible_checkBox);
-		  childSelectionCheckbox = (CheckBox) findViewById(R.id.child_selection_checkBox);
+		 childSelectionCheckbox = (CheckBox) findViewById(R.id.child_selection_checkBox);
 		final LinearLayout datePickerLayout = (LinearLayout) findViewById(R.id.date_picker_layout);
 		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		datePickerLayout.setVisibility(View.GONE);

@@ -1,6 +1,8 @@
 package com.jsservey.model;
 
-public class ProfileDetails {
+import java.io.Serializable;
+
+public class ProfileDetails implements Serializable{
 	String profileName;
 	boolean isValidUpto;
 	boolean isChildVisible;

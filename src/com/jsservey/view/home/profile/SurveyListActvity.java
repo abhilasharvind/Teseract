@@ -177,7 +177,11 @@ public void onClick(View arg0) {
 
 @Override
 public void onEditTaskStart(int type, String id) {
-	// TODO Auto-generated method stub
+	Bundle bundle = new Bundle();
+	bundle.putString("survey_id", id);
+	Intent intent = new Intent(SurveyListActvity.this, SurveyEditDetails.class);
+	intent.putExtras(bundle);
+	startActivity(intent);
 	
 }
 
