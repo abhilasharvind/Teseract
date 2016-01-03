@@ -105,6 +105,13 @@ public class RequestCreator implements URLConstants{
 		}
 		return url;
 	}
+	
+	public String editProfile(String profile_id){
+		String url=BASE_URL;	
+		url=url+"SurveyAPI/LoginServlet?profileedit=true&dbName="+dbname+"&deviceId="+deviceId+"&profileId="+profile_id;
+		Log.d("abx", "profile edit url : "+url);
+		return url;
+	}
 	public String createSurvey(String survey_name,String pf_id,String description){
 		String url=BASE_URL;	
 		

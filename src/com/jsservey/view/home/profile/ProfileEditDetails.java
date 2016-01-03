@@ -3,6 +3,7 @@ package com.jsservey.view.home.profile;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -10,6 +11,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -26,6 +28,7 @@ import com.abx.jsservey.R;
 import com.jsservey.database.SQLiteHelper;
 import com.jsservey.model.Profile;
 import com.jsservey.model.ProfileDetails;
+import com.jsservey.model.ProfileEditDetailsBean;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
@@ -53,7 +56,15 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 		day = calendar.get(Calendar.DAY_OF_MONTH);
 		Bundle bundle= getIntent().getExtras();
 		final String profile_id=bundle.getString("pf_id");
+		requestProfileDetails(profile_id);
 		initView();  
+	}
+
+
+	private void requestProfileDetails(String profile_id) {
+		Log.d("abx", "inside profilewditdetails profile id"+profile_id);
+		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+		new ApiRequester(ProfileEditDetails.this, requestCreator.editProfile(profile_id), ProfileEditDetails.this).execute("");
 	}
 
 
@@ -67,7 +78,8 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		datePickerLayout.setVisibility(View.GONE);
 		setDate.setOnClickListener(this);
-		populateDetails(profileDetails);
+		
+		//populateDetails(profileDetails);
 		validUpto.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -112,13 +124,29 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 	}
 
 
-	private void populateDetails(ProfileDetails profileDetails) {
-		profile_name_ed.setText(profileDetails.getProfileName());
-		validUpto.setChecked(profileDetails.isValidUpto());
-		childVisibleCheckbox.setChecked(profileDetails.isChildVisible());
-		childSelectionCheckbox.setChecked(profileDetails.isChildSelection());
-		dateView.setText(profileDetails.getSelectedDate());
+	private void populateDetails(ProfileEditDetailsBean profileEditDetails) {
+		profile_name_ed.setText(profileEditDetails.getProfile_name());
+		if (profileEditDetails.getValid_upto_isactive().equalsIgnoreCase("1")){
+			validUpto.setChecked(true);
+			dateView.setVisibility(View.VISIBLE);
+			dateView.setText(profileEditDetails.getValid_upto());
+		} else {
+			validUpto.setChecked(false);
+			dateView.setVisibility(View.GONE);
+		}
 		
+
+		if (profileEditDetails.getPermission_id().equalsIgnoreCase("1")){
+			childVisibleCheckbox.setChecked(true);
+		} else {
+			childVisibleCheckbox.setChecked(true);
+		}
+		if (profileEditDetails.getMultiple_survey().equalsIgnoreCase("1")){
+			childSelectionCheckbox.setChecked(true);
+		} else {
+			childSelectionCheckbox.setChecked(true);
+		}
+
 	}
 
 
@@ -186,7 +214,22 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 	}
 	@Override
 	public String onSuccess(JSONObject result) {
-		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
+		
+		ProfileEditDetailsBean profileEditDetails = new ProfileEditDetailsBean();
+		try {
+			JSONObject data = result.getJSONObject("data");
+			profileEditDetails.setProfile_name(data.getString("profile_name"));
+			profileEditDetails.setPermission_id(data.getString("permission_id"));
+			profileEditDetails.setValid_upto(data.getString("valid_upto"));
+			profileEditDetails.setValid_upto_isactive(data.getString("valid_upto_isactive"));
+			profileEditDetails.setUser_id(data.getString("user_id"));
+			profileEditDetails.setMultiple_survey(data.getString("multiple_survey"));
+			populateDetails(profileEditDetails);
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return null;
 	}
@@ -194,7 +237,6 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 
 	@Override
 	public String onFailed() {
-		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		return null;
 	}
 

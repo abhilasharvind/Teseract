@@ -39,6 +39,7 @@ public class ProfileListMainActivity extends Activity implements OnClickListener
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.profile_main_list_layout);
+		Log.d("abx", "inside profile list activity");
 		//handleHomeClick(this.findViewById(android.R.id.content));
 		//menuHandler(this.findViewById(android.R.id.content));
 		
@@ -169,6 +170,7 @@ public void onClick(View arg0) {
 
 @Override
 public void onEditTaskStart(int type, String id) {
+	Log.d("abx", "inside oneditTaskStart");
 	Bundle bundle = new Bundle();
 	bundle.putString("pf_id", id);
 	Intent intent = new Intent(ProfileListMainActivity.this, ProfileEditDetails.class);
@@ -186,6 +188,8 @@ public void onUpdtaeTaskStart(int type, String id) {
 
 @Override
 public void onDeleteTaskStart(int type, String id) {
+	Log.d("profileEdit", "inside profile listmainactivity");
+	
 	
 	EditUpdateDelete editUpdateDelete= new EditUpdateDelete(getApplicationContext());
 	
