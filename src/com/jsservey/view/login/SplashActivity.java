@@ -9,6 +9,7 @@ import android.view.Window;
 
 import com.abx.jsservey.R;
 import com.jsservey.database.SQLiteHelper;
+import com.jsservey.model.Settings;
 import com.jsservey.utils.AppPref;
 import com.jsservey.utils.PrefConstant;
 import com.jsservey.utils.Utility;
@@ -50,6 +51,33 @@ public class SplashActivity extends BaseActivity implements ApiRequestListner{
 					RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 					AppPref appPref = new AppPref(getApplicationContext());
 					appPref.putString(PrefConstant.DB_NAME, dbname);
+					new ApiRequester(getApplicationContext(), requestCreator.settings("4"), new ApiRequestListner() {
+						
+						@Override
+						public String onSuccess(JSONObject result) {
+							
+							Settings settings = new Settings(getApplicationContext());
+							try{
+							settings.setSettingsData(result.getString("phno_is_active"), result.getString("address_is_active"), result.getString("questions_left_isactive"), result.getString("bg_colour"), result.getString("layout_heading"),result.getString(" email_is_active"), result.getString("lock_is_active"), result.getString("layout_colour"), result.getString("customerinfo_is_active"), result.getString("thankyou_timeout"), result.getString("personaldesc_is_active"), result.getString("name_is_active"));
+							}catch(Exception e){
+								e.printStackTrace();
+							}
+							
+							return null;
+						}
+						
+						@Override
+						public String onStarted() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+						
+						@Override
+						public String onFailed() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+					}).execute("");
 					
 					new ApiRequester(this,requestCreator.userLoad(),new ApiRequestListner() {
 						

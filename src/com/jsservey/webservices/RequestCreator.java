@@ -151,4 +151,19 @@ public class RequestCreator implements URLConstants{
 		}
 		return url;
 	}	
+	
+	
+		public String settings( String userId){
+		String url=BASE_URL;	
+		http://localhost:8080/SurveyAPI/Login?settingsdetail=true&dbName=csfeedback&deviceId=89f68807234fa749&userId=4
+		try {
+			url=url+"SurveyAPI/LoginServlet?settingsdetail=true&dbName="+dbname+"&deviceId="+deviceId+"&userId="+userId;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return url;
+	}	
+	
+	
 }
