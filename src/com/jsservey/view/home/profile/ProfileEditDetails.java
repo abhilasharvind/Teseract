@@ -43,6 +43,7 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 	StringBuilder selectedDate;
 	ProfileDetails profileDetails;
 	EditText profile_name_ed;
+	String profile_id;
 	CheckBox childSelectionCheckbox;
 
 	@Override
@@ -55,16 +56,16 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 		month = calendar.get(Calendar.MONTH);
 		day = calendar.get(Calendar.DAY_OF_MONTH);
 		Bundle bundle= getIntent().getExtras();
-		final String profile_id=bundle.getString("pf_id");
+		profile_id=bundle.getString("pf_id");
 		requestProfileDetails(profile_id);
 		initView();  
 	}
 
 
-	private void requestProfileDetails(String profile_id) {
+	private void requestProfileDetails(String profile_id2) {
 		Log.d("abx", "inside profilewditdetails profile id"+profile_id);
 		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
-		new ApiRequester(ProfileEditDetails.this, requestCreator.editProfile(profile_id), ProfileEditDetails.this).execute("");
+		new ApiRequester(ProfileEditDetails.this, requestCreator.editProfile(profile_id2), ProfileEditDetails.this).execute("");
 	}
 
 

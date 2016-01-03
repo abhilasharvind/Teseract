@@ -53,6 +53,7 @@ public class SurveyEditDetails extends Activity implements OnClickListener,ApiRe
 		minute = calendar.get(Calendar.MINUTE);
 		Bundle bundle= getIntent().getExtras();
 		survey_id=bundle.getString("survey_id");
+		requestSurveyDetails(survey_id);
 		initView();
 		//LinearLayout scheduleSurveyLayout = (LinearLayout) findViewById(R.id.schedule_survey_layout);
 		final EditText survey_name_ed =(EditText)findViewById(R.id.survey_name_ed);
@@ -67,6 +68,11 @@ public class SurveyEditDetails extends Activity implements OnClickListener,ApiRe
 				
 			}
 		});
+	}
+
+	private void requestSurveyDetails(String survey_id2) {
+		RequestCreator requestCreator = new RequestCreator(getApplicationContext());
+		new ApiRequester(SurveyEditDetails.this, requestCreator.editSurvey(survey_id2), SurveyEditDetails.this).execute("");		
 	}
 
 	private void initView() {
