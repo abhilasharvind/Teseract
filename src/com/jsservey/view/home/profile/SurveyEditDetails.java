@@ -2,6 +2,7 @@ package com.jsservey.view.home.profile;
 
 import java.util.Calendar;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -23,6 +24,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.abx.jsservey.R;
+import com.jsservey.model.SurveyEditDetailsBean;
 import com.jsservey.webservices.ApiRequestListner;
 import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
@@ -38,12 +40,17 @@ public class SurveyEditDetails extends Activity implements OnClickListener,ApiRe
 	private TextView selectedToDate;
 	private Button setDateBtn, fromDateBtn, toDateBtn;
 	String survey_id;
+	private EditText survey_name_ed;
+	private CheckBox validUpto;
+	private CheckBox scheduleSurveyCheckbox;
+	private CheckBox visibleSurveyCheckbox;
+	private CheckBox selectSurveyCheckbox;
 	//private ToggleButton toggleButton1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.survey_creation_layout);
+		setContentView(R.layout.survey_edit_layout);
 		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		calendar = Calendar.getInstance();
 		year = calendar.get(Calendar.YEAR);
@@ -56,7 +63,7 @@ public class SurveyEditDetails extends Activity implements OnClickListener,ApiRe
 		requestSurveyDetails(survey_id);
 		initView();
 		//LinearLayout scheduleSurveyLayout = (LinearLayout) findViewById(R.id.schedule_survey_layout);
-		final EditText survey_name_ed =(EditText)findViewById(R.id.survey_name_ed);
+		survey_name_ed =(EditText)findViewById(R.id.survey_name_ed);
 		findViewById(R.id.create_survey).setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -78,10 +85,10 @@ public class SurveyEditDetails extends Activity implements OnClickListener,ApiRe
 	private void initView() {
 		
 		final LinearLayout scheduleSurveyLayout = (LinearLayout) findViewById(R.id.schedule_survey_layout);
-		CheckBox validUpto = (CheckBox) findViewById(R.id.valid_upto);
-		CheckBox scheduleSurveyCheckbox = (CheckBox) findViewById(R.id.schedule_survey);
-		CheckBox visibleSurveyCheckbox = (CheckBox) findViewById(R.id.visible_survey);
-		final CheckBox selectSurveyCheckbox = (CheckBox) findViewById(R.id.selection_possible);
+		validUpto = (CheckBox) findViewById(R.id.valid_upto);
+		scheduleSurveyCheckbox = (CheckBox) findViewById(R.id.schedule_survey);
+		visibleSurveyCheckbox = (CheckBox) findViewById(R.id.visible_survey);
+		selectSurveyCheckbox = (CheckBox) findViewById(R.id.selection_possible);
 		selectedDate = (TextView) findViewById(R.id.selected_date);
 		selectedFromDate = (TextView) findViewById(R.id.scheduled_from_date);
 		selectedToDate = (TextView) findViewById(R.id.scheduled_to_date);
@@ -199,20 +206,47 @@ public class SurveyEditDetails extends Activity implements OnClickListener,ApiRe
 
 	@Override
 	public String onSuccess(JSONObject result) {
-		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
-		try{
-		 if(result!=null && result.has("survey_creation") && result.getInt("survey_creation")==1){
-			 Toast.makeText(getApplicationContext(), "Survey created", 1500).show();
-		 }
-		 else{
-			 Toast.makeText(getApplicationContext(), "Survey creation failed", 1500).show(); 
-		 }
-		 onBackPressed();
-		}catch(Exception e){
+		SurveyEditDetailsBean surveyEditDetailsBean = new SurveyEditDetailsBean();
+		JSONObject data;
+		try {
+			data = result.getJSONObject("data");
+			surveyEditDetailsBean.setSurvey_name(data.getString("survey_name"));
+			surveyEditDetailsBean.setProfile_id(data.getString("profile_id"));
+			surveyEditDetailsBean.setDescription(data.getString("description"));
+			surveyEditDetailsBean.setSchedule_from(data.getString("schedule_from"));
+			surveyEditDetailsBean.setSchedule_to(data.getString("schedule_to"));
+			surveyEditDetailsBean.setThank_you_id(data.getString(data.getString("thank_you_id")));
+			surveyEditDetailsBean.setSchedule_isactive(data.getString("schedule_isactive"));
+			populateDetails(surveyEditDetailsBean);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//onBackPressed();//have an issue here
+		
 		return null;
+	}
+
+	private void populateDetails(SurveyEditDetailsBean surveyEditDetailsBean) {
+		survey_name_ed.setText(surveyEditDetailsBean.getSurvey_name());
+		if (surveyEditDetailsBean.getSchedule_to().equalsIgnoreCase("1")){
+			validUpto.setChecked(true);
+			selectedDate.setVisibility(View.VISIBLE);
+			selectedDate.setText(surveyEditDetailsBean.getSchedule_to());
+		}else{
+			validUpto.setChecked(false);
+			selectedDate.setVisibility(View.GONE);
+		}
+		if(surveyEditDetailsBean.getSchedule_isactive().equalsIgnoreCase("1")){
+			scheduleSurveyCheckbox.setChecked(true);
+			selectedToDate.setVisibility(View.VISIBLE);
+			selectedFromDate.setVisibility(View.VISIBLE);
+			selectedToDate.setText(surveyEditDetailsBean.getSchedule_to());
+			selectedFromDate.setText(surveyEditDetailsBean.getSchedule_from());
+		}else{
+			scheduleSurveyCheckbox.setChecked(false);
+			selectedToDate.setVisibility(View.GONE);
+			selectedFromDate.setVisibility(View.GONE);
+		}
 	}
 
 	@Override

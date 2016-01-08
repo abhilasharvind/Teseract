@@ -49,7 +49,7 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.profile_creation_layout);
+		setContentView(R.layout.profile_edit_layout);
 		
 		calendar = Calendar.getInstance();
 		year = calendar.get(Calendar.YEAR);
@@ -135,7 +135,6 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 			validUpto.setChecked(false);
 			dateView.setVisibility(View.GONE);
 		}
-		
 
 		if (profileEditDetails.getPermission_id().equalsIgnoreCase("1")){
 			childVisibleCheckbox.setChecked(true);
