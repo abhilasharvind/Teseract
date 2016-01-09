@@ -46,8 +46,10 @@ public class QuestionsDisplayActivity extends Activity implements
 	
 	Button backButton;int gocrazycount=0;
 	String ratingValue="";
+	String seekValue="";
 	String selectedAnsId="";
 	private TextView seekValueText;
+	TextView qcountTextView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class QuestionsDisplayActivity extends Activity implements
 		backButton = (Button) findViewById(R.id.back);
 		backButton.setOnClickListener(this);		 
 		findViewById(R.id.company_title).setOnClickListener(this);
+		 qcountTextView=(TextView) findViewById(R.id.question_count_tv);
 		
 		SQLiteHelper sqLiteHelper = SQLiteHelper.getInstance(getApplicationContext());
 		String stringJsonObject = sqLiteHelper.getSurveyQuestions();
@@ -119,6 +122,8 @@ public void onConfigurationChanged(Configuration newConfig) {
 	private void setContent(String type, ArrayList<Answer> answerlist,
 			int questionNumber) {
 		TextView questionText = (TextView) findViewById(R.id.question_text);
+		qcountTextView.setText( questionNumber+1 +"/"+questionCount);//set count at footer
+		
 		String value = questionsArray.get(questionNumber).getValue();
 		String halfRating = questionsArray.get(questionNumber).getHalf_rating();
 		if (type.equalsIgnoreCase("3")) {
@@ -182,9 +187,9 @@ public void onConfigurationChanged(Configuration newConfig) {
 		}
 	}
 
-	private void enableAnswerTextList(View answerView,
+	private void enableAnswerTextList(final View answerView,
 			final ArrayList<Answer> answerlist) {
-		int[] textViewIds = new int[] { R.id.answer1, R.id.answer2,
+		final int[] textViewIds = new int[] { R.id.answer1, R.id.answer2,
 				R.id.answer3, R.id.answer4, R.id.answer5, R.id.answer6,
 				R.id.answer7, R.id.answer8, R.id.answer9, R.id.answer10 };
 		int[] layoutIds = new int[] { R.id.view1, R.id.view2,
@@ -192,8 +197,7 @@ public void onConfigurationChanged(Configuration newConfig) {
 				R.id.view7, R.id.view8, R.id.view9, R.id.view10 };
 
 		for (int i = 0; i < answerlist.size(); i++) {
-			((View) findViewById(layoutIds[i]))
-					.setVisibility(View.VISIBLE);
+			((View) findViewById(layoutIds[i]))	.setVisibility(View.VISIBLE);
 			( findViewById(textViewIds[i])).setVisibility(View.VISIBLE);
 			((TextView) findViewById(textViewIds[i])).setText(answerlist.get(i).getAnswer_name());
 			final String ansid=answerlist.get(i).getId();
@@ -203,7 +207,12 @@ public void onConfigurationChanged(Configuration newConfig) {
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stubs
 					selectedAnsId=ansid;
-					Log.e("a", selectedAnsId);
+					for (int i : textViewIds) {
+						((TextView) findViewById(i)).setBackgroundColor(getResources().getColor(R.color.answer_text_color));
+					}
+					arg0.setBackgroundColor(getResources().getColor(R.color.green));
+					//arg0.refreshDrawableState();
+					Log.e("a","selectedAnsId:"+ selectedAnsId);
 				}
 			});
 		}
@@ -307,6 +316,7 @@ public void onConfigurationChanged(Configuration newConfig) {
 
 		} else if (type.equals("5")) {//seek
 			data.setAns_id("");
+			data.setAns_value(seekValue);
 			
 			//progressValue.gett
 
@@ -354,6 +364,7 @@ public void onConfigurationChanged(Configuration newConfig) {
 	public void onStopTrackingTouch(SeekBar seekBar) {
 		int progessValue = seekBar.getProgress();
 		seekValueText.setText(progessValue + "");
+		seekValue=""+progessValue;
 	}
 	
 }

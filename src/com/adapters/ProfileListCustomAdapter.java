@@ -23,20 +23,13 @@ import com.jsservey.utils.PrefConstant;
 
 public class ProfileListCustomAdapter extends BaseAdapter implements OnClickListener{
 
-	//private String[] result;
 	private Context context;
-	//private int[] imageId;
 	private ArrayList<Profile> profileArray;
-	//public static int[] prgmImages = { R.drawable.more_button_icon,R.drawable.more_button_icon,R.drawable.more_button_icon,R.drawable.more_button_icon };
-	//public static String[] prgmNameList = { "user 1", "user 2", "user 3",	"user 4" };
 	private static LayoutInflater inflater = null;
 	EditDeleteUpdate_listner editDeleteUpdate_listner;
 
 	public ProfileListCustomAdapter(Context context,ArrayList<Profile> profileArray,EditDeleteUpdate_listner editDeleteUpdate_listner) {
-		// TODO Auto-generated constructor stub
-		//this.result = prgmNameList;
 		this.context = context;
-		//this.imageId = prgmImages;
 		inflater = (LayoutInflater) context	.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.profileArray=profileArray;
 		this.editDeleteUpdate_listner=editDeleteUpdate_listner;
@@ -60,7 +53,6 @@ public class ProfileListCustomAdapter extends BaseAdapter implements OnClickList
 	public class Holder {
 		TextView tv;
 		ImageView img;
-		//FrameLayout popupMenu;
 		ImageView select_tick;
 	}
 	
@@ -73,8 +65,6 @@ public class ProfileListCustomAdapter extends BaseAdapter implements OnClickList
 		rowView = inflater.inflate(R.layout.user_list_raw_layout, null);
 		holder.tv = (TextView) rowView.findViewById(R.id.textView1);
 		holder.img = (ImageView) rowView.findViewById(R.id.pop_up);
-		//holder.popupMenu = (FrameLayout) rowView.findViewById(R.id.user_popup_menu);//why is it here
-		//holder.img.setOnClickListener(this);
 		holder.tv.setText(profileArray.get(position).getProfilr_name());
 		holder.select_tick= (ImageView) rowView.findViewById(R.id.profile_tick);
 		Log.d("abx", "activated profile hgerer>>"+profileArray.get(position).getProfile_id());

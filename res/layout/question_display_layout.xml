@@ -95,6 +95,16 @@
             android:background="@drawable/answer_button_shape"
             android:padding="6dp"
             android:text="Next" />
+
+        <TextView
+            android:id="@+id/question_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="1/1" 
+            android:textSize="30sp">
+        </TextView>
     </RelativeLayout>
 
     <LinearLayout

@@ -32,42 +32,51 @@ public class StartSurveyActivity extends Activity{
 			
 			@Override
 			public void onClick(View arg0) {
-				Utility.startActivity(StartSurveyActivity.this, QuestionsDisplayActivity.class);				
+				loddingIndicator(View.VISIBLE);
+				fetchActivatedSurveyQues();
+								
 			}
 		});
 		//AppPref appPref = new AppPref(getApplicationContext());
 		//prf_name.setText(""+appPref.getString(PrefConstant.ACTIVATED_PROFILE));
 		//Utility.startActivity(StartSurveyActivity.this, CreateQuestionTextActivity.class);
 		
-		fetchActivatedSurveyQues();
+		
 		
 	}
 
 	private void fetchActivatedSurveyQues() {
 		SurveyRequestCreator requestCreator = new SurveyRequestCreator(getApplicationContext());
-		new ApiRequester(StartSurveyActivity.this,requestCreator.surveyQuesFetch(""), new ApiRequestListner() {
+		new ApiRequester(StartSurveyActivity.this,requestCreator.surveyQuesFetch("1"), new ApiRequestListner() {
 			
 			@Override
 			public String onSuccess(JSONObject result) {
+				loddingIndicator(View.GONE);
 				SQLiteHelper db = 	SQLiteHelper.getInstance(getApplicationContext());
 				db.insertSurveyQuestions(result.toString());
 				String d=db.getSurveyQuestions();
+				Log.d("abx", "survey fetch sucess");
 				Log.d("abx", d);
+				Utility.startActivity(StartSurveyActivity.this, QuestionsDisplayActivity.class);
 				return null;
 			}
 			
 			@Override
 			public String onStarted() {
 				// TODO Auto-generated method stub
+				loddingIndicator(View.GONE);
 				return null;
 			}
 			
 			@Override
 			public String onFailed() {
+				loddingIndicator(View.GONE);
 				Toast.makeText(StartSurveyActivity.this, "Error in fetching survey", 1500).show();
 				return null;
 			}
 		}).execute("");
 	}
-
+	private void loddingIndicator(int visibility) {
+		findViewById(R.id.home_pg_rl).setVisibility(visibility);;
+	}
 }
