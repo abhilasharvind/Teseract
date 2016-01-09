@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.Toast;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -90,6 +91,7 @@ public class QuestionsDisplayActivity extends Activity implements
 					JSONObject answerJson = (JSONObject) answerList.get(j);
 					answer.setId(answerJson.getString("id"));
 					answer.setAnswer_name(answerJson.getString("answer_name"));
+					Log.d("question", answerJson.getString("answer_name"));
 					answerlist.add(answer);
 				}
 				question.setAnswerlist(answerlist);
@@ -180,10 +182,20 @@ public void onConfigurationChanged(Configuration newConfig) {
 		} else if (type.equalsIgnoreCase("6")) {//smiley
 			questionText.setText(questionsArray.get(questionNumber)
 					.getQuestion());
+			String smilyCount = questionsArray.get(questionNumber).getValue();
 			View answerView = getLayoutInflater()
 					.inflate(R.layout.question_type_smiley_layout,questionLayout, false);
+			if(smilyCount.equalsIgnoreCase("5")){
+				 answerView = getLayoutInflater()
+						.inflate(R.layout.question_type_five_smiley_layout,questionLayout, false);
+			}else if(smilyCount.equalsIgnoreCase("10")){
+				 answerView = getLayoutInflater()
+						.inflate(R.layout.question_type_smiley_layout,questionLayout, false);
+			}
+			
 			questionLayout.removeAllViews();
 			questionLayout.addView(answerView);
+			enableSmilyList(answerView,smilyCount);
 		}
 	}
 
@@ -213,6 +225,32 @@ public void onConfigurationChanged(Configuration newConfig) {
 					arg0.setBackgroundColor(getResources().getColor(R.color.green));
 					//arg0.refreshDrawableState();
 					Log.e("a","selectedAnsId:"+ selectedAnsId);
+				}
+			});
+		}
+	}
+	
+	private void enableSmilyList(final View answerView ,String smilyCount){
+		int[] imageViewIds = new int[] { R.id.smiley1, R.id.smiley2,
+				R.id.smiley3, R.id.smiley4, R.id.smiley5};
+		int smilyNumber = 5;
+		if(smilyCount.equalsIgnoreCase("5")){
+			imageViewIds = new int[] { R.id.smiley1, R.id.smiley2,
+					R.id.smiley3, R.id.smiley4, R.id.smiley5};
+			smilyNumber = 5;
+		}else if(smilyCount.equalsIgnoreCase("10")){
+			imageViewIds = new int[] { R.id.smiley1, R.id.smiley2,
+					R.id.smiley3, R.id.smiley4, R.id.smiley5, R.id.smiley6,
+					R.id.smiley7, R.id.smiley8, R.id.smiley9, R.id.smiley10 };
+			smilyNumber = 10;
+		}
+		
+		for(int i=0;i<smilyNumber;i++){
+			 findViewById(imageViewIds[i]).setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View view) {
+					Toast.makeText(getApplicationContext(), "clicked on ", 3000).show();
 				}
 			});
 		}

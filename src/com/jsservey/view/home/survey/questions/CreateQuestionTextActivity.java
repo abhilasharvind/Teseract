@@ -165,6 +165,11 @@ public class CreateQuestionTextActivity extends Activity implements
 					.findViewById(R.id.smily_radio_group);
 			RadioButton fiveStar = (RadioButton) answerView.findViewById(R.id.type1_smiley);
 			RadioButton tenStar = (RadioButton) answerView	.findViewById(R.id.type2_smiley);
+			if (fiveStar.isChecked()) {
+				maxValue = 5;
+			}else if(tenStar.isChecked()){
+				maxValue = 10;
+			}
 			progressRadioGroup.setOnCheckedChangeListener(this);
 			questionLayout.removeAllViews();
 			questionLayout.addView(answerView);
