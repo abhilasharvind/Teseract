@@ -10,6 +10,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -51,6 +52,7 @@ public class SurveyEditDetails extends Activity implements OnClickListener,ApiRe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.survey_edit_layout);
+		Log.e("abx", "inside seurvey edit ");
 		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		calendar = Calendar.getInstance();
 		year = calendar.get(Calendar.YEAR);
@@ -206,6 +208,7 @@ public class SurveyEditDetails extends Activity implements OnClickListener,ApiRe
 
 	@Override
 	public String onSuccess(JSONObject result) {
+		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
 		SurveyEditDetailsBean surveyEditDetailsBean = new SurveyEditDetailsBean();
 		JSONObject data;
 		try {
@@ -226,6 +229,24 @@ public class SurveyEditDetails extends Activity implements OnClickListener,ApiRe
 		return null;
 	}
 
+	
+
+	@Override
+	public String onFailed() {
+		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
+		// TODO Auto-generated method stub
+		onBackPressed();
+		return null;
+	}
+
+	@Override
+	public String onStarted() {
+		findViewById(R.id.home_pg_rl).setVisibility(View.VISIBLE);
+		// TODO Auto-generated method stub
+		//onBackPressed();
+		return null;
+	}
+	
 	private void populateDetails(SurveyEditDetailsBean surveyEditDetailsBean) {
 		survey_name_ed.setText(surveyEditDetailsBean.getSurvey_name());
 		if (surveyEditDetailsBean.getSchedule_to().equalsIgnoreCase("1")){
@@ -248,21 +269,6 @@ public class SurveyEditDetails extends Activity implements OnClickListener,ApiRe
 			selectedFromDate.setVisibility(View.GONE);
 		}
 	}
-
-	@Override
-	public String onFailed() {
-		findViewById(R.id.home_pg_rl).setVisibility(View.GONE);
-		// TODO Auto-generated method stub
-		onBackPressed();
-		return null;
-	}
-
-	@Override
-	public String onStarted() {
-		findViewById(R.id.home_pg_rl).setVisibility(View.VISIBLE);
-		// TODO Auto-generated method stub
-		onBackPressed();
-		return null;
-	}
+	
 
 }

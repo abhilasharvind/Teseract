@@ -345,7 +345,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/answer_button_shape"
         android:padding="6dp"
-        android:text="Create Survey"
+        android:text="Update Survey"
         android:textSize="25sp" />
 
 </LinearLayout>

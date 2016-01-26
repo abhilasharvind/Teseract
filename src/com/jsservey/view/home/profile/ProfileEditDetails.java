@@ -117,7 +117,7 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 				profileDetails.setValidUpto(validUpto.isChecked());
 				profileDetails.setChildVisible(childVisibleCheckbox.isChecked());
 				profileDetails.setChildSelection(childSelectionCheckbox.isChecked());
-				profileDetails.setSelectedDate(selectedDate.toString());
+				profileDetails.setSelectedDate(""/*selectedDate.toString()*/);//TODO
 				new ApiRequester(ProfileEditDetails.this, requestCreator.createProfile(pf_name), ProfileEditDetails.this).execute("");
 				//new DbInsertDbop(pf_name).execute("");
 			}

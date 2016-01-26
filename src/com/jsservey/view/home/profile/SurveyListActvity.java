@@ -179,6 +179,7 @@ public void onClick(View arg0) {
 public void onEditTaskStart(int type, String id) {
 	Bundle bundle = new Bundle();
 	bundle.putString("survey_id", id);
+	Log.e("abx", "seurvey edit id: "+id);
 	Intent intent = new Intent(SurveyListActvity.this, SurveyEditDetails.class);
 	intent.putExtras(bundle);
 	startActivity(intent);
