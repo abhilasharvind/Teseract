@@ -19,13 +19,17 @@ import com.jsservey.webservices.ApiRequester;
 import com.jsservey.webservices.RequestCreator;
 
 public class DeviceCreationActivity extends Activity {
+	
+	
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.company_registration);
-		
+		findViewById(R.id.progress_rl).setVisibility(View.GONE);
 		findViewById(R.id.submit_registration).setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -40,6 +44,7 @@ public class DeviceCreationActivity extends Activity {
 					
 					@Override
 					public String onSuccess(JSONObject result) {
+						findViewById(R.id.progress_rl).setVisibility(View.GONE);
 						if (result!=null && result.has("registration_sucess")) {
 							try {
 								int regid= result.getInt("registration_sucess");
@@ -50,13 +55,16 @@ public class DeviceCreationActivity extends Activity {
 								else{
 									Utility.startActivity(DeviceCreationActivity.this, LoginActivity.class);
 									finish();
-									Toast.makeText(DeviceCreationActivity.this, "Registration failed", 1500).show();
+									Toast.makeText(DeviceCreationActivity.this, "Registration failed", 2000).show();
 								}
 								
 							} catch (JSONException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							
+						}else if(result!=null && result.has("invalid_company_key")){
+							Toast.makeText(getApplicationContext(), "Invalid Company Key", 2000).show();
 							
 						}
 						
@@ -66,12 +74,14 @@ public class DeviceCreationActivity extends Activity {
 					@Override
 					public String onStarted() {
 						// TODO Auto-generated method stub
+						findViewById(R.id.progress_rl).setVisibility(View.VISIBLE);
 						return null;
 					}
 					
 					@Override
 					public String onFailed() {
-						// TODO Auto-generated method stub
+						findViewById(R.id.progress_rl).setVisibility(View.GONE);
+						Toast.makeText(DeviceCreationActivity.this, "Registration failed", 2000).show();
 						return null;
 					}
 				}).execute("");

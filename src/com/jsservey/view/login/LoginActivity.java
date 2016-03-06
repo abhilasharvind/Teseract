@@ -32,7 +32,7 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 		
 		setContentView(R.layout.login_view);
 		
-		
+		findViewById(R.id.progress_rl).setVisibility(View.GONE);
 		final EditText username_ed =(EditText) findViewById(R.id.user_name);
 		final EditText pass_ed =(EditText) findViewById(R.id.password);
 		final CheckBox svd =(CheckBox)findViewById(R.id.svdPwd);
@@ -71,7 +71,8 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 
 	@Override
 	public String onSuccess(JSONObject result) {
-		try {loddingIndicator(View.GONE);
+		findViewById(R.id.progress_rl).setVisibility(View.GONE);
+		try {
 			if (result!=null && result.has("data")) {
 				JSONObject data = result.getJSONObject("data");
 				String isAdvacedUser=data.getString("is_advaced_user");
@@ -103,19 +104,16 @@ public class LoginActivity extends BaseActivity implements ApiRequestListner{
 
 	@Override
 	public String onFailed() {
-		
+		findViewById(R.id.progress_rl).setVisibility(View.GONE);
 		Toast.makeText(this, "Login Failed!", Toast.LENGTH_SHORT).show();
-		loddingIndicator(View.GONE);
 		return null;
 	}
 
 	@Override
 	public String onStarted() {
-		Toast.makeText(this, "Login Initiated!", Toast.LENGTH_SHORT).show();
+		findViewById(R.id.progress_rl).setVisibility(View.VISIBLE);
 		return null;
 	}
 
-	private void loddingIndicator(int visibility) {
-		findViewById(R.id.home_pg_rl).setVisibility(visibility);;
-	}
+	
 }

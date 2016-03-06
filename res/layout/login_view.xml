@@ -2,24 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:clickable="true"
-    android:scrollbars="vertical"
-    tools:context="com.example.surveyprograme.Login.LoginActivity" >
+    android:background="@color/blue" >
 
     <LinearLayout
         android:id="@+id/login_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/card_background"
         android:orientation="vertical" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/survey_icon" />
 
         <LinearLayout
             android:id="@+id/login_layout_round"
@@ -85,42 +78,60 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/round_corner"
+            android:layout_margin="10dp"
+            android:background="@drawable/card_backgroung_dark1"
             android:text="@string/login"
-            android:textColor="@color/BG_BLUE_HEADER"
+            android:textColor="@color/black"
             android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_layout"
+        android:layout_margin="10dp"
+        android:background="@drawable/card_background"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/signup_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:padding="10dp"
             android:text="@string/register_account"
             android:textSize="15sp" />
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/home_pg_rl"
+        android:id="@+id/progress_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" >
+       >
 
-        <ProgressBar
-            android:id="@+id/home_pg"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/home_pg"
-            android:layout_centerHorizontal="true"
-            android:text="Loading..." />
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+              android:background="@drawable/card_background"
+             >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Initiating...  "
+                android:gravity="center"
+                android:textColor="@android:color/black" />
+
+            <ProgressBar
+                android:id="@+id/p_bar"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
     </RelativeLayout>
 
 </RelativeLayout>

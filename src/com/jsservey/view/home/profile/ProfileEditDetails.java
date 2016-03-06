@@ -112,13 +112,13 @@ public class ProfileEditDetails extends Activity implements OnClickListener,ApiR
 			public void onClick(View arg0) {
 				RequestCreator requestCreator = new RequestCreator(getApplicationContext());
 				String pf_name=profile_name_ed.getText().toString();
-				ProfileDetails profileDetails = new ProfileDetails();
+				/*ProfileDetails profileDetails = new ProfileDetails();
 				profileDetails.setProfileName(profile_name_ed.getText().toString());
 				profileDetails.setValidUpto(validUpto.isChecked());
 				profileDetails.setChildVisible(childVisibleCheckbox.isChecked());
 				profileDetails.setChildSelection(childSelectionCheckbox.isChecked());
-				profileDetails.setSelectedDate(""/*selectedDate.toString()*/);//TODO
-				new ApiRequester(ProfileEditDetails.this, requestCreator.createProfile(pf_name), ProfileEditDetails.this).execute("");
+				profileDetails.setSelectedDate(""selectedDate.toString());//TODO
+*/				new ApiRequester(ProfileEditDetails.this, requestCreator.updateProfile(pf_name,profile_id), ProfileEditDetails.this).execute("");
 				//new DbInsertDbop(pf_name).execute("");
 			}
 		});

@@ -37,6 +37,8 @@ public class SurveyEditDetails extends Activity implements OnClickListener,ApiRe
 	private boolean is24HourView = false;
 	private int dateViewId;
 	private TextView selectedDate;
+	
+	
 	private TextView selectedFromDate;
 	private TextView selectedToDate;
 	private Button setDateBtn, fromDateBtn, toDateBtn;

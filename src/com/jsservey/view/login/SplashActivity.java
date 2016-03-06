@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.abx.jsservey.R;
 import com.jsservey.database.SQLiteHelper;
@@ -158,6 +159,7 @@ public class SplashActivity extends BaseActivity implements ApiRequestListner{
 			
 		}else{
 			Log.d("abx", "json null in splash");
+			Toast.makeText(getApplicationContext(), "Internal error", 2000).show();
 		}
 		
 		
@@ -167,6 +169,8 @@ public class SplashActivity extends BaseActivity implements ApiRequestListner{
 	@Override
 	public String onFailed() {
 		// TODO Auto-generated method stub
+		
+		Toast.makeText(getApplicationContext(), "Unable to connect to the server.Check your internet connectivity", 2000).show();
 		return null;
 	}
 

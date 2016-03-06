@@ -1,69 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/theme_background"
+    android:background="@color/theme_background"
     android:orientation="vertical" >
-
-    <LinearLayout
+  <RelativeLayout
+        android:id="@+id/progress_rl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:orientation="vertical" >
+        android:layout_height="match_parent" 
+      >
 
         <LinearLayout
-            android:id="@+id/company_title_layout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/layout_round_corner"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="8dp" >
+            android:layout_centerInParent="true"
+            android:orientation="horizontal" 
+            android:padding="20dp"
+              android:background="@drawable/card_background">
 
             <TextView
-                android:id="@+id/company_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please wait will register...  "
+                android:textColor="@android:color/black" />
+
+            <ProgressBar
+                android:id="@+id/p_bar"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+    </RelativeLayout>
+ 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+             android:background="@drawable/card_background" >
+
+            <LinearLayout
+                android:id="@+id/company_title_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+               
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="8dp" >
+
+                <TextView
+                    android:id="@+id/company_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/company_textview"
+                    android:textSize="17dp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/company_name_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:ems="10"
+                android:hint="@string/company_name_edittext"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/company_key_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:ems="10"
+                android:hint="@string/company_key" />
+
+            <Button
+                android:id="@+id/submit_registration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/company_textview"
-                android:textSize="17dp" />
+                android:layout_marginTop="15dp"
+                android:background="@drawable/answer_button_shape"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:text="Submit" />
         </LinearLayout>
+  
 
-        <EditText
-            android:id="@+id/company_name_edittext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:ems="10"
-            android:hint="@string/company_name_edittext"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/company_key_edittext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:ems="10"
-            android:hint="@string/company_key" />
-
-        <Button
-            android:id="@+id/submit_registration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/answer_button_shape"
-            android:layout_marginTop="15dp"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:text="submit" />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
